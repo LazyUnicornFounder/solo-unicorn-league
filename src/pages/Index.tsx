@@ -207,9 +207,9 @@ export default function Index() {
                 <div className="w-28 shrink-0" />
                 <div className="flex-1 relative">
                   <div className="h-px bg-border/30" />
-                  <div className="flex justify-between mt-1.5">
+                  <div className="flex justify-between mt-2">
                     {["$0", "$250M", "$500M", "$750M", "$1B"].map(label => (
-                      <span key={label} className="text-[9px] font-mono-display text-muted-foreground/50">{label}</span>
+                      <span key={label} className="text-xs font-mono-display text-foreground/50 font-medium">{label}</span>
                     ))}
                   </div>
                 </div>
