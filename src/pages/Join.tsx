@@ -10,8 +10,9 @@ import { Label } from "@/components/ui/label";
 import logo from "@/assets/logo-new.png";
 
 function fmtCurrency(v: number) {
-  if (v >= 1_000_000) return "$" + (v / 1_000_000).toFixed(1) + "M";
-  if (v >= 1_000) return "$" + (v / 1_000).toFixed(0) + "K";
+  if (v >= 1_000_000_000) return "$" + (v / 1_000_000_000).toFixed(1) + " Billion";
+  if (v >= 1_000_000) return "$" + (v / 1_000_000).toFixed(1) + " Million";
+  if (v >= 1_000) return "$" + (v / 1_000).toFixed(0) + " Thousand";
   return "$" + v.toFixed(0);
 }
 
@@ -196,6 +197,10 @@ export default function Join() {
               />
             </div>
             <div className="space-y-2">
+              <Label htmlFor="logo">Company Logo</Label>
+              <Input id="logo" type="file" accept="image/*" onChange={(e) => setLogoFile(e.target.files?.[0] ?? null)} />
+            </div>
+            <div className="space-y-2">
               <Label htmlFor="companyUrl">Website URL</Label>
               <Input
                 id="companyUrl"
@@ -214,7 +219,18 @@ export default function Join() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="mrr">Monthly Recurring Revenue ($)</Label>
+              <Label htmlFor="oneliner">One-liner</Label>
+              <Input
+                id="oneliner"
+                value={oneLiner}
+                onChange={(e) => setOneLiner(e.target.value.slice(0, 100))}
+                placeholder="What does your company do?"
+                maxLength={100}
+              />
+              <p className="text-xs text-muted-foreground">{oneLiner.length}/100</p>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="mrr">Current MRR ($)</Label>
               <Input
                 id="mrr"
                 type="number"
@@ -225,21 +241,6 @@ export default function Join() {
                 required
                 placeholder="e.g. 12000"
               />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="logo">Company Logo</Label>
-              <Input id="logo" type="file" accept="image/*" onChange={(e) => setLogoFile(e.target.files?.[0] ?? null)} />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="oneliner">One-liner</Label>
-              <Input
-                id="oneliner"
-                value={oneLiner}
-                onChange={(e) => setOneLiner(e.target.value.slice(0, 100))}
-                placeholder="What does your company do?"
-                maxLength={100}
-              />
-              <p className="text-xs text-muted-foreground">{oneLiner.length}/100</p>
             </div>
 
             {/* Live calculation preview */}
