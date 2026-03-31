@@ -91,16 +91,42 @@ export default function Index() {
           <img src={logo} alt="Logo" className="w-28 h-28 lg:w-32 lg:h-32 opacity-90 hover:opacity-100 transition-opacity drop-shadow-[0_0_25px_hsl(145,72%,46%,0.15)]" />
           <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 200">
             <defs>
-              <path id="circlePath" d="M 100, 100 m -80, 0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0" fill="none" />
+              {/* Top arc - clockwise */}
+              <path id="topArc" d="M 20,100 a 80,80 0 1,1 160,0" fill="none" />
+              {/* Bottom arc - clockwise (flipped so text reads left-to-right) */}
+              <path id="bottomArc" d="M 180,100 a 80,80 0 1,1 -160,0" fill="none" />
             </defs>
             {/* Outer circle */}
             <circle cx="100" cy="100" r="92" fill="none" stroke="hsl(30 10% 82% / 0.15)" strokeWidth="0.5" />
             {/* Inner circle */}
             <circle cx="100" cy="100" r="66" fill="none" stroke="hsl(30 10% 82% / 0.15)" strokeWidth="0.5" />
-            {/* Text on circle */}
-            <text className="fill-foreground/50 uppercase" style={{ fontSize: '12px', letterSpacing: '0.35em', fontFamily: 'Montserrat, sans-serif', fontWeight: 600 }}>
-              <textPath href="#circlePath" startOffset="0%">
-                SOLO UNICORN LEAGUE • SOLO UNICORN LEAGUE •
+            {/* Tick marks like the reference */}
+            {Array.from({ length: 72 }).map((_, i) => {
+              const angle = (i * 5) * Math.PI / 180;
+              const r1 = 87;
+              const r2 = 83;
+              return (
+                <line
+                  key={i}
+                  x1={100 + r1 * Math.cos(angle)}
+                  y1={100 + r1 * Math.sin(angle)}
+                  x2={100 + r2 * Math.cos(angle)}
+                  y2={100 + r2 * Math.sin(angle)}
+                  stroke="hsl(30 10% 82% / 0.2)"
+                  strokeWidth="0.5"
+                />
+              );
+            })}
+            {/* Top text: SOLO UNICORN */}
+            <text className="fill-foreground/70 uppercase" style={{ fontSize: '14px', letterSpacing: '0.25em', fontFamily: 'Montserrat, sans-serif', fontWeight: 800 }}>
+              <textPath href="#topArc" startOffset="50%" textAnchor="middle">
+                SOLO UNICORN
+              </textPath>
+            </text>
+            {/* Bottom text: LEAGUE */}
+            <text className="fill-foreground/70 uppercase" style={{ fontSize: '14px', letterSpacing: '0.25em', fontFamily: 'Montserrat, sans-serif', fontWeight: 800 }}>
+              <textPath href="#bottomArc" startOffset="50%" textAnchor="middle">
+                LEAGUE
               </textPath>
             </text>
           </svg>
