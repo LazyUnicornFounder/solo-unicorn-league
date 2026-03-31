@@ -7,9 +7,9 @@ export default function About() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <header className="flex items-center justify-between px-6 lg:px-10 py-4 border-b border-border">
-        <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="Logo" className="w-7 h-7" />
-          <span className="font-bold text-lg tracking-tight text-foreground">Solo <span className="text-primary">Unicorn</span> League</span>
+        <Link to="/" className="flex items-center gap-3">
+          <img src={logo} alt="Logo" className="w-12 h-12" />
+          <span className="font-bold text-lg tracking-tight text-foreground">Solo Unicorn League</span>
         </Link>
         <Link to="/">
           <Button variant="ghost" size="sm">← Back</Button>
@@ -37,7 +37,7 @@ export default function About() {
             </p>
 
             <p>
-              <a href="https://breakingmuse.ai" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Breaking Muse</a> turns today's news into tomorrow's startup ideas — giving solo founders the signal they need to move fast. <a href="https://lazyunicorn.ai" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Lazy Unicorn</a> is the definitive guide to building a startup that builds itself — the autonomous business toolkit for founders who refuse to hire when they can automate. And <span className="text-foreground font-semibold">Solo Unicorn Cup</span> is where those founders prove it's working.
+              <a href="https://breakingmuse.ai" target="_blank" rel="noopener noreferrer" className="text-foreground hover:underline font-medium">Breaking Muse</a> turns today's news into tomorrow's startup ideas — giving solo founders the signal they need to move fast. <a href="https://lazyunicorn.ai" target="_blank" rel="noopener noreferrer" className="text-foreground hover:underline font-medium">Lazy Unicorn</a> is the definitive guide to building a startup that builds itself — the autonomous business toolkit for founders who refuse to hire when they can automate. And <span className="text-foreground font-semibold">Solo Unicorn Cup</span> is where those founders prove it's working.
             </p>
 
             <p>
@@ -52,7 +52,7 @@ export default function About() {
               The question isn't whether a solo founder will build a billion-dollar company. The question is who will do it first.
             </p>
 
-            <p className="text-primary font-bold text-lg lg:text-xl">
+            <p className="text-foreground font-bold text-lg lg:text-xl">
               The leaderboard is live. The race is on.
             </p>
           </div>
