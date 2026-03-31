@@ -56,14 +56,14 @@ export default function Index() {
       </header>
 
       {/* Hero section */}
-      <section className="flex flex-col items-center justify-center px-6 py-6 lg:py-10">
+      <section className="flex flex-col items-center justify-center px-6 py-3 lg:py-5">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
           className="flex flex-col items-center text-center"
         >
-          <img src={logo} alt="Solo Unicorn League" className="w-48 h-48 lg:w-64 lg:h-64 mb-4" />
+          <img src={logo} alt="Solo Unicorn League" className="w-24 h-24 lg:w-32 lg:h-32 mb-2" />
           <h1 className="text-3xl lg:text-5xl font-bold tracking-wide text-foreground mb-3 uppercase">
             Solo Unicorn League
           </h1>
