@@ -93,8 +93,8 @@ export default function Index() {
             <defs>
               {/* Top arc - clockwise */}
               <path id="topArc" d="M 20,100 a 80,80 0 1,1 160,0" fill="none" />
-              {/* Bottom arc - clockwise (flipped so text reads left-to-right) */}
-              <path id="bottomArc" d="M 180,100 a 80,80 0 1,1 -160,0" fill="none" />
+              {/* Bottom arc - goes left to right along the bottom so text is upright */}
+              <path id="bottomArc" d="M 20,100 a 80,80 0 0,0 160,0" fill="none" />
             </defs>
             {/* Outer circle */}
             <circle cx="100" cy="100" r="92" fill="none" stroke="hsl(30 10% 82% / 0.15)" strokeWidth="0.5" />
@@ -118,7 +118,7 @@ export default function Index() {
               );
             })}
             {/* Top text: SOLO UNICORN */}
-            <text className="fill-foreground/70 uppercase" style={{ fontSize: '14px', letterSpacing: '0.25em', fontFamily: 'Montserrat, sans-serif', fontWeight: 800 }}>
+            <text className="fill-foreground/50 uppercase" style={{ fontSize: '14px', letterSpacing: '0.25em', fontFamily: 'Montserrat, sans-serif', fontWeight: 800 }}>
               <textPath href="#topArc" startOffset="50%" textAnchor="middle">
                 SOLO UNICORN
               </textPath>
