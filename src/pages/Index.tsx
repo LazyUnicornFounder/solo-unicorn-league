@@ -71,6 +71,7 @@ export default function Index() {
             <Twitter size={16} />
           </Button>
         </a>
+        <Link to="/about">
           <Button variant="ghost" size="sm" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground hover:bg-transparent">About</Button>
         </Link>
       </nav>
