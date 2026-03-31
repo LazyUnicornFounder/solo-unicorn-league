@@ -58,13 +58,17 @@ export default function Index() {
             <Button variant="ghost" size="sm" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground hover:bg-transparent">Admin</Button>
           </Link>
         )}
-        {user && (
+        {user ? (
           <>
             <Link to="/dashboard">
               <Button variant="ghost" size="sm" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground hover:bg-transparent">Dashboard</Button>
             </Link>
             <Button variant="ghost" size="sm" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground hover:bg-transparent" onClick={signOut}>Sign Out</Button>
           </>
+        ) : (
+          <Link to="/join">
+            <Button variant="ghost" size="sm" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground hover:bg-transparent">Sign In</Button>
+          </Link>
         )}
         <a href="https://x.com/SaadSahawneh" target="_blank" rel="noopener noreferrer">
           <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground hover:bg-transparent px-2">
