@@ -118,7 +118,7 @@ export default function Index() {
               );
             })}
             {/* Top text: SOLO UNICORN */}
-            <text className="fill-foreground/70 uppercase" style={{ fontSize: '14px', letterSpacing: '0.25em', fontFamily: 'Montserrat, sans-serif', fontWeight: 800 }}>
+            <text className="fill-foreground/50 uppercase" style={{ fontSize: '14px', letterSpacing: '0.25em', fontFamily: 'Montserrat, sans-serif', fontWeight: 800 }}>
               <textPath href="#topArc" startOffset="50%" textAnchor="middle">
                 SOLO UNICORN
               </textPath>
