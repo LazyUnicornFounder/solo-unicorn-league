@@ -123,12 +123,12 @@ export default function Index() {
           </div>
 
           {/* Column headers */}
-          <div className="flex items-center gap-4 px-6 py-2 border-b border-border/30">
-            <div className="w-6 shrink-0 text-[9px] font-mono-display text-muted-foreground/40 uppercase">#</div>
-            <div className="w-28 shrink-0 text-[9px] font-mono-display text-muted-foreground/40 uppercase tracking-wider">Company</div>
-            <div className="flex-1 text-[9px] font-mono-display text-muted-foreground/40 uppercase tracking-wider">Progress</div>
-            <div className="w-20 shrink-0 text-[9px] font-mono-display text-muted-foreground/40 uppercase tracking-wider text-right">ARR</div>
-            <div className="w-20 shrink-0 text-[9px] font-mono-display text-muted-foreground/40 uppercase tracking-wider text-right">Val.</div>
+          <div className="flex items-center gap-4 px-6 py-2 border-b border-border/15">
+            <div className="w-6 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase">#</div>
+            <div className="w-28 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider">Company</div>
+            <div className="flex-1 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider">Progress</div>
+            <div className="w-20 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider text-right">ARR</div>
+            <div className="w-20 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider text-right">Val.</div>
           </div>
 
           {loading ? (
