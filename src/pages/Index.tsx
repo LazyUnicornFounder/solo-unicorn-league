@@ -168,16 +168,13 @@ export default function Index() {
                         <Tooltip>
                           <TooltipTrigger asChild>
                             <div className="flex-1 h-6 bg-secondary/50 rounded relative overflow-hidden cursor-default">
-                              {pct > 0 ? (
-                                <motion.div
-                                  initial={{ width: 0 }}
-                                  animate={{ width: `${Math.max(pct, 0.4)}%` }}
-                                  transition={{ duration: 1, delay: 0.4 + i * 0.05, ease: "easeOut" }}
-                                  className="h-full rounded bg-primary/70 bar-glow"
-                                />
-                              ) : (
-                                <div className="absolute left-1 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-primary/20" />
-                              )}
+                              <motion.div
+                                initial={{ width: 0 }}
+                                animate={{ width: `${Math.max(pct, 0.3)}%` }}
+                                transition={{ duration: 1, delay: 0.4 + i * 0.05, ease: "easeOut" }}
+                                className="h-full rounded bg-primary/70 bar-glow"
+                              />
+                            </div>
                             </div>
                           </TooltipTrigger>
                           <TooltipContent side="top" className="font-mono-display text-xs bg-card border-border">
