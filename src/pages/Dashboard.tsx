@@ -104,8 +104,8 @@ export default function Dashboard() {
     <div className="min-h-screen bg-background">
       <header className="flex items-center justify-between px-6 lg:px-10 py-4 border-b border-border">
         <button onClick={() => navigate("/")} className="flex items-center gap-2">
-          <img src={logo} alt="Logo" className="w-7 h-7" />
-          <span className="font-bold text-lg tracking-tight text-foreground">Solo <span className="text-primary">Unicorn</span> League</span>
+          <img src={logo} alt="Logo" className="w-12 h-12" />
+          <span className="font-bold text-lg tracking-tight text-foreground">Solo Unicorn League</span>
         </button>
         <Button variant="ghost" size="sm" onClick={signOut}>Sign Out</Button>
       </header>
