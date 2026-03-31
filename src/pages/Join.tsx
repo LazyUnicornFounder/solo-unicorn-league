@@ -95,10 +95,29 @@ export default function Join() {
     }
   };
 
+  const handleClose = useCallback(() => {
+    navigate("/");
+  }, [navigate]);
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") handleClose();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [handleClose]);
+
   if (loading) return null;
 
   return (
-    <div className="min-h-screen bg-background flex flex-col items-center justify-center px-4">
+    <div className="min-h-screen bg-background flex flex-col items-center justify-center px-4 relative">
+      <button
+        onClick={handleClose}
+        className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"
+        aria-label="Close"
+      >
+        <X size={24} />
+      </button>
       <div className="w-full max-w-sm space-y-6">
         <div className="text-center space-y-2">
           <img src={logo} alt="Logo" className="w-10 h-10 mx-auto" />
