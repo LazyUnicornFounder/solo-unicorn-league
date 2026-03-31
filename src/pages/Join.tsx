@@ -80,12 +80,25 @@ export default function Join() {
     setError("");
     setSubmitting(true);
     try {
+      let logoUrl: string | null = null;
+
+      if (logoFile) {
+        const ext = logoFile.name.split(".").pop();
+        const path = `${user.id}/logo.${ext}`;
+        const { error: uploadErr } = await supabase.storage.from("founder-logos").upload(path, logoFile, { upsert: true });
+        if (uploadErr) throw uploadErr;
+        const { data: { publicUrl } } = supabase.storage.from("founder-logos").getPublicUrl(path);
+        logoUrl = publicUrl;
+      }
+
       const { error } = await supabase.from("founders").insert({
         user_id: user.id,
         company_name: companyName,
         x_url: companyUrl || null,
+        one_liner: oneLiner || null,
+        logo_url: logoUrl,
         mrr_cents: Math.round(mrrDollars * 100),
-        is_visible: true,
+        is_visible: false,
         is_solo_attested: true,
       });
       if (error) throw error;
