@@ -52,7 +52,7 @@ export default function About() {
               The question isn't whether a solo founder will build a billion-dollar company. The question is who will do it first.
             </p>
 
-            <p className="text-foreground font-bold text-lg lg:text-xl">
+            <p className="text-foreground font-bold text-base lg:text-lg">
               The leaderboard is live. The race is on.
             </p>
           </div>
