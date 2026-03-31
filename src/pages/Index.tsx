@@ -50,37 +50,37 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      {/* Logo */}
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="flex justify-center pt-8 pb-1"
-      >
-        <Link to="/">
-          <img src={logo} alt="Logo" className="w-40 h-40 lg:w-48 lg:h-48 opacity-90 hover:opacity-100 transition-opacity drop-shadow-[0_0_25px_hsl(145,72%,46%,0.15)]" />
-        </Link>
-      </motion.div>
-
       {/* Nav */}
-      <nav className="flex items-center justify-center px-6 py-2 gap-1">
-        <Link to="/about">
-          <Button variant="ghost" size="sm" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground hover:bg-transparent">About</Button>
-        </Link>
+      <nav className="flex items-center justify-end px-6 py-2 gap-1">
         {isAdmin && (
           <Link to="/admin">
-            <Button variant="ghost" size="sm" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground">Admin</Button>
+            <Button variant="ghost" size="sm" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground hover:bg-transparent">Admin</Button>
           </Link>
         )}
         {user && (
           <>
             <Link to="/dashboard">
-              <Button variant="ghost" size="sm" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground">Dashboard</Button>
+              <Button variant="ghost" size="sm" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground hover:bg-transparent">Dashboard</Button>
             </Link>
-            <Button variant="ghost" size="sm" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground" onClick={signOut}>Sign Out</Button>
+            <Button variant="ghost" size="sm" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground hover:bg-transparent" onClick={signOut}>Sign Out</Button>
           </>
         )}
+        <Link to="/about">
+          <Button variant="ghost" size="sm" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground hover:bg-transparent">About</Button>
+        </Link>
       </nav>
+
+      {/* Logo */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="flex justify-center pt-2 pb-1"
+      >
+        <Link to="/">
+          <img src={logo} alt="Logo" className="w-40 h-40 lg:w-48 lg:h-48 opacity-90 hover:opacity-100 transition-opacity drop-shadow-[0_0_25px_hsl(145,72%,46%,0.15)]" />
+        </Link>
+      </motion.div>
 
       {/* Hero */}
       <section className="flex flex-col items-center justify-center px-6 py-4 lg:py-6">
