@@ -104,8 +104,8 @@ export default function Dashboard() {
     <div className="min-h-screen bg-background">
       <header className="flex items-center justify-between px-6 lg:px-10 py-4 border-b border-border">
         <button onClick={() => navigate("/")} className="flex items-center gap-2">
-          <img src={logo} alt="Logo" className="w-7 h-7" />
-          <span className="font-bold text-lg tracking-tight text-foreground">Solo <span className="text-primary">Unicorn</span> League</span>
+          <img src={logo} alt="Logo" className="w-12 h-12" />
+          <span className="font-bold text-lg tracking-tight text-foreground">Solo Unicorn League</span>
         </button>
         <Button variant="ghost" size="sm" onClick={signOut}>Sign Out</Button>
       </header>
@@ -118,7 +118,7 @@ export default function Dashboard() {
           <div className="flex gap-6 mb-8 p-4 rounded-lg bg-card border border-border">
             <div>
               <p className="text-xs text-muted-foreground uppercase tracking-wider">MRR</p>
-              <p className="text-xl font-bold font-mono-display text-primary">{formatDollars(mrrCents)}/mo</p>
+              <p className="text-xl font-bold font-mono-display text-foreground">{formatDollars(mrrCents)}/mo</p>
             </div>
             <div>
               <p className="text-xs text-muted-foreground uppercase tracking-wider">Est. Valuation</p>
