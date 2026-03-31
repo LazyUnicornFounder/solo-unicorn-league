@@ -99,6 +99,14 @@ export default function Index() {
             </div>
           ) : (
             <div>
+              {/* Column headers */}
+              <div className="flex items-center gap-3 mb-3 px-0.5">
+                <div className="w-7 shrink-0" />
+                <div className="w-9 shrink-0" />
+                <div className="w-28 shrink-0 text-[10px] font-mono-display text-muted-foreground/60 uppercase tracking-widest">Company</div>
+                <div className="flex-1 text-[10px] font-mono-display text-muted-foreground/60 uppercase tracking-widest">Progress to $1B</div>
+                <div className="w-20 shrink-0 text-[10px] font-mono-display text-muted-foreground/60 uppercase tracking-widest text-right">ARR</div>
+              </div>
               {/* Chart rows - combine DB founders + hardcoded entries */}
               <div className="space-y-2 mb-2">
                 {(() => {
