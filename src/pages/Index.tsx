@@ -66,11 +66,11 @@ export default function Index() {
           transition={{ duration: 0.6 }}
           className="flex flex-col items-center text-center"
         >
-          <img src={logo} alt="Solo Unicorn League" className="w-28 h-28 lg:w-36 lg:h-36 mb-6" />
-          <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground mb-4" style={{ fontFamily: "'Inter', sans-serif" }}>
+          <img src={logo} alt="Solo Unicorn League" className="w-44 h-44 lg:w-56 lg:h-56 mb-8" />
+          <h1 className="text-4xl lg:text-6xl font-black uppercase tracking-[0.15em] text-foreground mb-4">
             Solo Unicorn League
           </h1>
-          <p className="max-w-xl text-muted-foreground text-base lg:text-lg leading-relaxed mb-8">
+          <p className="max-w-xl text-muted-foreground text-sm lg:text-base leading-relaxed mb-8 tracking-wide">
             Self-reported MRR from real solo founders. Join to add yourself, and compete with solo founders globally to see who will win the race to build a $1 billion startup as a solo founder.
           </p>
           <Link to="/join">
