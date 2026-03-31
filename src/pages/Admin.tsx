@@ -44,7 +44,7 @@ export default function Admin() {
     if (!isAdmin) return;
     supabase
       .from("founders")
-      .select("id, company_name, mrr_cents, is_visible, is_solo_attested, x_url, one_liner, created_at, updated_at")
+      .select("id, company_name, mrr_cents, is_visible, is_solo_attested, x_url, one_liner, logo_url, created_at, updated_at")
       .order("created_at", { ascending: false })
       .then(({ data }) => {
         if (data) setFounders(data);
