@@ -34,7 +34,7 @@ export default function ARRChart({ founders }: { founders: Founder[] }) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3, duration: 0.6 }}
-      className="w-full h-[320px]"
+      className="w-full h-full"
     >
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={sorted} margin={{ top: 10, right: 10, left: 10, bottom: 0 }}>
