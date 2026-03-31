@@ -152,16 +152,6 @@ export default function Index() {
                           href={f.url ?? "#"}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="shrink-0"
-                        >
-                          <div className="w-8 h-8 rounded-full bg-secondary border border-border flex items-center justify-center text-[11px] font-bold text-foreground/80 hover:border-primary/40 transition-colors">
-                            {(f.company_name ?? "?").charAt(0).toUpperCase()}
-                          </div>
-                        </a>
-                        <a
-                          href={f.url ?? "#"}
-                          target="_blank"
-                          rel="noopener noreferrer"
                           className="text-sm font-medium text-foreground w-28 truncate shrink-0 hover:text-primary transition-colors"
                         >
                           {f.company_name ?? "Unnamed"}
