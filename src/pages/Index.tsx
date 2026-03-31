@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { motion } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
@@ -114,77 +115,103 @@ export default function Index() {
                   ].sort((a, b) => (b.mrr_cents ?? 0) - (a.mrr_cents ?? 0));
 
                   return allEntries.map((f, i) => {
-                    const valuation = ((f.mrr_cents ?? 0) / 100) * 12 * 15;
+                    const mrrDollars = (f.mrr_cents ?? 0) / 100;
+                    const arr = mrrDollars * 12;
+                    const valuation = arr * 15;
                     const pct = Math.min((valuation / 1_000_000_000) * 100, 100);
 
+                    const fmtCurrency = (v: number) =>
+                      v >= 1_000_000 ? "$" + (v / 1_000_000).toFixed(1) + "M"
+                      : v >= 1_000 ? "$" + (v / 1_000).toFixed(0) + "K"
+                      : "$" + v.toFixed(0);
+
+                    const rankColor =
+                      i === 0 ? "text-[hsl(var(--rank-gold))] border-[hsl(var(--rank-gold))]/30 bg-[hsl(var(--rank-gold))]/5" :
+                      i === 1 ? "text-[hsl(var(--rank-silver))] border-[hsl(var(--rank-silver))]/30 bg-[hsl(var(--rank-silver))]/5" :
+                      i === 2 ? "text-[hsl(var(--rank-bronze))] border-[hsl(var(--rank-bronze))]/30 bg-[hsl(var(--rank-bronze))]/5" :
+                      "text-muted-foreground border-border bg-transparent";
+
+                    const barColor =
+                      i === 0 ? "bg-[hsl(var(--rank-gold))]" :
+                      i === 1 ? "bg-[hsl(var(--rank-silver))]" :
+                      i === 2 ? "bg-[hsl(var(--rank-bronze))]" :
+                      "bg-foreground/70";
+
                     return (
-                      <motion.div
-                        key={f.id}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.3 + i * 0.05 }}
-                        className="flex items-center gap-3"
-                      >
-                        <span className="text-xs font-mono-display text-muted-foreground w-6 text-right shrink-0">
-                          #{i + 1}
-                        </span>
-                        <a
-                          href={f.url ?? "#"}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="shrink-0 group"
-                          title={f.company_name ?? ""}
+                      <TooltipProvider key={f.id} delayDuration={0}>
+                        <motion.div
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.3 + i * 0.05 }}
+                          className="flex items-center gap-3 group"
                         >
-                          <div className="w-8 h-8 rounded-full bg-foreground/10 border border-border flex items-center justify-center text-[10px] font-bold text-foreground group-hover:border-foreground/50 transition-colors">
-                            {(f.company_name ?? "?").charAt(0).toUpperCase()}
-                          </div>
-                        </a>
-                        <a
-                          href={f.url ?? "#"}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-sm font-semibold text-foreground w-28 truncate shrink-0 hover:underline"
-                        >
-                          {f.company_name ?? "Unnamed"}
-                        </a>
-                        <div className="flex-1 h-7 bg-secondary rounded relative overflow-hidden">
-                          {pct > 0 ? (
-                            <motion.div
-                              initial={{ width: 0 }}
-                              animate={{ width: `${Math.max(pct, 0.3)}%` }}
-                              transition={{ duration: 0.8, delay: 0.4 + i * 0.05, ease: "easeOut" }}
-                              className="h-full bg-foreground/80 rounded"
-                            />
-                          ) : (
-                            <div className="absolute left-1 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-foreground/40" />
-                          )}
-                        </div>
-                        <span className="text-xs font-mono-display text-muted-foreground w-20 text-right shrink-0">
-                          {valuation >= 1_000_000
-                            ? "$" + (valuation / 1_000_000).toFixed(1) + "M"
-                            : valuation >= 1_000
-                            ? "$" + (valuation / 1_000).toFixed(0) + "K"
-                            : "$" + valuation.toFixed(0)}
-                        </span>
-                      </motion.div>
+                          <span className={`text-xs font-mono-display w-7 text-center shrink-0 font-bold rounded-full py-0.5 border ${rankColor}`}>
+                            {i + 1}
+                          </span>
+                          <a
+                            href={f.url ?? "#"}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="shrink-0"
+                          >
+                            <div className="w-9 h-9 rounded-full bg-foreground/5 border-2 border-border flex items-center justify-center text-xs font-bold text-foreground hover:border-foreground/40 hover:bg-foreground/10 transition-all">
+                              {(f.company_name ?? "?").charAt(0).toUpperCase()}
+                            </div>
+                          </a>
+                          <a
+                            href={f.url ?? "#"}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm font-semibold text-foreground w-28 truncate shrink-0 hover:underline"
+                          >
+                            {f.company_name ?? "Unnamed"}
+                          </a>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <div className="flex-1 h-8 bg-secondary/60 rounded-md relative overflow-hidden cursor-default border border-border/50">
+                                {pct > 0 ? (
+                                  <motion.div
+                                    initial={{ width: 0 }}
+                                    animate={{ width: `${Math.max(pct, 0.5)}%` }}
+                                    transition={{ duration: 0.8, delay: 0.4 + i * 0.05, ease: "easeOut" }}
+                                    className={`h-full rounded-md ${barColor} opacity-80`}
+                                  />
+                                ) : (
+                                  <div className="absolute left-1.5 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-foreground/20 border border-foreground/10" />
+                                )}
+                              </div>
+                            </TooltipTrigger>
+                            <TooltipContent side="top" className="font-mono-display text-xs">
+                              <div className="space-y-0.5">
+                                <div>MRR: {fmtCurrency(mrrDollars)}/mo</div>
+                                <div>ARR: {fmtCurrency(arr)}</div>
+                                <div>Valuation: {fmtCurrency(valuation)} (15× ARR)</div>
+                              </div>
+                            </TooltipContent>
+                          </Tooltip>
+                          <span className="text-xs font-mono-display text-muted-foreground w-20 text-right shrink-0 tabular-nums">
+                            {fmtCurrency(valuation)}
+                          </span>
+                        </motion.div>
+                      </TooltipProvider>
                     );
                   });
                 })()}
               </div>
 
               {/* Axis */}
-              <div className="flex items-center gap-3 mt-2">
-                <div className="w-6 shrink-0" />
-                <div className="w-8 shrink-0" />
+              <div className="flex items-center gap-3 mt-3">
+                <div className="w-7 shrink-0" />
+                <div className="w-9 shrink-0" />
                 <div className="w-28 shrink-0" />
                 <div className="flex-1 relative">
                   <div className="h-px bg-border" />
-                  <div className="flex justify-between mt-1">
-                    <span className="text-[10px] font-mono-display text-muted-foreground">$0</span>
-                    <span className="text-[10px] font-mono-display text-muted-foreground">$250M</span>
-                    <span className="text-[10px] font-mono-display text-muted-foreground">$500M</span>
-                    <span className="text-[10px] font-mono-display text-muted-foreground">$750M</span>
-                    <span className="text-[10px] font-mono-display text-muted-foreground">$1B</span>
+                  <div className="flex justify-between mt-1.5">
+                    <span className="text-[10px] font-mono-display text-muted-foreground/70">$0</span>
+                    <span className="text-[10px] font-mono-display text-muted-foreground/70">$250M</span>
+                    <span className="text-[10px] font-mono-display text-muted-foreground/70">$500M</span>
+                    <span className="text-[10px] font-mono-display text-muted-foreground/70">$750M</span>
+                    <span className="text-[10px] font-mono-display text-muted-foreground/70">$1B</span>
                   </div>
                 </div>
                 <div className="w-20 shrink-0" />
