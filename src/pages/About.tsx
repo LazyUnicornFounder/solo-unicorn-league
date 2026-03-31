@@ -33,7 +33,7 @@ export default function About() {
             </p>
 
             <p>
-              This is the autonomous capitalism revolution — an economic model where solo founders leverage AI to build, run, and scale real businesses that were previously impossible without 20 employees and $2M in seed funding. The old playbook is dead. The new playbook is one founder, one vision, infinite leverage.
+              This is the autonomous capitalism revolution. The old playbook is dead. The new playbook is one founder, one vision, infinite leverage.
             </p>
 
 
