@@ -233,6 +233,7 @@ export default function Index() {
                 </div>
                 <div className="w-20 shrink-0" />
                 <div className="w-20 shrink-0" />
+                <div className="w-20 shrink-0" />
               </div>
             </div>
           )}
