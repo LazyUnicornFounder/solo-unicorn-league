@@ -187,7 +187,7 @@ export default function Index() {
                       <span className="text-xs font-mono-display text-foreground w-20 text-right shrink-0 tabular-nums font-medium">
                         {fmtCurrency(arr)}
                       </span>
-                      <span className="text-xs font-mono-display text-foreground/60 w-20 text-right shrink-0 tabular-nums group-hover:text-foreground/80 transition-colors">
+                      <span className="text-xs font-mono-display text-muted-foreground w-20 text-right shrink-0 tabular-nums group-hover:text-foreground/80 transition-colors">
                         {fmtCurrency(valuation)}
                       </span>
                     </motion.div>
