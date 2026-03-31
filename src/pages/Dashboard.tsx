@@ -74,7 +74,7 @@ export default function Dashboard() {
         one_liner: oneLiner || null,
         logo_url: logoUrl,
         is_solo_attested: isSoloAttested,
-        is_visible: true,
+        is_visible: hasExisting ? undefined : false,
       };
 
       if (hasExisting) {
@@ -85,7 +85,11 @@ export default function Dashboard() {
         if (error) throw error;
       }
 
-      toast({ title: "You're live!", description: "Your profile is now on the leaderboard." });
+      if (hasExisting) {
+        toast({ title: "Updated!", description: "Your profile has been updated." });
+      } else {
+        toast({ title: "Submitted!", description: "Your submission is under review." });
+      }
       navigate("/");
     } catch (err: any) {
       toast({ title: "Error", description: err.message, variant: "destructive" });
