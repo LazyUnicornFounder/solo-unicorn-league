@@ -162,22 +162,22 @@ export default function Index() {
                       initial={{ opacity: 0, x: -8 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.3 + i * 0.04 }}
-                      className="flex items-center gap-4 px-6 py-4 border-b border-border/10 hover:bg-secondary/20 transition-all duration-200 group"
+                      className="flex items-center gap-6 px-6 py-5 border-b border-border/10 hover:bg-secondary/20 transition-all duration-200 group"
                     >
-                      <span className="text-base font-mono-display text-foreground/60 w-8 text-center shrink-0 tabular-nums group-hover:text-foreground transition-colors">
+                      <span className="text-2xl font-mono-display text-foreground/60 w-10 text-center shrink-0 tabular-nums group-hover:text-foreground transition-colors">
                         {i + 1}
                       </span>
                       <a
                         href={f.url ?? "#"}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-base font-medium text-foreground w-36 truncate shrink-0 hover:text-foreground/70 transition-colors"
+                        className="text-2xl font-medium text-foreground w-44 truncate shrink-0 hover:text-foreground/70 transition-colors"
                       >
                         {f.company_name ?? "Unnamed"}
                       </a>
                       <Tooltip>
                         <TooltipTrigger asChild>
-                          <div className="flex-1 h-6 bg-secondary/30 rounded-full relative overflow-hidden cursor-default">
+                          <div className="flex-1 h-8 bg-secondary/30 rounded-full relative overflow-hidden cursor-default">
                             <motion.div
                               initial={{ width: 0 }}
                               animate={{ width: `${pct}%` }}
@@ -186,7 +186,7 @@ export default function Index() {
                             />
                           </div>
                         </TooltipTrigger>
-                        <TooltipContent side="top" className="font-mono-display text-sm bg-card border-border/50 rounded-lg px-3 py-2">
+                        <TooltipContent side="top" className="font-mono-display text-base bg-card border-border/50 rounded-lg px-3 py-2">
                           <div className="space-y-0.5">
                             <div className="text-foreground font-medium">ARR: {fmtCurrency(arr)}</div>
                             <div className="text-foreground/70">MRR: {fmtCurrency(mrrDollars)}/mo</div>
@@ -194,10 +194,10 @@ export default function Index() {
                           </div>
                         </TooltipContent>
                       </Tooltip>
-                      <span className="text-base font-mono-display text-foreground w-24 text-right shrink-0 tabular-nums font-medium">
+                      <span className="text-2xl font-mono-display text-foreground w-28 text-right shrink-0 tabular-nums font-medium">
                         {fmtCurrency(arr)}
                       </span>
-                      <span className="text-base font-mono-display text-foreground/70 w-24 text-right shrink-0 tabular-nums group-hover:text-foreground transition-colors">
+                      <span className="text-2xl font-mono-display text-foreground/70 w-28 text-right shrink-0 tabular-nums group-hover:text-foreground transition-colors">
                         {fmtCurrency(valuation)}
                       </span>
                     </motion.div>
