@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import Join from "./pages/Join";
 import Dashboard from "./pages/Dashboard";
 import Admin from "./pages/Admin";
+import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
