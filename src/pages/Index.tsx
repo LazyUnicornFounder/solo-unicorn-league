@@ -160,7 +160,7 @@ export default function Index() {
                         href={f.url ?? "#"}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm font-medium text-foreground/80 w-28 truncate shrink-0 hover:text-primary transition-colors"
+                        className="text-sm font-medium text-foreground w-28 truncate shrink-0 hover:text-primary transition-colors"
                       >
                         {f.company_name ?? "Unnamed"}
                       </a>
