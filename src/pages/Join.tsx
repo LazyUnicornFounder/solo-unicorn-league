@@ -34,7 +34,8 @@ export default function Join() {
   const [oneLiner, setOneLiner] = useState("");
   const [logoFile, setLogoFile] = useState<File | null>(null);
 
-  const mrrDollars = Number(mrrInput || 0);
+  const mrrDollars = Number(mrrInput.replace(/,/g, "") || 0);
+  const displayMrr = mrrInput ? Number(mrrInput.replace(/,/g, "")).toLocaleString("en-US") : "";
   const arr = mrrDollars * 12;
   const valuation = arr * 15;
 
@@ -234,13 +235,12 @@ export default function Join() {
               <Label htmlFor="mrr">Current MRR ($)</Label>
               <Input
                 id="mrr"
-                type="number"
-                min="0"
-                step="1"
-                value={mrrInput}
-                onChange={(e) => setMrrInput(e.target.value)}
+                type="text"
+                inputMode="numeric"
+                value={displayMrr}
+                onChange={(e) => setMrrInput(e.target.value.replace(/[^0-9]/g, ""))}
                 required
-                placeholder="e.g. 12000"
+                placeholder="e.g. 12,000"
               />
             </div>
 
