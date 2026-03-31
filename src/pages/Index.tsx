@@ -70,7 +70,7 @@ export default function Index() {
           <h1 className="text-3xl lg:text-5xl font-bold tracking-wide text-foreground mb-3">
             Solo Unicorn League
           </h1>
-          <p className="max-w-xl text-muted-foreground text-sm lg:text-base leading-relaxed mb-8 tracking-wide">
+          <p className="max-w-xl text-muted-foreground text-sm lg:text-base leading-relaxed mb-5 tracking-wide">
             Self-reported MRR from real solo founders. Join to add yourself, and compete with solo founders globally to see who will win the race to build a $1 billion startup as a solo founder.
           </p>
           <Link to="/join">
