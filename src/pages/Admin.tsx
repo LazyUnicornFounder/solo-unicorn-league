@@ -37,6 +37,14 @@ export default function Admin() {
   const [filter, setFilter] = useState<"all" | "pending" | "approved">("all");
 
   useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") navigate("/");
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [navigate]);
+
+  useEffect(() => {
     if (!loading && (!user || !isAdmin)) navigate("/", { replace: true });
   }, [user, loading, isAdmin, navigate]);
 

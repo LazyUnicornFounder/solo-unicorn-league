@@ -30,6 +30,14 @@ export default function Dashboard() {
   const [hasExisting, setHasExisting] = useState(false);
 
   useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") navigate("/");
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [navigate]);
+
+  useEffect(() => {
     if (!loading && !user) navigate("/join", { replace: true });
   }, [user, loading, navigate]);
 
