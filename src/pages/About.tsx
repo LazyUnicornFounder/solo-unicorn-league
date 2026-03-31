@@ -36,9 +36,6 @@ export default function About() {
               This isn't a trend. It's a revolution. We call it <span className="text-foreground font-semibold">Autonomous Capitalism</span> — an economic model where solo founders leverage AI to build, run, and scale real businesses that were previously impossible without 20 employees and $2M in seed funding. The old playbook is dead. The new playbook is one founder, one vision, infinite leverage.
             </p>
 
-            <p>
-              <a href="https://breakingmuse.ai" target="_blank" rel="noopener noreferrer" className="text-foreground hover:underline font-medium">Breaking Muse</a> turns today's news into tomorrow's startup ideas — giving solo founders the signal they need to move fast. <a href="https://lazyunicorn.ai" target="_blank" rel="noopener noreferrer" className="text-foreground hover:underline font-medium">Lazy Unicorn</a> is the definitive guide to building a startup that builds itself — the autonomous business toolkit for founders who refuse to hire when they can automate. And <span className="text-foreground font-semibold">Solo Unicorn Cup</span> is where those founders prove it's working.
-            </p>
 
             <p>
               This is the live, global leaderboard for the autonomous revolution. Real MRR. Real solo founders. Zero co-founders. Every founder on this board is building a company powered by AI, run by one person, and racing toward a billion-dollar valuation.
