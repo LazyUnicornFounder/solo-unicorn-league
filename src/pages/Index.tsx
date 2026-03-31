@@ -65,7 +65,7 @@ export default function Index() {
       {/* Nav */}
       <nav className="flex items-center justify-center px-6 py-2 gap-1">
         <Link to="/about">
-          <Button variant="ghost" size="sm" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground">About</Button>
+          <Button variant="ghost" size="sm" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground hover:bg-transparent">About</Button>
         </Link>
         {isAdmin && (
           <Link to="/admin">
