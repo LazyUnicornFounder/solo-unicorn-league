@@ -38,7 +38,7 @@ export default function About() {
 
 
             <p>
-              Solo Unicorn League is the global leaderboard for the autonomous solo founder revolution.
+              Solo Unicorn League is the global leaderboard for the race to a $1 billion valuation for a company started by a solo founder.
             </p>
 
             <p>
