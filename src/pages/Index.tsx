@@ -58,7 +58,7 @@ export default function Index() {
         className="flex justify-center pt-8 pb-1"
       >
         <Link to="/">
-          <img src={logo} alt="Logo" className="w-28 h-28 lg:w-32 lg:h-32 opacity-90 hover:opacity-100 transition-opacity" />
+          <img src={logo} alt="Logo" className="w-40 h-40 lg:w-48 lg:h-48 opacity-90 hover:opacity-100 transition-opacity drop-shadow-[0_0_25px_hsl(145,72%,46%,0.15)]" />
         </Link>
       </motion.div>
 
