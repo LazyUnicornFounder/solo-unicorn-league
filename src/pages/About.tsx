@@ -38,7 +38,7 @@ export default function About() {
 
 
             <p>
-              This is the live, global leaderboard for the autonomous revolution. Real MRR. Real solo founders. Zero co-founders. Every founder on this board is building a company powered by AI, run by one person, and racing toward a billion-dollar valuation.
+              Solo Unicorn League is the global leaderboard for the autonomous solo founder revolution.
             </p>
 
             <p>
