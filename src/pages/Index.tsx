@@ -147,6 +147,7 @@ export default function Index() {
             <div className="w-6 shrink-0 text-xs font-mono-display text-foreground/50 uppercase">#</div>
             <div className="w-28 shrink-0 text-xs font-mono-display text-foreground/50 uppercase tracking-wider">Company</div>
             <div className="flex-1 text-xs font-mono-display text-foreground/50 uppercase tracking-wider">Progress</div>
+            <div className="w-20 shrink-0 text-xs font-mono-display text-foreground/50 uppercase tracking-wider text-right">MRR</div>
             <div className="w-20 shrink-0 text-xs font-mono-display text-foreground/50 uppercase tracking-wider text-right">ARR</div>
             <div className="w-20 shrink-0 text-xs font-mono-display text-foreground/50 uppercase tracking-wider text-right">Val.</div>
           </div>
