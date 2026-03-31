@@ -205,6 +205,14 @@ export default function Join() {
               />
             </div>
             <div className="space-y-2">
+              <Label htmlFor="xUrl">X / Twitter URL</Label>
+              <Input
+                id="xUrl"
+                value={xUrl}
+                onChange={(e) => setXUrl(e.target.value)}
+                placeholder="https://x.com/yourhandle"
+              />
+            <div className="space-y-2">
               <Label htmlFor="mrr">Monthly Recurring Revenue ($)</Label>
               <Input
                 id="mrr"
