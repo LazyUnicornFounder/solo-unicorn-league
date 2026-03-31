@@ -93,7 +93,7 @@ export default function Index() {
       </motion.div>
 
       {/* Hero */}
-      <section className="flex flex-col items-center justify-center px-6 py-4 lg:py-6">
+      <section className="flex flex-col items-center justify-center px-6 py-2 lg:py-3">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
