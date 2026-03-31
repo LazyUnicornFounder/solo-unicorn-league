@@ -113,7 +113,7 @@ export default function Index() {
           className="overflow-hidden"
         >
           {/* Card header */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-border/40">
+          <div className="flex items-center justify-between px-6 py-4 border-b border-border/20">
             <h2 className="text-xs font-bold text-foreground uppercase tracking-[0.2em]">
               Rankings
             </h2>
