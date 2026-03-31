@@ -71,7 +71,7 @@ export default function Index() {
             Solo Unicorn League
           </h1>
           <p className="max-w-xl text-muted-foreground text-sm lg:text-base leading-relaxed mb-5 tracking-wide">
-            Self-reported MRR from real solo founders. Join to add yourself, and compete with solo founders globally to see who will win the race to build a $1 billion startup as a solo founder.
+            The global leaderboard for solo founders racing to $1B. Submit your MRR, track your valuation in real time, and see exactly where you stand against solo founders worldwide. The race is live. Are you in it?
           </p>
           <Link to="/join">
             <Button size="lg" className="text-base px-8">
