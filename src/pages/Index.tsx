@@ -59,18 +59,18 @@ export default function Index() {
       </header>
 
       {/* Hero section */}
-      <section className="flex flex-col items-center justify-center px-6 py-16 lg:py-24">
+      <section className="flex flex-col items-center justify-center px-6 py-6 lg:py-10">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
           className="flex flex-col items-center text-center"
         >
-          <img src={logo} alt="Solo Unicorn League" className="w-80 h-80 lg:w-[28rem] lg:h-[28rem] mb-8" />
-          <h1 className="text-4xl lg:text-6xl font-black uppercase tracking-[0.15em] text-foreground mb-4">
+          <img src={logo} alt="Solo Unicorn League" className="w-48 h-48 lg:w-64 lg:h-64 mb-4" />
+          <h1 className="text-3xl lg:text-5xl font-bold tracking-wide text-foreground mb-3">
             Solo Unicorn League
           </h1>
-          <p className="max-w-xl text-muted-foreground text-sm lg:text-base leading-relaxed mb-8 tracking-wide">
+          <p className="max-w-xl text-muted-foreground text-sm lg:text-base leading-relaxed mb-5 tracking-wide">
             Self-reported MRR from real solo founders. Join to add yourself, and compete with solo founders globally to see who will win the race to build a $1 billion startup as a solo founder.
           </p>
           <Link to="/join">
