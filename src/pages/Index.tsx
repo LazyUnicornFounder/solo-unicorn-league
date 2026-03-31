@@ -59,7 +59,7 @@ export default function Index() {
       </header>
 
       {/* Hero section */}
-      <section className="flex flex-col items-center justify-center px-6 py-16 lg:py-24">
+      <section className="flex flex-col items-center justify-center px-6 py-6 lg:py-10">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
