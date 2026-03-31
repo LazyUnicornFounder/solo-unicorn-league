@@ -41,11 +41,11 @@ export default function About() {
               Solo Unicorn League is the global leaderboard for the autonomous solo founder revolution.
             </p>
 
-            <p className="text-foreground text-base lg:text-lg">
+            <p>
               The question is who will make everyone else believe it — and break the barrier for good.
             </p>
 
-            <p className="text-foreground text-base lg:text-lg">
+            <p>
               The leaderboard is live. The race is on.
             </p>
           </div>
