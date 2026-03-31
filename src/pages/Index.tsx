@@ -112,8 +112,8 @@ export default function Index() {
                   y1={100 + r1 * Math.sin(angle)}
                   x2={100 + r2 * Math.cos(angle)}
                   y2={100 + r2 * Math.sin(angle)}
-                  stroke="hsl(30 10% 82% / 0.35)"
-                  strokeWidth="0.5"
+                  stroke="hsl(30 10% 82% / 0.5)"
+                  strokeWidth="0.8"
                 />
               );
             })}
