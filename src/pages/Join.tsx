@@ -253,7 +253,7 @@ export default function Join() {
                 <div className="mt-1">
                   <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-primary rounded-full transition-all duration-300"
+                      className="h-full bg-foreground/60 rounded-full transition-all duration-300"
                       style={{ width: `${Math.min((valuation / 1_000_000_000) * 100, 100)}%` }}
                     />
                   </div>
