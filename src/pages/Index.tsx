@@ -119,7 +119,7 @@ export default function Index() {
             Solo Unicorn League
           </h1>
           <p className="max-w-lg text-muted-foreground text-sm leading-relaxed mb-6">
-            The leaderboard for solo founders racing to $1 billion. Submit your MRR, follow your competitors, and race to the finish line.
+            The leaderboard for solo founders racing to $1 billion. Submit your MRR, track your competitors, and race to the finish line.
           </p>
           <Link to="/join">
             <Button size="lg" className="text-base px-8 bg-foreground text-background hover:bg-foreground/90">
