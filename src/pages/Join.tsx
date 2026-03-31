@@ -28,6 +28,7 @@ export default function Join() {
   // Company fields
   const [companyName, setCompanyName] = useState("");
   const [companyUrl, setCompanyUrl] = useState("");
+  const [xUrl, setXUrl] = useState("");
   const [mrrInput, setMrrInput] = useState("");
   const [oneLiner, setOneLiner] = useState("");
   const [logoFile, setLogoFile] = useState<File | null>(null);
@@ -94,7 +95,7 @@ export default function Join() {
       const { error } = await supabase.from("founders").insert({
         user_id: user.id,
         company_name: companyName,
-        x_url: companyUrl || null,
+        x_url: xUrl || companyUrl || null,
         one_liner: oneLiner || null,
         logo_url: logoUrl,
         mrr_cents: Math.round(mrrDollars * 100),
@@ -201,6 +202,15 @@ export default function Join() {
                 value={companyUrl}
                 onChange={(e) => setCompanyUrl(e.target.value)}
                 placeholder="https://yourcompany.com"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="xUrl">X / Twitter URL</Label>
+              <Input
+                id="xUrl"
+                value={xUrl}
+                onChange={(e) => setXUrl(e.target.value)}
+                placeholder="https://x.com/yourhandle"
               />
             </div>
             <div className="space-y-2">
