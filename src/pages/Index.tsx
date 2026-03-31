@@ -104,7 +104,7 @@ export default function Index() {
             Solo Unicorn League
           </h1>
           <p className="max-w-lg text-muted-foreground text-sm leading-relaxed mb-6">
-            The global leaderboard for solo founders racing to $1B. Submit your MRR, track your valuation in real time, and see exactly where you stand against solo founders worldwide.
+            The leaderboard for solo founders racing to $1 billion. Submit your MRR and race to the finish line.
           </p>
           <Link to="/join">
             <Button size="lg" className="text-base px-8 bg-foreground text-background hover:bg-foreground/90">
