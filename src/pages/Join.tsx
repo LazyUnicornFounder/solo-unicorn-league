@@ -216,6 +216,21 @@ export default function Join() {
                 placeholder="e.g. 12000"
               />
             </div>
+            <div className="space-y-2">
+              <Label htmlFor="logo">Company Logo</Label>
+              <Input id="logo" type="file" accept="image/*" onChange={(e) => setLogoFile(e.target.files?.[0] ?? null)} />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="oneliner">One-liner</Label>
+              <Input
+                id="oneliner"
+                value={oneLiner}
+                onChange={(e) => setOneLiner(e.target.value.slice(0, 100))}
+                placeholder="What does your company do?"
+                maxLength={100}
+              />
+              <p className="text-xs text-muted-foreground">{oneLiner.length}/100</p>
+            </div>
 
             {/* Live calculation preview */}
             {mrrDollars > 0 && (
