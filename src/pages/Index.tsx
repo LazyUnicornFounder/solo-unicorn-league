@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
-import { TrendingUp, Zap } from "lucide-react";
+import { TrendingUp } from "lucide-react";
 import ARRChart from "@/components/ARRChart";
 import Leaderboard from "@/components/Leaderboard";
 import { founders } from "@/data/founders";
+import logo from "@/assets/logo.png";
 
 export default function Index() {
   const totalARR = founders.reduce((s, f) => s + f.arr, 0);
@@ -12,9 +13,9 @@ export default function Index() {
       {/* Header */}
       <header className="flex items-center justify-between px-6 lg:px-10 py-4 border-b border-border">
         <div className="flex items-center gap-2">
-          <Zap className="w-5 h-5 text-primary" />
+          <img src={logo} alt="World Solo Unicorn Championship logo" width={28} height={28} className="w-7 h-7" />
           <span className="font-bold text-lg tracking-tight text-foreground">
-            ARR<span className="text-primary">Board</span>
+            World Solo <span className="text-primary">Unicorn</span> Championship
           </span>
         </div>
         <div className="flex items-center gap-3">
