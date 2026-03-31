@@ -43,17 +43,13 @@ export default function Index() {
               <Button variant="ghost" size="sm">Admin</Button>
             </Link>
           )}
-          {user ? (
+          {user && (
             <>
               <Link to="/dashboard">
                 <Button variant="ghost" size="sm">Dashboard</Button>
               </Link>
               <Button variant="ghost" size="sm" onClick={signOut}>Sign Out</Button>
             </>
-          ) : (
-            <Link to="/join">
-              <Button variant="ghost" size="sm">Sign In</Button>
-            </Link>
           )}
         </div>
       </header>
