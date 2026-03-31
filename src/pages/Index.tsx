@@ -39,6 +39,9 @@ export default function Index() {
       {/* Minimal top nav */}
       <header className="flex items-center justify-end px-6 lg:px-10 py-4">
         <div className="flex items-center gap-3">
+          <Link to="/about">
+            <Button variant="ghost" size="sm">About</Button>
+          </Link>
           {isAdmin && (
             <Link to="/admin">
               <Button variant="ghost" size="sm">Admin</Button>
