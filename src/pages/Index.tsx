@@ -80,25 +80,15 @@ export default function Index() {
         </Link>
       </nav>
 
-      {/* Logo with circular text */}
+      {/* Logo */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="flex justify-center pt-2 pb-1"
       >
-        <Link to="/" className="relative w-48 h-48 lg:w-56 lg:h-56 flex items-center justify-center">
-          <img src={logo} alt="Logo" className="w-28 h-28 lg:w-32 lg:h-32 opacity-90 hover:opacity-100 transition-opacity drop-shadow-[0_0_25px_hsl(145,72%,46%,0.15)]" />
-          <svg className="absolute inset-0 w-full h-full animate-[spin_20s_linear_infinite]" viewBox="0 0 200 200">
-            <defs>
-              <path id="circlePath" d="M 100, 100 m -80, 0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0" fill="none" />
-            </defs>
-            <text className="fill-foreground/60 uppercase" style={{ fontSize: '13px', letterSpacing: '0.35em', fontFamily: 'Montserrat, sans-serif', fontWeight: 600 }}>
-              <textPath href="#circlePath" startOffset="0%">
-                SOLO UNICORN LEAGUE • SOLO UNICORN LEAGUE •
-              </textPath>
-            </text>
-          </svg>
+        <Link to="/">
+          <img src={logo} alt="Logo" className="w-40 h-40 lg:w-48 lg:h-48 opacity-90 hover:opacity-100 transition-opacity drop-shadow-[0_0_25px_hsl(145,72%,46%,0.15)]" />
         </Link>
       </motion.div>
 
@@ -114,7 +104,7 @@ export default function Index() {
             Solo Unicorn League
           </h1>
           <p className="max-w-lg text-muted-foreground text-sm leading-relaxed mb-6">
-            The leaderboard for solo founders racing to $1 billion. Submit your MRR, follow your competitors, and race to the finish line.
+            The global leaderboard for solo founders racing to $1B. Submit your MRR, track your valuation in real time, and see exactly where you stand against solo founders worldwide.
           </p>
           <Link to="/join">
             <Button size="lg" className="text-base px-8 bg-foreground text-background hover:bg-foreground/90">
@@ -147,7 +137,6 @@ export default function Index() {
             <div className="w-6 shrink-0 text-xs font-mono-display text-foreground/50 uppercase">#</div>
             <div className="w-28 shrink-0 text-xs font-mono-display text-foreground/50 uppercase tracking-wider">Company</div>
             <div className="flex-1 text-xs font-mono-display text-foreground/50 uppercase tracking-wider">Progress</div>
-            <div className="w-20 shrink-0 text-xs font-mono-display text-foreground/50 uppercase tracking-wider text-right">MRR</div>
             <div className="w-20 shrink-0 text-xs font-mono-display text-foreground/50 uppercase tracking-wider text-right">ARR</div>
             <div className="w-20 shrink-0 text-xs font-mono-display text-foreground/50 uppercase tracking-wider text-right">Val.</div>
           </div>
@@ -205,9 +194,6 @@ export default function Index() {
                           </div>
                         </TooltipContent>
                       </Tooltip>
-                      <span className="text-sm font-mono-display text-foreground/70 w-20 text-right shrink-0 tabular-nums group-hover:text-foreground transition-colors">
-                        {fmtCurrency(mrrDollars)}/mo
-                      </span>
                       <span className="text-sm font-mono-display text-foreground w-20 text-right shrink-0 tabular-nums font-medium">
                         {fmtCurrency(arr)}
                       </span>
@@ -231,7 +217,6 @@ export default function Index() {
                     ))}
                   </div>
                 </div>
-                <div className="w-20 shrink-0" />
                 <div className="w-20 shrink-0" />
                 <div className="w-20 shrink-0" />
               </div>
