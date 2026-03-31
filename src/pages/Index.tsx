@@ -110,10 +110,10 @@ export default function Index() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="rounded-2xl border border-border/60 bg-card overflow-hidden backdrop-blur-sm"
+          className="overflow-hidden"
         >
           {/* Card header */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-border/40">
+          <div className="flex items-center justify-between px-6 py-4 border-b border-border/20">
             <h2 className="text-xs font-bold text-foreground uppercase tracking-[0.2em]">
               Rankings
             </h2>
@@ -123,12 +123,12 @@ export default function Index() {
           </div>
 
           {/* Column headers */}
-          <div className="flex items-center gap-4 px-6 py-2 border-b border-border/30">
-            <div className="w-6 shrink-0 text-[9px] font-mono-display text-muted-foreground/40 uppercase">#</div>
-            <div className="w-28 shrink-0 text-[9px] font-mono-display text-muted-foreground/40 uppercase tracking-wider">Company</div>
-            <div className="flex-1 text-[9px] font-mono-display text-muted-foreground/40 uppercase tracking-wider">Progress</div>
-            <div className="w-20 shrink-0 text-[9px] font-mono-display text-muted-foreground/40 uppercase tracking-wider text-right">ARR</div>
-            <div className="w-20 shrink-0 text-[9px] font-mono-display text-muted-foreground/40 uppercase tracking-wider text-right">Val.</div>
+          <div className="flex items-center gap-4 px-6 py-2 border-b border-border/15">
+            <div className="w-6 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase">#</div>
+            <div className="w-28 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider">Company</div>
+            <div className="flex-1 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider">Progress</div>
+            <div className="w-20 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider text-right">ARR</div>
+            <div className="w-20 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider text-right">Val.</div>
           </div>
 
           {loading ? (
@@ -151,16 +151,16 @@ export default function Index() {
                       initial={{ opacity: 0, x: -8 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.3 + i * 0.04 }}
-                      className="flex items-center gap-4 px-6 py-2.5 border-b border-border/20 hover:bg-primary/[0.03] transition-all duration-200 group"
+                      className="flex items-center gap-4 px-6 py-3 border-b border-border/10 hover:bg-primary/[0.03] transition-all duration-200 group"
                     >
-                      <span className="text-[11px] font-mono-display text-muted-foreground/50 w-6 text-center shrink-0 tabular-nums group-hover:text-muted-foreground transition-colors">
+                      <span className="text-xs font-mono-display text-muted-foreground w-6 text-center shrink-0 tabular-nums group-hover:text-foreground transition-colors">
                         {i + 1}
                       </span>
                       <a
                         href={f.url ?? "#"}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm font-medium text-foreground/80 w-28 truncate shrink-0 hover:text-primary transition-colors"
+                        className="text-sm font-medium text-foreground w-28 truncate shrink-0 hover:text-primary transition-colors"
                       >
                         {f.company_name ?? "Unnamed"}
                       </a>
@@ -183,10 +183,10 @@ export default function Index() {
                           </div>
                         </TooltipContent>
                       </Tooltip>
-                      <span className="text-[11px] font-mono-display text-primary/80 w-20 text-right shrink-0 tabular-nums group-hover:text-primary transition-colors">
+                      <span className="text-xs font-mono-display text-primary w-20 text-right shrink-0 tabular-nums font-medium group-hover:text-primary transition-colors">
                         {fmtCurrency(arr)}
                       </span>
-                      <span className="text-[11px] font-mono-display text-foreground/40 w-20 text-right shrink-0 tabular-nums group-hover:text-foreground/60 transition-colors">
+                      <span className="text-xs font-mono-display text-foreground/60 w-20 text-right shrink-0 tabular-nums group-hover:text-foreground/80 transition-colors">
                         {fmtCurrency(valuation)}
                       </span>
                     </motion.div>
