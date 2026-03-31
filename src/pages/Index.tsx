@@ -66,7 +66,11 @@ export default function Index() {
             <Button variant="ghost" size="sm" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground hover:bg-transparent" onClick={signOut}>Sign Out</Button>
           </>
         )}
-        <Link to="/about">
+        <a href="https://x.com/SaadSahawneh" target="_blank" rel="noopener noreferrer">
+          <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground hover:bg-transparent px-2">
+            <Twitter size={16} />
+          </Button>
+        </a>
           <Button variant="ghost" size="sm" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground hover:bg-transparent">About</Button>
         </Link>
       </nav>
