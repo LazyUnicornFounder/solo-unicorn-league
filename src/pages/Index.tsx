@@ -198,7 +198,7 @@ export default function Index() {
                             </TooltipContent>
                           </Tooltip>
                           <span className="text-xs font-mono-display text-muted-foreground w-20 text-right shrink-0 tabular-nums">
-                            {fmtCurrency(valuation)}
+                            {fmtCurrency(arr)}
                           </span>
                         </motion.div>
                       </TooltipProvider>
