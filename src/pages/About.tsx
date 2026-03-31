@@ -41,15 +41,11 @@ export default function About() {
               Solo Unicorn League is the global leaderboard for the autonomous solo founder revolution.
             </p>
 
-            <p>
-              We're not here to celebrate hustle culture. We're here to prove a new thesis: that the most valuable companies of the next decade will be built by individuals — not teams. That the future of capitalism isn't 500 employees in an office. It's one founder, an army of agents, and the audacity to compete with companies 100x their size.
-            </p>
-
-            <p className="text-foreground font-medium text-base lg:text-lg">
+            <p className="text-foreground text-base lg:text-lg">
               The question isn't if it's possible. The question is who will make everyone else believe it — and break the barrier for good.
             </p>
 
-            <p className="text-foreground font-bold text-base lg:text-lg">
+            <p className="text-foreground text-base lg:text-lg">
               The leaderboard is live. The race is on.
             </p>
           </div>
