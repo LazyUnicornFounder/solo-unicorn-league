@@ -55,7 +55,6 @@ export default function About() {
             <p className="text-foreground font-bold text-lg lg:text-xl">
               The leaderboard is live. The race is on.
             </p>
-            </p>
           </div>
 
           <div className="pt-4">
