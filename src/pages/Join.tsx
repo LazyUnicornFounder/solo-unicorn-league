@@ -104,6 +104,7 @@ export default function Join() {
         is_solo_attested: true,
       });
       if (error) throw error;
+      toast({ title: "Thank you!", description: "We are reviewing your submission." });
       navigate("/", { replace: true });
     } catch (err: any) {
       setError(err.message);
