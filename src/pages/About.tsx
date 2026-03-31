@@ -52,7 +52,7 @@ export default function About() {
 
           <div className="pt-4">
             <Link to="/join">
-              <Button size="lg" className="text-base px-8 bg-foreground text-background hover:bg-foreground/90">
+              <Button size="lg" className="text-base px-8 bg-foreground text-background hover:bg-foreground/90 font-extrabold uppercase tracking-tight" style={{ fontFamily: "'Montserrat', sans-serif" }}>
                 Join the Leaderboard
               </Button>
             </Link>
