@@ -104,6 +104,7 @@ export default function Index() {
                   const hardcoded = [
                     { id: "hc-1", company_name: "Lazy Unicorn", mrr_cents: 0, url: "https://lazyunicorn.ai" },
                     { id: "hc-2", company_name: "Breaking Muse", mrr_cents: 0, url: "https://breakingmuse.ai" },
+                    { id: "hc-3", company_name: "Polsia", mrr_cents: 50_000_000, url: "#" },
                   ];
 
                   // Merge DB founders with hardcoded, sort by mrr descending
@@ -113,7 +114,7 @@ export default function Index() {
                   ].sort((a, b) => (b.mrr_cents ?? 0) - (a.mrr_cents ?? 0));
 
                   return allEntries.map((f, i) => {
-                    const valuation = ((f.mrr_cents ?? 0) / 100) * 12 * 5;
+                    const valuation = ((f.mrr_cents ?? 0) / 100) * 12 * 15;
                     const pct = Math.min((valuation / 1_000_000_000) * 100, 100);
 
                     return (
