@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
@@ -28,6 +28,14 @@ export default function Dashboard() {
   const [existingLogoUrl, setExistingLogoUrl] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [hasExisting, setHasExisting] = useState(false);
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") navigate("/");
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [navigate]);
 
   useEffect(() => {
     if (!loading && !user) navigate("/join", { replace: true });
