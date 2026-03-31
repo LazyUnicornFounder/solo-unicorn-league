@@ -30,32 +30,21 @@ export default function Index() {
       </header>
 
       {/* Main */}
-      <main className="flex-1 flex flex-col lg:flex-row gap-0 overflow-hidden">
-        {/* Chart side */}
-        <div className="lg:w-1/2 flex flex-col justify-center px-6 lg:px-10 py-6">
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h1 className="text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground mb-1">
-              Solo Unicorn <span className="text-primary text-glow">Leaderboard</span>
-            </h1>
-            <p className="text-muted-foreground text-sm mb-6">
-              Real-time ARR rankings · Valuation at 15× ARR multiple
-            </p>
-          </motion.div>
+      <main className="flex-1 flex flex-col overflow-hidden px-6 lg:px-10 py-6">
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h1 className="text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground mb-1">
+            Solo Unicorn <span className="text-primary text-glow">Leaderboard</span>
+          </h1>
+          <p className="text-muted-foreground text-sm mb-6">
+            Real-time ARR rankings · Valuation at 15× ARR multiple
+          </p>
+        </motion.div>
+        <div className="flex-1">
           <ARRChart founders={founders} />
-        </div>
-
-        {/* Leaderboard side */}
-        <div className="lg:w-1/2 border-t lg:border-t-0 lg:border-l border-border overflow-y-auto">
-          <div className="px-6 lg:px-8 py-5">
-            <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-4">
-              Rankings
-            </h2>
-            <Leaderboard founders={founders} />
-          </div>
         </div>
       </main>
     </div>
