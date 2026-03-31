@@ -155,7 +155,7 @@ export default function Dashboard() {
           </div>
 
           <Button type="submit" className="w-full" disabled={saving}>
-            {saving ? "Saving..." : "Go Live on Leaderboard"}
+            {saving ? "Saving..." : "Submit"}
           </Button>
         </form>
       </main>
