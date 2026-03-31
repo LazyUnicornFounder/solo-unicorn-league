@@ -80,149 +80,139 @@ export default function Index() {
 
       {/* Rankings & Chart */}
       <main className="max-w-5xl mx-auto w-full px-4 pb-16">
-        {/* Rankings Card */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="rounded-lg border border-border bg-card p-6"
+          className="rounded-xl border border-border bg-card overflow-hidden"
         >
-          <h2 className="text-xl font-bold text-foreground mb-6 uppercase tracking-wide">
-            Rankings
-          </h2>
+          {/* Card header */}
+          <div className="flex items-center justify-between px-6 py-4 border-b border-border">
+            <h2 className="text-sm font-bold text-foreground uppercase tracking-widest">
+              Rankings
+            </h2>
+            <span className="text-[10px] font-mono-display text-muted-foreground tracking-wider">
+              VALUATION = 15× ARR
+            </span>
+          </div>
+
+          {/* Column headers */}
+          <div className="flex items-center gap-4 px-6 py-2.5 border-b border-border/50 bg-secondary/30">
+            <div className="w-6 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase">#</div>
+            <div className="w-8 shrink-0" />
+            <div className="w-28 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider">Company</div>
+            <div className="flex-1 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider">Progress to $1B</div>
+            <div className="w-24 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider text-right">ARR</div>
+          </div>
 
           {loading ? (
-            <div className="space-y-3">
+            <div className="px-6 py-4 space-y-3">
               {[...Array(3)].map((_, i) => (
                 <div key={i} className="h-10 rounded bg-secondary animate-pulse" />
               ))}
             </div>
           ) : (
             <div>
-              {/* Column headers */}
-              <div className="flex items-center gap-3 mb-3 px-0.5">
-                <div className="w-7 shrink-0" />
-                <div className="w-9 shrink-0" />
-                <div className="w-28 shrink-0 text-[10px] font-mono-display text-muted-foreground/60 uppercase tracking-widest">Company</div>
-                <div className="flex-1 text-[10px] font-mono-display text-muted-foreground/60 uppercase tracking-widest">Progress to $1B</div>
-                <div className="w-20 shrink-0 text-[10px] font-mono-display text-muted-foreground/60 uppercase tracking-widest text-right">ARR</div>
-              </div>
-              {/* Chart rows - combine DB founders + hardcoded entries */}
-              <div className="space-y-2 mb-2">
-                {(() => {
-                  const hardcoded = [
-                    { id: "hc-1", company_name: "Lazy Unicorn", mrr_cents: 0, url: "https://lazyunicorn.ai" },
-                    { id: "hc-2", company_name: "Breaking Muse", mrr_cents: 0, url: "https://breakingmuse.ai" },
-                    
-                  ];
+              {/* Chart rows */}
+              {(() => {
+                const hardcoded = [
+                  { id: "hc-1", company_name: "Lazy Unicorn", mrr_cents: 0, url: "https://lazyunicorn.ai" },
+                  { id: "hc-2", company_name: "Breaking Muse", mrr_cents: 0, url: "https://breakingmuse.ai" },
+                ];
 
-                  // Merge DB founders with hardcoded, sort by mrr descending
-                  const allEntries = [
-                    ...founders.map(f => ({ ...f, url: f.x_url })),
-                    ...hardcoded.filter(hc => !founders.some(f => f.company_name?.toLowerCase() === hc.company_name.toLowerCase())),
-                  ].sort((a, b) => (b.mrr_cents ?? 0) - (a.mrr_cents ?? 0));
+                const allEntries = [
+                  ...founders.map(f => ({ ...f, url: f.x_url })),
+                  ...hardcoded.filter(hc => !founders.some(f => f.company_name?.toLowerCase() === hc.company_name.toLowerCase())),
+                ].sort((a, b) => (b.mrr_cents ?? 0) - (a.mrr_cents ?? 0));
 
-                  return allEntries.map((f, i) => {
-                    const mrrDollars = (f.mrr_cents ?? 0) / 100;
-                    const arr = mrrDollars * 12;
-                    const valuation = arr * 15;
-                    const pct = Math.min((valuation / 1_000_000_000) * 100, 100);
+                return allEntries.map((f, i) => {
+                  const mrrDollars = (f.mrr_cents ?? 0) / 100;
+                  const arr = mrrDollars * 12;
+                  const valuation = arr * 15;
+                  const pct = Math.min((valuation / 1_000_000_000) * 100, 100);
 
-                    const fmtCurrency = (v: number) =>
-                      v >= 1_000_000 ? "$" + (v / 1_000_000).toFixed(1) + "M"
-                      : v >= 1_000 ? "$" + (v / 1_000).toFixed(0) + "K"
-                      : "$" + v.toFixed(0);
+                  const fmtCurrency = (v: number) =>
+                    v >= 1_000_000 ? "$" + (v / 1_000_000).toFixed(1) + "M"
+                    : v >= 1_000 ? "$" + (v / 1_000).toFixed(0) + "K"
+                    : "$" + v.toFixed(0);
 
-                    const rankColor =
-                      i === 0 ? "text-[hsl(var(--rank-gold))] border-[hsl(var(--rank-gold))]/30 bg-[hsl(var(--rank-gold))]/5" :
-                      i === 1 ? "text-[hsl(var(--rank-silver))] border-[hsl(var(--rank-silver))]/30 bg-[hsl(var(--rank-silver))]/5" :
-                      i === 2 ? "text-[hsl(var(--rank-bronze))] border-[hsl(var(--rank-bronze))]/30 bg-[hsl(var(--rank-bronze))]/5" :
-                      "text-muted-foreground border-border bg-transparent";
-
-                    const barColor =
-                      i === 0 ? "bg-[hsl(var(--rank-gold))]" :
-                      i === 1 ? "bg-[hsl(var(--rank-silver))]" :
-                      i === 2 ? "bg-[hsl(var(--rank-bronze))]" :
-                      "bg-foreground/70";
-
-                    return (
-                      <TooltipProvider key={f.id} delayDuration={0}>
-                        <motion.div
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.3 + i * 0.05 }}
-                          className="flex items-center gap-3 group"
+                  return (
+                    <TooltipProvider key={f.id} delayDuration={0}>
+                      <motion.div
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.3 + i * 0.05 }}
+                        className="flex items-center gap-4 px-6 py-3 border-b border-border/30 hover:bg-secondary/40 transition-colors"
+                      >
+                        <span className="text-xs font-mono-display text-muted-foreground w-6 text-center shrink-0 tabular-nums">
+                          {i + 1}
+                        </span>
+                        <a
+                          href={f.url ?? "#"}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="shrink-0"
                         >
-                          <span className={`text-xs font-mono-display w-7 text-center shrink-0 font-bold rounded-full py-0.5 border ${rankColor}`}>
-                            {i + 1}
-                          </span>
-                          <a
-                            href={f.url ?? "#"}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="shrink-0"
-                          >
-                            <div className="w-9 h-9 rounded-full bg-foreground/5 border-2 border-border flex items-center justify-center text-xs font-bold text-foreground hover:border-foreground/40 hover:bg-foreground/10 transition-all">
-                              {(f.company_name ?? "?").charAt(0).toUpperCase()}
+                          <div className="w-8 h-8 rounded-full bg-secondary border border-border flex items-center justify-center text-[11px] font-bold text-foreground/80 hover:border-primary/40 transition-colors">
+                            {(f.company_name ?? "?").charAt(0).toUpperCase()}
+                          </div>
+                        </a>
+                        <a
+                          href={f.url ?? "#"}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm font-medium text-foreground w-28 truncate shrink-0 hover:text-primary transition-colors"
+                        >
+                          {f.company_name ?? "Unnamed"}
+                        </a>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <div className="flex-1 h-6 bg-secondary/50 rounded relative overflow-hidden cursor-default">
+                              {pct > 0 ? (
+                                <motion.div
+                                  initial={{ width: 0 }}
+                                  animate={{ width: `${Math.max(pct, 0.4)}%` }}
+                                  transition={{ duration: 1, delay: 0.4 + i * 0.05, ease: "easeOut" }}
+                                  className="h-full rounded bg-primary/70 bar-glow"
+                                />
+                              ) : (
+                                <div className="absolute left-1 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-primary/20" />
+                              )}
                             </div>
-                          </a>
-                          <a
-                            href={f.url ?? "#"}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-sm font-semibold text-foreground w-28 truncate shrink-0 hover:underline"
-                          >
-                            {f.company_name ?? "Unnamed"}
-                          </a>
-                          <Tooltip>
-                            <TooltipTrigger asChild>
-                              <div className="flex-1 h-8 bg-secondary/60 rounded-md relative overflow-hidden cursor-default border border-border/50">
-                                {pct > 0 ? (
-                                  <motion.div
-                                    initial={{ width: 0 }}
-                                    animate={{ width: `${Math.max(pct, 0.5)}%` }}
-                                    transition={{ duration: 0.8, delay: 0.4 + i * 0.05, ease: "easeOut" }}
-                                    className={`h-full rounded-md ${barColor} opacity-80`}
-                                  />
-                                ) : (
-                                  <div className="absolute left-1.5 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-foreground/20 border border-foreground/10" />
-                                )}
-                              </div>
-                            </TooltipTrigger>
-                            <TooltipContent side="top" className="font-mono-display text-xs">
-                              <div className="space-y-0.5">
-                                <div>MRR: {fmtCurrency(mrrDollars)}/mo</div>
-                                <div>ARR: {fmtCurrency(arr)}</div>
-                                <div>Valuation: {fmtCurrency(valuation)} (15× ARR)</div>
-                              </div>
-                            </TooltipContent>
-                          </Tooltip>
-                          <span className="text-xs font-mono-display text-muted-foreground w-20 text-right shrink-0 tabular-nums">
-                            {fmtCurrency(arr)}
-                          </span>
-                        </motion.div>
-                      </TooltipProvider>
-                    );
-                  });
-                })()}
-              </div>
+                          </TooltipTrigger>
+                          <TooltipContent side="top" className="font-mono-display text-xs bg-card border-border">
+                            <div className="space-y-0.5">
+                              <div className="text-primary">ARR: {fmtCurrency(arr)}</div>
+                              <div>MRR: {fmtCurrency(mrrDollars)}/mo</div>
+                              <div>Valuation: {fmtCurrency(valuation)}</div>
+                            </div>
+                          </TooltipContent>
+                        </Tooltip>
+                        <span className="text-xs font-mono-display text-primary w-24 text-right shrink-0 tabular-nums font-medium">
+                          {arr > 0 ? fmtCurrency(arr) : "—"}
+                        </span>
+                      </motion.div>
+                    </TooltipProvider>
+                  );
+                });
+              })()}
 
               {/* Axis */}
-              <div className="flex items-center gap-3 mt-3">
-                <div className="w-7 shrink-0" />
-                <div className="w-9 shrink-0" />
+              <div className="flex items-center gap-4 px-6 py-3">
+                <div className="w-6 shrink-0" />
+                <div className="w-8 shrink-0" />
                 <div className="w-28 shrink-0" />
                 <div className="flex-1 relative">
-                  <div className="h-px bg-border" />
+                  <div className="h-px bg-border/50" />
                   <div className="flex justify-between mt-1.5">
-                    <span className="text-[10px] font-mono-display text-muted-foreground/70">$0</span>
-                    <span className="text-[10px] font-mono-display text-muted-foreground/70">$250M</span>
-                    <span className="text-[10px] font-mono-display text-muted-foreground/70">$500M</span>
-                    <span className="text-[10px] font-mono-display text-muted-foreground/70">$750M</span>
-                    <span className="text-[10px] font-mono-display text-muted-foreground/70">$1B</span>
+                    <span className="text-[10px] font-mono-display text-muted-foreground/50">$0</span>
+                    <span className="text-[10px] font-mono-display text-muted-foreground/50">$250M</span>
+                    <span className="text-[10px] font-mono-display text-muted-foreground/50">$500M</span>
+                    <span className="text-[10px] font-mono-display text-muted-foreground/50">$750M</span>
+                    <span className="text-[10px] font-mono-display text-muted-foreground/50">$1B</span>
                   </div>
                 </div>
-                <div className="w-20 shrink-0" />
+                <div className="w-24 shrink-0" />
               </div>
             </div>
           )}
