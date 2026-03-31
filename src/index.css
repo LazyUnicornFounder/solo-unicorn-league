@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -62,7 +62,7 @@
     font-family: 'Source Sans 3', 'Georgia', serif;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-family: 'Orbitron', sans-serif;
   }
 }
 
