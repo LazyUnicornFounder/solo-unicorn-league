@@ -117,18 +117,18 @@ export default function Index() {
             <h2 className="text-xs font-bold text-foreground uppercase tracking-[0.2em]">
               Rankings
             </h2>
-            <span className="text-[10px] font-mono-display text-muted-foreground/60 tracking-wider">
+            <span className="text-[10px] font-mono-display text-muted-foreground tracking-wider">
               VAL = 15× ARR
             </span>
           </div>
 
           {/* Column headers */}
           <div className="flex items-center gap-4 px-6 py-2 border-b border-border/15">
-            <div className="w-6 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase">#</div>
-            <div className="w-28 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider">Company</div>
-            <div className="flex-1 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider">Progress</div>
-            <div className="w-20 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider text-right">ARR</div>
-            <div className="w-20 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider text-right">Val.</div>
+            <div className="w-6 shrink-0 text-[10px] font-mono-display text-muted-foreground uppercase">#</div>
+            <div className="w-28 shrink-0 text-[10px] font-mono-display text-muted-foreground uppercase tracking-wider">Company</div>
+            <div className="flex-1 text-[10px] font-mono-display text-muted-foreground uppercase tracking-wider">Progress</div>
+            <div className="w-20 shrink-0 text-[10px] font-mono-display text-muted-foreground uppercase tracking-wider text-right">ARR</div>
+            <div className="w-20 shrink-0 text-[10px] font-mono-display text-muted-foreground uppercase tracking-wider text-right">Val.</div>
           </div>
 
           {loading ? (
@@ -187,7 +187,7 @@ export default function Index() {
                       <span className="text-xs font-mono-display text-foreground w-20 text-right shrink-0 tabular-nums font-medium">
                         {fmtCurrency(arr)}
                       </span>
-                      <span className="text-xs font-mono-display text-foreground/60 w-20 text-right shrink-0 tabular-nums group-hover:text-foreground/80 transition-colors">
+                      <span className="text-xs font-mono-display text-muted-foreground w-20 text-right shrink-0 tabular-nums group-hover:text-foreground/80 transition-colors">
                         {fmtCurrency(valuation)}
                       </span>
                     </motion.div>
@@ -203,7 +203,7 @@ export default function Index() {
                   <div className="h-px bg-border/30" />
                   <div className="flex justify-between mt-1.5">
                     {["$0", "$250M", "$500M", "$750M", "$1B"].map(label => (
-                      <span key={label} className="text-[9px] font-mono-display text-muted-foreground/30">{label}</span>
+                      <span key={label} className="text-[9px] font-mono-display text-muted-foreground/50">{label}</span>
                     ))}
                   </div>
                 </div>
