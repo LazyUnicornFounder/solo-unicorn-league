@@ -99,7 +99,7 @@ export default function Index() {
           {/* Column headers */}
           <div className="flex items-center gap-4 px-6 py-2.5 border-b border-border/50 bg-secondary/30">
             <div className="w-6 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase">#</div>
-            <div className="w-8 shrink-0" />
+            <div className="w-28 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider">Company</div>
             <div className="w-28 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider">Company</div>
             <div className="flex-1 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider">Progress to $1B</div>
             <div className="w-24 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider text-right">ARR</div>
