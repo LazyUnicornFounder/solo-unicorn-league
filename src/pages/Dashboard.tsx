@@ -85,11 +85,7 @@ export default function Dashboard() {
         if (error) throw error;
       }
 
-      if (hasExisting) {
-        toast({ title: "Updated!", description: "Your profile has been updated." });
-      } else {
-        toast({ title: "Submitted!", description: "Your submission is under review." });
-      }
+      toast({ title: "Submitted!", description: "Your submission is under review." });
       navigate("/");
     } catch (err: any) {
       toast({ title: "Error", description: err.message, variant: "destructive" });
