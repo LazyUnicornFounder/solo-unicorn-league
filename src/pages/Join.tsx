@@ -10,8 +10,9 @@ import { Label } from "@/components/ui/label";
 import logo from "@/assets/logo-new.png";
 
 function fmtCurrency(v: number) {
-  if (v >= 1_000_000) return "$" + (v / 1_000_000).toFixed(1) + "M";
-  if (v >= 1_000) return "$" + (v / 1_000).toFixed(0) + "K";
+  if (v >= 1_000_000_000) return "$" + (v / 1_000_000_000).toFixed(1) + " Billion";
+  if (v >= 1_000_000) return "$" + (v / 1_000_000).toFixed(1) + " Million";
+  if (v >= 1_000) return "$" + (v / 1_000).toFixed(0) + " Thousand";
   return "$" + v.toFixed(0);
 }
 
