@@ -97,9 +97,9 @@ export default function Index() {
               <path id="bottomArc" d="M 20,100 a 80,80 0 0,0 160,0" fill="none" />
             </defs>
             {/* Outer circle */}
-            <circle cx="100" cy="100" r="92" fill="none" stroke="hsl(30 10% 82% / 0.4)" strokeWidth="1" />
+            <circle cx="100" cy="100" r="92" fill="none" stroke="hsl(30 10% 82% / 0.6)" strokeWidth="1.5" />
             {/* Inner circle */}
-            <circle cx="100" cy="100" r="66" fill="none" stroke="hsl(30 10% 82% / 0.4)" strokeWidth="1" />
+            <circle cx="100" cy="100" r="66" fill="none" stroke="hsl(30 10% 82% / 0.6)" strokeWidth="1.5" />
             {/* Tick marks like the reference */}
             {Array.from({ length: 72 }).map((_, i) => {
               const angle = (i * 5) * Math.PI / 180;
@@ -112,21 +112,21 @@ export default function Index() {
                   y1={100 + r1 * Math.sin(angle)}
                   x2={100 + r2 * Math.cos(angle)}
                   y2={100 + r2 * Math.sin(angle)}
-                  stroke="hsl(30 10% 82% / 0.35)"
-                  strokeWidth="0.5"
+                  stroke="hsl(30 10% 82% / 0.5)"
+                  strokeWidth="0.8"
                 />
               );
             })}
             {/* Top text: SOLO UNICORN */}
-            <text className="fill-foreground/50 uppercase" style={{ fontSize: '14px', letterSpacing: '0.25em', fontFamily: 'Montserrat, sans-serif', fontWeight: 800 }}>
+            <text className="fill-foreground/60 uppercase" style={{ fontSize: '16px', letterSpacing: '0.15em', fontFamily: 'Caveat, cursive', fontWeight: 700 }}>
               <textPath href="#topArc" startOffset="50%" textAnchor="middle">
-                SOLO UNICORN
+                Solo Unicorn
               </textPath>
             </text>
             {/* Bottom text: LEAGUE */}
-            <text className="fill-foreground/70 uppercase" style={{ fontSize: '14px', letterSpacing: '0.25em', fontFamily: 'Montserrat, sans-serif', fontWeight: 800 }}>
+            <text className="fill-foreground/60 uppercase" style={{ fontSize: '16px', letterSpacing: '0.15em', fontFamily: 'Caveat, cursive', fontWeight: 700 }}>
               <textPath href="#bottomArc" startOffset="50%" textAnchor="middle">
-                LEAGUE
+                League
               </textPath>
             </text>
           </svg>
