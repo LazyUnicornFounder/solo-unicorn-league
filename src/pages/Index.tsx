@@ -99,8 +99,8 @@ export default function Index() {
           {/* Column headers */}
           <div className="flex items-center gap-4 px-6 py-2.5 border-b border-border/50 bg-secondary/30">
             <div className="w-6 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase">#</div>
-            <div className="w-8 shrink-0" />
             <div className="w-28 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider">Company</div>
+            <div className="flex-1 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider">Progress to $1B</div>
             <div className="flex-1 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider">Progress to $1B</div>
             <div className="w-24 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider text-right">ARR</div>
             <div className="w-24 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider text-right">Valuation</div>
@@ -152,16 +152,6 @@ export default function Index() {
                           href={f.url ?? "#"}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="shrink-0"
-                        >
-                          <div className="w-8 h-8 rounded-full bg-secondary border border-border flex items-center justify-center text-[11px] font-bold text-foreground/80 hover:border-primary/40 transition-colors">
-                            {(f.company_name ?? "?").charAt(0).toUpperCase()}
-                          </div>
-                        </a>
-                        <a
-                          href={f.url ?? "#"}
-                          target="_blank"
-                          rel="noopener noreferrer"
                           className="text-sm font-medium text-foreground w-28 truncate shrink-0 hover:text-primary transition-colors"
                         >
                           {f.company_name ?? "Unnamed"}
@@ -200,7 +190,6 @@ export default function Index() {
               {/* Axis */}
               <div className="flex items-center gap-4 px-6 py-3">
                 <div className="w-6 shrink-0" />
-                <div className="w-8 shrink-0" />
                 <div className="w-28 shrink-0" />
                 <div className="flex-1 relative">
                   <div className="h-px bg-border/50" />
