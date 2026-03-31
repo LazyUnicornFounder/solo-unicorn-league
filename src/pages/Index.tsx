@@ -37,10 +37,14 @@ export default function Index() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {/* Minimal top nav */}
-      <header className="flex items-center justify-between px-6 lg:px-10 py-4">
-        <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="Logo" className="w-10 h-10" />
+      {/* Logo above header */}
+      <div className="flex justify-center pt-6 pb-2">
+        <Link to="/">
+          <img src={logo} alt="Logo" className="w-14 h-14" />
         </Link>
+      </div>
+
+      <header className="flex items-center justify-center px-6 lg:px-10 py-2">
         <div className="flex items-center gap-3">
           <Link to="/about">
             <Button variant="ghost" size="sm">About</Button>
