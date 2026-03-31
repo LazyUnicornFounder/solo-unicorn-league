@@ -110,7 +110,7 @@ export default function Index() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="rounded-2xl border border-border/60 bg-card overflow-hidden backdrop-blur-sm"
+          className="overflow-hidden"
         >
           {/* Card header */}
           <div className="flex items-center justify-between px-6 py-4 border-b border-border/40">
