@@ -39,7 +39,7 @@ export default function Index() {
             transition={{ duration: 0.5 }}
           >
             <h1 className="text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground mb-1">
-              Founder <span className="text-primary text-glow">Leaderboard</span>
+              Solo Unicorn <span className="text-primary text-glow">Leaderboard</span>
             </h1>
             <p className="text-muted-foreground text-sm mb-6">
               Real-time ARR rankings · Valuation at 15× ARR multiple
