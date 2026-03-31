@@ -114,11 +114,11 @@ export default function Dashboard() {
           <div className="flex gap-6 mb-8 p-4 rounded-lg bg-card border border-border">
             <div>
               <p className="text-xs text-muted-foreground uppercase tracking-wider">MRR</p>
-              <p className="text-xl font-bold font-mono-display text-foreground">{formatDollars(mrrCents)}/mo</p>
+              <p className="text-xl font-bold text-foreground">{formatDollars(mrrCents)}/mo</p>
             </div>
             <div>
               <p className="text-xs text-muted-foreground uppercase tracking-wider">Est. Valuation</p>
-              <p className="text-xl font-bold font-mono-display text-foreground">{formatDollars(valuation)}</p>
+              <p className="text-xl font-bold text-foreground">{formatDollars(valuation)}</p>
             </div>
           </div>
         )}
