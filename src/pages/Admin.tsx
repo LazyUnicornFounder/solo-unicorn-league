@@ -5,7 +5,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { formatDistanceToNow } from "date-fns";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo-new.png";
 
 interface FounderRow {
   id: string;
