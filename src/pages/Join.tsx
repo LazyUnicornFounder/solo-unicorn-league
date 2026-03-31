@@ -197,6 +197,10 @@ export default function Join() {
               />
             </div>
             <div className="space-y-2">
+              <Label htmlFor="logo">Company Logo</Label>
+              <Input id="logo" type="file" accept="image/*" onChange={(e) => setLogoFile(e.target.files?.[0] ?? null)} />
+            </div>
+            <div className="space-y-2">
               <Label htmlFor="companyUrl">Website URL</Label>
               <Input
                 id="companyUrl"
@@ -215,7 +219,18 @@ export default function Join() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="mrr">Monthly Recurring Revenue ($)</Label>
+              <Label htmlFor="oneliner">One-liner</Label>
+              <Input
+                id="oneliner"
+                value={oneLiner}
+                onChange={(e) => setOneLiner(e.target.value.slice(0, 100))}
+                placeholder="What does your company do?"
+                maxLength={100}
+              />
+              <p className="text-xs text-muted-foreground">{oneLiner.length}/100</p>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="mrr">Current MRR ($)</Label>
               <Input
                 id="mrr"
                 type="number"
@@ -226,21 +241,6 @@ export default function Join() {
                 required
                 placeholder="e.g. 12000"
               />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="logo">Company Logo</Label>
-              <Input id="logo" type="file" accept="image/*" onChange={(e) => setLogoFile(e.target.files?.[0] ?? null)} />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="oneliner">One-liner</Label>
-              <Input
-                id="oneliner"
-                value={oneLiner}
-                onChange={(e) => setOneLiner(e.target.value.slice(0, 100))}
-                placeholder="What does your company do?"
-                maxLength={100}
-              />
-              <p className="text-xs text-muted-foreground">{oneLiner.length}/100</p>
             </div>
 
             {/* Live calculation preview */}
