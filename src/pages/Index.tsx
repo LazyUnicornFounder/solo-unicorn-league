@@ -37,7 +37,10 @@ export default function Index() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {/* Minimal top nav */}
-      <header className="flex items-center justify-end px-6 lg:px-10 py-4">
+      <header className="flex items-center justify-between px-6 lg:px-10 py-4">
+        <Link to="/" className="flex items-center gap-2">
+          <img src={logo} alt="Logo" className="w-10 h-10" />
+        </Link>
         <div className="flex items-center gap-3">
           <Link to="/about">
             <Button variant="ghost" size="sm">About</Button>
@@ -66,7 +69,6 @@ export default function Index() {
           transition={{ duration: 0.6 }}
           className="flex flex-col items-center text-center"
         >
-          <img src={logo} alt="Solo Unicorn League" className="w-24 h-24 lg:w-32 lg:h-32 mb-2" />
           <h1 className="text-3xl lg:text-5xl font-bold tracking-wide text-foreground mb-3 uppercase">
             Solo Unicorn League
           </h1>
