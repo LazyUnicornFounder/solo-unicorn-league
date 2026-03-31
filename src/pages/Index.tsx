@@ -34,14 +34,9 @@ export default function Index() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
-      <header className="flex items-center justify-between px-6 lg:px-10 py-4 border-b border-border">
-        <div className="flex items-center gap-2">
-          <img src={logo} alt="Logo" className="w-7 h-7" />
-          <span className="font-bold text-lg tracking-tight text-foreground">
-            Solo <span className="text-primary">Unicorn</span> League
-          </span>
-        </div>
+    <div className="min-h-screen bg-background flex flex-col">
+      {/* Minimal top nav */}
+      <header className="flex items-center justify-end px-6 lg:px-10 py-4">
         <div className="flex items-center gap-3">
           {isAdmin && (
             <Link to="/admin">
@@ -57,26 +52,45 @@ export default function Index() {
             </>
           ) : (
             <Link to="/join">
-              <Button size="sm">Join the Leaderboard</Button>
+              <Button variant="ghost" size="sm">Sign In</Button>
             </Link>
           )}
         </div>
       </header>
 
-      <main className="max-w-3xl mx-auto px-4 py-10">
-        <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-          <h1 className="text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground mb-1">
-            Solo Unicorn <span className="text-primary text-glow">Leaderboard</span>
+      {/* Hero section */}
+      <section className="flex flex-col items-center justify-center px-6 py-16 lg:py-24">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col items-center text-center"
+        >
+          <img src={logo} alt="Solo Unicorn League" className="w-28 h-28 lg:w-36 lg:h-36 mb-6" />
+          <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground mb-4" style={{ fontFamily: "'Inter', sans-serif" }}>
+            Solo Unicorn League
           </h1>
-          <p className="text-muted-foreground text-sm mb-2">
-            Self-reported MRR from real solo founders. Join to add yourself.
+          <p className="max-w-xl text-muted-foreground text-base lg:text-lg leading-relaxed mb-8">
+            Self-reported MRR from real solo founders. Join to add yourself, and compete with solo founders globally to see who will win the race to build a $1 billion startup as a solo founder.
           </p>
-          {!user && (
-            <Link to="/join">
-              <Button size="sm" className="mb-6">Join the Leaderboard</Button>
-            </Link>
-          )}
+          <Link to="/join">
+            <Button size="lg" className="text-base px-8">
+              Join the Leaderboard
+            </Button>
+          </Link>
         </motion.div>
+      </section>
+
+      {/* Leaderboard */}
+      <main className="max-w-3xl mx-auto w-full px-4 pb-16">
+        <motion.h2
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          className="text-xl font-bold text-foreground mb-4"
+        >
+          Leaderboard
+        </motion.h2>
 
         {loading ? (
           <div className="space-y-3">
@@ -93,7 +107,7 @@ export default function Index() {
                 key={f.id}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.05 }}
+                transition={{ delay: 0.3 + i * 0.05 }}
               >
                 <LeaderboardRow
                   rank={i + 1}
