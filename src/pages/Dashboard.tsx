@@ -88,7 +88,7 @@ export default function Dashboard() {
         if (error) throw error;
       }
 
-      toast({ title: "Submitted!", description: "Your submission is under review." });
+      toast({ title: "Thank you!", description: "We are reviewing your submission." });
       navigate("/");
     } catch (err: any) {
       toast({ title: "Error", description: err.message, variant: "destructive" });
