@@ -11,10 +11,9 @@ import logo from "@/assets/logo-new.png";
 
 function formatDollars(cents: number) {
   const dollars = cents / 100;
-  if (dollars >= 1_000_000_000) return "$" + (dollars / 1_000_000_000).toFixed(1) + " Billion";
-  if (dollars >= 1_000_000) return "$" + (dollars / 1_000_000).toFixed(1) + " Million";
-  if (dollars >= 1_000) return "$" + (dollars / 1_000).toFixed(0) + " Thousand";
-  return "$" + dollars.toFixed(0);
+  if (dollars >= 1_000_000_000) return "$" + (dollars / 1_000_000_000).toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + " Billion";
+  if (dollars >= 1_000_000) return "$" + (dollars / 1_000_000).toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + " Million";
+  return "$" + dollars.toLocaleString("en-US", { maximumFractionDigits: 0 });
 }
 
 export default function Dashboard() {
