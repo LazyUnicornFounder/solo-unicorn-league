@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useEffect } from "react";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo-new.png";
 
 export default function Join() {
   const { user, loading } = useAuth();

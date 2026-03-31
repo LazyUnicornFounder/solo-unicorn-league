@@ -5,7 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import LeaderboardRow from "@/components/LeaderboardRow";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo-new.png";
 
 interface FounderRow {
   id: string;
