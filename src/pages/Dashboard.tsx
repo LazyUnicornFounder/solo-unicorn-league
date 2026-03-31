@@ -56,7 +56,8 @@ export default function Dashboard() {
     });
   }, [user]);
 
-  const mrrCents = Math.round(Number(mrrDollars || 0) * 100);
+  const mrrCents = Math.round(Number(String(mrrDollars).replace(/,/g, "") || 0) * 100);
+  const displayMrr = mrrDollars ? Number(String(mrrDollars).replace(/,/g, "")).toLocaleString("en-US") : "";
   const arrCents = mrrCents * 12;
   const valuation = arrCents * 15;
 
