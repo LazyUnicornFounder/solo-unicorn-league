@@ -29,6 +29,8 @@ export default function Join() {
   const [companyName, setCompanyName] = useState("");
   const [companyUrl, setCompanyUrl] = useState("");
   const [mrrInput, setMrrInput] = useState("");
+  const [oneLiner, setOneLiner] = useState("");
+  const [logoFile, setLogoFile] = useState<File | null>(null);
 
   const mrrDollars = Number(mrrInput || 0);
   const arr = mrrDollars * 12;
