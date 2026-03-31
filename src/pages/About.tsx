@@ -49,7 +49,7 @@ export default function About() {
             </p>
 
             <p className="text-foreground font-medium text-base lg:text-lg">
-              The question isn't whether a solo founder will build a billion-dollar company. The question is who will do it first.
+              The question isn't if it's possible. The question is who will make everyone else believe it — and break the barrier for good.
             </p>
 
             <p className="text-foreground font-bold text-base lg:text-lg">
