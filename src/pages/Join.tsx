@@ -28,6 +28,7 @@ export default function Join() {
   // Company fields
   const [companyName, setCompanyName] = useState("");
   const [companyUrl, setCompanyUrl] = useState("");
+  const [xUrl, setXUrl] = useState("");
   const [mrrInput, setMrrInput] = useState("");
   const [oneLiner, setOneLiner] = useState("");
   const [logoFile, setLogoFile] = useState<File | null>(null);
