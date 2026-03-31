@@ -103,6 +103,7 @@ export default function Index() {
             <div className="w-28 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider">Company</div>
             <div className="flex-1 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider">Progress to $1B</div>
             <div className="w-24 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider text-right">ARR</div>
+            <div className="w-24 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider text-right">Valuation</div>
           </div>
 
           {loading ? (
@@ -168,16 +169,12 @@ export default function Index() {
                         <Tooltip>
                           <TooltipTrigger asChild>
                             <div className="flex-1 h-6 bg-secondary/50 rounded relative overflow-hidden cursor-default">
-                              {pct > 0 ? (
-                                <motion.div
-                                  initial={{ width: 0 }}
-                                  animate={{ width: `${Math.max(pct, 0.4)}%` }}
-                                  transition={{ duration: 1, delay: 0.4 + i * 0.05, ease: "easeOut" }}
-                                  className="h-full rounded bg-primary/70 bar-glow"
-                                />
-                              ) : (
-                                <div className="absolute left-1 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-primary/20" />
-                              )}
+                              <motion.div
+                                initial={{ width: 0 }}
+                                animate={{ width: `${Math.max(pct, 0.3)}%` }}
+                                transition={{ duration: 1, delay: 0.4 + i * 0.05, ease: "easeOut" }}
+                                className="h-full rounded bg-primary/70 bar-glow"
+                              />
                             </div>
                           </TooltipTrigger>
                           <TooltipContent side="top" className="font-mono-display text-xs bg-card border-border">
@@ -190,6 +187,9 @@ export default function Index() {
                         </Tooltip>
                         <span className="text-xs font-mono-display text-primary w-24 text-right shrink-0 tabular-nums font-medium">
                           {arr > 0 ? fmtCurrency(arr) : "—"}
+                        </span>
+                        <span className="text-xs font-mono-display text-foreground/70 w-24 text-right shrink-0 tabular-nums">
+                          {valuation > 0 ? fmtCurrency(valuation) : "—"}
                         </span>
                       </motion.div>
                     </TooltipProvider>
@@ -212,6 +212,7 @@ export default function Index() {
                     <span className="text-[10px] font-mono-display text-muted-foreground/50">$1B</span>
                   </div>
                 </div>
+                <div className="w-24 shrink-0" />
                 <div className="w-24 shrink-0" />
               </div>
             </div>
