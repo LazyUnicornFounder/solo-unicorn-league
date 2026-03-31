@@ -22,7 +22,7 @@ function fmtMrr(cents: number) {
 }
 
 function fmtVal(cents: number) {
-  const val = (cents / 100) * 12 * 5;
+  const val = (cents / 100) * 12 * 15;
   return "$" + val.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
 }
 
