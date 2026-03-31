@@ -34,7 +34,8 @@ export default function Join() {
   const [oneLiner, setOneLiner] = useState("");
   const [logoFile, setLogoFile] = useState<File | null>(null);
 
-  const mrrDollars = Number(mrrInput || 0);
+  const mrrDollars = Number(mrrInput.replace(/,/g, "") || 0);
+  const displayMrr = mrrInput ? Number(mrrInput.replace(/,/g, "")).toLocaleString("en-US") : "";
   const arr = mrrDollars * 12;
   const valuation = arr * 15;
 
