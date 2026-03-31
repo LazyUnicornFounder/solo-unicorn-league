@@ -203,7 +203,7 @@ export default function Index() {
                   <div className="h-px bg-border/30" />
                   <div className="flex justify-between mt-1.5">
                     {["$0", "$250M", "$500M", "$750M", "$1B"].map(label => (
-                      <span key={label} className="text-[9px] font-mono-display text-muted-foreground/30">{label}</span>
+                      <span key={label} className="text-[9px] font-mono-display text-muted-foreground/50">{label}</span>
                     ))}
                   </div>
                 </div>
