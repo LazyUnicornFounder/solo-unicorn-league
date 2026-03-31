@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Twitter } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { motion } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
@@ -65,6 +66,11 @@ export default function Index() {
             <Button variant="ghost" size="sm" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground hover:bg-transparent" onClick={signOut}>Sign Out</Button>
           </>
         )}
+        <a href="https://x.com/SaadSahawneh" target="_blank" rel="noopener noreferrer">
+          <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground hover:bg-transparent px-2">
+            <Twitter size={16} />
+          </Button>
+        </a>
         <Link to="/about">
           <Button variant="ghost" size="sm" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground hover:bg-transparent">About</Button>
         </Link>
