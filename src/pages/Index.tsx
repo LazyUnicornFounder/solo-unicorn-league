@@ -153,7 +153,7 @@ export default function Index() {
                       transition={{ delay: 0.3 + i * 0.04 }}
                       className="flex items-center gap-4 px-6 py-2.5 border-b border-border/20 hover:bg-primary/[0.03] transition-all duration-200 group"
                     >
-                      <span className="text-[11px] font-mono-display text-muted-foreground/50 w-6 text-center shrink-0 tabular-nums group-hover:text-muted-foreground transition-colors">
+                      <span className="text-xs font-mono-display text-muted-foreground w-6 text-center shrink-0 tabular-nums group-hover:text-foreground transition-colors">
                         {i + 1}
                       </span>
                       <a
