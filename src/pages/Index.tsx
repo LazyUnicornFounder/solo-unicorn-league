@@ -95,7 +95,33 @@ export default function Index() {
             ))}
           </div>
         ) : founders.length === 0 ? (
-          <p className="text-muted-foreground text-center py-20">No founders yet. Be the first to join!</p>
+          <div>
+            <p className="text-muted-foreground text-center py-8">No founders yet. Be the first to join!</p>
+            {/* Empty chart axis */}
+            <div className="flex items-center gap-3">
+              <div className="w-6 shrink-0" />
+              <div className="w-32 shrink-0 text-sm text-muted-foreground italic">Your startup?</div>
+              <div className="flex-1 relative">
+                <div className="h-7 bg-card rounded border border-border" />
+              </div>
+              <div className="w-24 shrink-0" />
+            </div>
+            <div className="flex items-center gap-3 mt-2">
+              <div className="w-6 shrink-0" />
+              <div className="w-32 shrink-0" />
+              <div className="flex-1 relative">
+                <div className="h-px bg-border" />
+                <div className="flex justify-between mt-1">
+                  <span className="text-[10px] font-mono-display text-muted-foreground">$0</span>
+                  <span className="text-[10px] font-mono-display text-muted-foreground">$250M</span>
+                  <span className="text-[10px] font-mono-display text-muted-foreground">$500M</span>
+                  <span className="text-[10px] font-mono-display text-muted-foreground">$750M</span>
+                  <span className="text-[10px] font-mono-display text-muted-foreground">$1B</span>
+                </div>
+              </div>
+              <div className="w-24 shrink-0" />
+            </div>
+          </div>
         ) : (
           <div>
             {/* Chart rows */}
