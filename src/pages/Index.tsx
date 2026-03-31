@@ -15,7 +15,7 @@ export default function Index() {
         <div className="flex items-center gap-2">
           <img src={logo} alt="World Solo Unicorn Championship logo" width={28} height={28} className="w-7 h-7" />
           <span className="font-bold text-lg tracking-tight text-foreground">
-            World Solo <span className="text-primary">Unicorn</span> Championship
+            Solo <span className="text-primary">Unicorn</span> League
           </span>
         </div>
         <div className="flex items-center gap-3">
