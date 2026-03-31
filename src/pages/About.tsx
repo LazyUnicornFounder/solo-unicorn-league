@@ -33,7 +33,7 @@ export default function About() {
             </p>
 
             <p>
-              The new playbook is one founder, one vision, infinite leverage.
+              The new playbook is one founder, many visions, infinite leverage.
             </p>
 
 
