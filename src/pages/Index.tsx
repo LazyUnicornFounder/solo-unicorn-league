@@ -89,44 +89,13 @@ export default function Index() {
       >
         <Link to="/" className="relative w-48 h-48 lg:w-56 lg:h-56 flex items-center justify-center">
           <img src={logo} alt="Logo" className="w-28 h-28 lg:w-32 lg:h-32 opacity-90 hover:opacity-100 transition-opacity drop-shadow-[0_0_25px_hsl(145,72%,46%,0.15)]" />
-          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 200">
+          <svg className="absolute inset-0 w-full h-full animate-[spin_20s_linear_infinite]" viewBox="0 0 200 200">
             <defs>
-              {/* Top arc - clockwise */}
-              <path id="topArc" d="M 20,100 a 80,80 0 1,1 160,0" fill="none" />
-              {/* Bottom arc - goes left to right along the bottom so text is upright */}
-              <path id="bottomArc" d="M 20,100 a 80,80 0 0,0 160,0" fill="none" />
+              <path id="circlePath" d="M 100, 100 m -80, 0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0" fill="none" />
             </defs>
-            {/* Outer circle */}
-            <circle cx="100" cy="100" r="92" fill="none" stroke="hsl(30 10% 82% / 0.6)" strokeWidth="1.5" />
-            {/* Inner circle */}
-            <circle cx="100" cy="100" r="66" fill="none" stroke="hsl(30 10% 82% / 0.6)" strokeWidth="1.5" />
-            {/* Tick marks like the reference */}
-            {Array.from({ length: 72 }).map((_, i) => {
-              const angle = (i * 5) * Math.PI / 180;
-              const r1 = 87;
-              const r2 = 83;
-              return (
-                <line
-                  key={i}
-                  x1={100 + r1 * Math.cos(angle)}
-                  y1={100 + r1 * Math.sin(angle)}
-                  x2={100 + r2 * Math.cos(angle)}
-                  y2={100 + r2 * Math.sin(angle)}
-                  stroke="hsl(30 10% 82% / 0.5)"
-                  strokeWidth="0.8"
-                />
-              );
-            })}
-            {/* Top text: SOLO UNICORN */}
-            <text className="fill-foreground/60 uppercase" style={{ fontSize: '16px', letterSpacing: '0.15em', fontFamily: 'Caveat, cursive', fontWeight: 700 }}>
-              <textPath href="#topArc" startOffset="50%" textAnchor="middle">
-                Solo Unicorn
-              </textPath>
-            </text>
-            {/* Bottom text: LEAGUE */}
-            <text className="fill-foreground/60 uppercase" style={{ fontSize: '16px', letterSpacing: '0.15em', fontFamily: 'Caveat, cursive', fontWeight: 700 }}>
-              <textPath href="#bottomArc" startOffset="50%" textAnchor="middle">
-                League
+            <text className="fill-foreground/60 uppercase" style={{ fontSize: '13px', letterSpacing: '0.35em', fontFamily: 'Montserrat, sans-serif', fontWeight: 600 }}>
+              <textPath href="#circlePath" startOffset="0%">
+                SOLO UNICORN LEAGUE • SOLO UNICORN LEAGUE •
               </textPath>
             </text>
           </svg>
@@ -145,7 +114,7 @@ export default function Index() {
             Solo Unicorn League
           </h1>
           <p className="max-w-lg text-muted-foreground text-sm leading-relaxed mb-6">
-            The leaderboard for solo founders racing to $1 billion. Submit your revenue, track your competitors, and race to the finish line.
+            The leaderboard for solo founders racing to $1 billion. Submit your MRR, follow your competitors, and race to the finish line.
           </p>
           <Link to="/join">
             <Button size="lg" className="text-base px-8 bg-foreground text-background hover:bg-foreground/90">
