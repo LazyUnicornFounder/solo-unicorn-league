@@ -74,7 +74,7 @@ export default function Dashboard() {
         one_liner: oneLiner || null,
         logo_url: logoUrl,
         is_solo_attested: isSoloAttested,
-        is_visible: true,
+        is_visible: hasExisting ? undefined : false,
       };
 
       if (hasExisting) {
