@@ -147,6 +147,7 @@ export default function Index() {
             <div className="w-6 shrink-0 text-xs font-mono-display text-foreground/50 uppercase">#</div>
             <div className="w-28 shrink-0 text-xs font-mono-display text-foreground/50 uppercase tracking-wider">Company</div>
             <div className="flex-1 text-xs font-mono-display text-foreground/50 uppercase tracking-wider">Progress</div>
+            <div className="w-20 shrink-0 text-xs font-mono-display text-foreground/50 uppercase tracking-wider text-right">MRR</div>
             <div className="w-20 shrink-0 text-xs font-mono-display text-foreground/50 uppercase tracking-wider text-right">ARR</div>
             <div className="w-20 shrink-0 text-xs font-mono-display text-foreground/50 uppercase tracking-wider text-right">Val.</div>
           </div>
@@ -204,6 +205,9 @@ export default function Index() {
                           </div>
                         </TooltipContent>
                       </Tooltip>
+                      <span className="text-sm font-mono-display text-foreground/70 w-20 text-right shrink-0 tabular-nums group-hover:text-foreground transition-colors">
+                        {fmtCurrency(mrrDollars)}/mo
+                      </span>
                       <span className="text-sm font-mono-display text-foreground w-20 text-right shrink-0 tabular-nums font-medium">
                         {fmtCurrency(arr)}
                       </span>
@@ -227,6 +231,7 @@ export default function Index() {
                     ))}
                   </div>
                 </div>
+                <div className="w-20 shrink-0" />
                 <div className="w-20 shrink-0" />
                 <div className="w-20 shrink-0" />
               </div>
