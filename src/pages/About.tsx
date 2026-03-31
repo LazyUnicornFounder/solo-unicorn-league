@@ -29,7 +29,7 @@ export default function About() {
 
           <div className="space-y-6 text-muted-foreground leading-relaxed text-sm lg:text-base">
             <p>
-              For the first time in history, one person can own and operate a company that generates millions in recurring revenue — without a co-founder, without a team, without permission.
+              It's easier than ever. One person can own and operate a company that generates millions in recurring revenue — without a co-founder, without a team, without permission.
             </p>
 
             <p>
