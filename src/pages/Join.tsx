@@ -95,7 +95,7 @@ export default function Join() {
       const { error } = await supabase.from("founders").insert({
         user_id: user.id,
         company_name: companyName,
-        x_url: companyUrl || null,
+        x_url: xUrl || companyUrl || null,
         one_liner: oneLiner || null,
         logo_url: logoUrl,
         mrr_cents: Math.round(mrrDollars * 100),
