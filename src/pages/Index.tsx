@@ -80,15 +80,25 @@ export default function Index() {
         </Link>
       </nav>
 
-      {/* Logo */}
+      {/* Logo with circular text */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="flex justify-center pt-2 pb-1"
       >
-        <Link to="/">
-          <img src={logo} alt="Logo" className="w-40 h-40 lg:w-48 lg:h-48 opacity-90 hover:opacity-100 transition-opacity drop-shadow-[0_0_25px_hsl(145,72%,46%,0.15)]" />
+        <Link to="/" className="relative w-48 h-48 lg:w-56 lg:h-56 flex items-center justify-center">
+          <img src={logo} alt="Logo" className="w-28 h-28 lg:w-32 lg:h-32 opacity-90 hover:opacity-100 transition-opacity drop-shadow-[0_0_25px_hsl(145,72%,46%,0.15)]" />
+          <svg className="absolute inset-0 w-full h-full animate-[spin_20s_linear_infinite]" viewBox="0 0 200 200">
+            <defs>
+              <path id="circlePath" d="M 100, 100 m -80, 0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0" fill="none" />
+            </defs>
+            <text className="fill-foreground/60 uppercase" style={{ fontSize: '13px', letterSpacing: '0.35em', fontFamily: 'Montserrat, sans-serif', fontWeight: 600 }}>
+              <textPath href="#circlePath" startOffset="0%">
+                SOLO UNICORN LEAGUE • SOLO UNICORN LEAGUE •
+              </textPath>
+            </text>
+          </svg>
         </Link>
       </motion.div>
 
