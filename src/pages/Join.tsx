@@ -235,13 +235,12 @@ export default function Join() {
               <Label htmlFor="mrr">Current MRR ($)</Label>
               <Input
                 id="mrr"
-                type="number"
-                min="0"
-                step="1"
-                value={mrrInput}
-                onChange={(e) => setMrrInput(e.target.value)}
+                type="text"
+                inputMode="numeric"
+                value={displayMrr}
+                onChange={(e) => setMrrInput(e.target.value.replace(/[^0-9]/g, ""))}
                 required
-                placeholder="e.g. 12000"
+                placeholder="e.g. 12,000"
               />
             </div>
 
