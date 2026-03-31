@@ -77,112 +77,120 @@ export default function Index() {
         </motion.div>
       </section>
 
-      {/* Leaderboard */}
+      {/* Rankings & Chart */}
       <main className="max-w-5xl mx-auto w-full px-4 pb-16">
-        <motion.h2
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+        {/* Rankings Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="text-xl font-bold text-foreground mb-4"
+          className="rounded-lg border border-border bg-card p-6"
         >
-          Leaderboard
-        </motion.h2>
+          <h2 className="text-xl font-bold text-foreground mb-6 uppercase tracking-wide">
+            Rankings
+          </h2>
 
-        {loading ? (
-          <div className="space-y-3">
-            {[...Array(5)].map((_, i) => (
-              <div key={i} className="h-10 rounded bg-card border border-border animate-pulse" />
-            ))}
-          </div>
-        ) : founders.length === 0 ? (
-          <div>
-            <p className="text-muted-foreground text-center py-8">No founders yet. Be the first to join!</p>
-            {/* Empty chart axis */}
-            <div className="flex items-center gap-3">
-              <div className="w-6 shrink-0" />
-              <div className="w-32 shrink-0 text-sm text-muted-foreground italic">Your startup?</div>
-              <div className="flex-1 relative">
-                <div className="h-7 bg-card rounded border border-border" />
-              </div>
-              <div className="w-24 shrink-0" />
+          {loading ? (
+            <div className="space-y-3">
+              {[...Array(3)].map((_, i) => (
+                <div key={i} className="h-10 rounded bg-secondary animate-pulse" />
+              ))}
             </div>
-            <div className="flex items-center gap-3 mt-2">
-              <div className="w-6 shrink-0" />
-              <div className="w-32 shrink-0" />
-              <div className="flex-1 relative">
-                <div className="h-px bg-border" />
-                <div className="flex justify-between mt-1">
-                  <span className="text-[10px] font-mono-display text-muted-foreground">$0</span>
-                  <span className="text-[10px] font-mono-display text-muted-foreground">$250M</span>
-                  <span className="text-[10px] font-mono-display text-muted-foreground">$500M</span>
-                  <span className="text-[10px] font-mono-display text-muted-foreground">$750M</span>
-                  <span className="text-[10px] font-mono-display text-muted-foreground">$1B</span>
-                </div>
-              </div>
-              <div className="w-24 shrink-0" />
-            </div>
-          </div>
-        ) : (
-          <div>
-            {/* Chart rows */}
-            <div className="space-y-2 mb-2">
-              {founders.map((f, i) => {
-                const valuation = ((f.mrr_cents ?? 0) / 100) * 12 * 5;
-                const pct = Math.min((valuation / 1_000_000_000) * 100, 100);
-                const displayPct = Math.max(pct, 0.3); // minimum visible width
+          ) : (
+            <div>
+              {/* Chart rows - combine DB founders + hardcoded entries */}
+              <div className="space-y-2 mb-2">
+                {(() => {
+                  const hardcoded = [
+                    { id: "hc-1", company_name: "Lazy Unicorn", mrr_cents: 0, url: "https://lazyunicorn.ai" },
+                    { id: "hc-2", company_name: "Breaking Muse", mrr_cents: 0, url: "https://breakingmuse.ai" },
+                  ];
 
-                return (
-                  <motion.div
-                    key={f.id}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.3 + i * 0.05 }}
-                    className="flex items-center gap-3"
-                  >
-                    <span className="text-xs font-mono-display text-muted-foreground w-6 text-right shrink-0">
-                      #{i + 1}
-                    </span>
-                    <span className="text-sm font-semibold text-foreground w-32 truncate shrink-0">
-                      {f.company_name ?? "Unnamed"}
-                    </span>
-                    <div className="flex-1 h-7 bg-card rounded border border-border relative overflow-hidden">
+                  // Merge DB founders with hardcoded, sort by mrr descending
+                  const allEntries = [
+                    ...founders.map(f => ({ ...f, url: f.x_url })),
+                    ...hardcoded.filter(hc => !founders.some(f => f.company_name?.toLowerCase() === hc.company_name.toLowerCase())),
+                  ].sort((a, b) => (b.mrr_cents ?? 0) - (a.mrr_cents ?? 0));
+
+                  return allEntries.map((f, i) => {
+                    const valuation = ((f.mrr_cents ?? 0) / 100) * 12 * 5;
+                    const pct = Math.min((valuation / 1_000_000_000) * 100, 100);
+
+                    return (
                       <motion.div
-                        initial={{ width: 0 }}
-                        animate={{ width: `${displayPct}%` }}
-                        transition={{ duration: 0.8, delay: 0.4 + i * 0.05, ease: "easeOut" }}
-                        className="h-full bg-foreground/80 rounded"
-                      />
-                    </div>
-                    <span className="text-xs font-mono-display text-muted-foreground w-24 text-right shrink-0">
-                      ${valuation >= 1_000_000
-                        ? (valuation / 1_000_000).toFixed(1) + "M"
-                        : valuation >= 1_000
-                        ? (valuation / 1_000).toFixed(0) + "K"
-                        : valuation.toFixed(0)}
-                    </span>
-                  </motion.div>
-                );
-              })}
-            </div>
-
-            {/* Axis */}
-            <div className="flex items-center gap-3">
-              <div className="w-6 shrink-0" />
-              <div className="w-32 shrink-0" />
-              <div className="flex-1 relative">
-                <div className="h-px bg-border" />
-                <div className="flex justify-between mt-1">
-                  <span className="text-[10px] font-mono-display text-muted-foreground">$0</span>
-                  <span className="text-[10px] font-mono-display text-muted-foreground">$250M</span>
-                  <span className="text-[10px] font-mono-display text-muted-foreground">$500M</span>
-                  <span className="text-[10px] font-mono-display text-muted-foreground">$750M</span>
-                  <span className="text-[10px] font-mono-display text-muted-foreground">$1B</span>
-                </div>
+                        key={f.id}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.3 + i * 0.05 }}
+                        className="flex items-center gap-3"
+                      >
+                        <span className="text-xs font-mono-display text-muted-foreground w-6 text-right shrink-0">
+                          #{i + 1}
+                        </span>
+                        <a
+                          href={f.url ?? "#"}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="shrink-0 group"
+                          title={f.company_name ?? ""}
+                        >
+                          <div className="w-8 h-8 rounded-full bg-foreground/10 border border-border flex items-center justify-center text-[10px] font-bold text-foreground group-hover:border-foreground/50 transition-colors">
+                            {(f.company_name ?? "?").charAt(0).toUpperCase()}
+                          </div>
+                        </a>
+                        <a
+                          href={f.url ?? "#"}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm font-semibold text-foreground w-28 truncate shrink-0 hover:underline"
+                        >
+                          {f.company_name ?? "Unnamed"}
+                        </a>
+                        <div className="flex-1 h-7 bg-secondary rounded relative overflow-hidden">
+                          {pct > 0 ? (
+                            <motion.div
+                              initial={{ width: 0 }}
+                              animate={{ width: `${Math.max(pct, 0.3)}%` }}
+                              transition={{ duration: 0.8, delay: 0.4 + i * 0.05, ease: "easeOut" }}
+                              className="h-full bg-foreground/80 rounded"
+                            />
+                          ) : (
+                            <div className="absolute left-1 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-foreground/40" />
+                          )}
+                        </div>
+                        <span className="text-xs font-mono-display text-muted-foreground w-20 text-right shrink-0">
+                          {valuation >= 1_000_000
+                            ? "$" + (valuation / 1_000_000).toFixed(1) + "M"
+                            : valuation >= 1_000
+                            ? "$" + (valuation / 1_000).toFixed(0) + "K"
+                            : "$" + valuation.toFixed(0)}
+                        </span>
+                      </motion.div>
+                    );
+                  });
+                })()}
               </div>
-              <div className="w-24 shrink-0" />
+
+              {/* Axis */}
+              <div className="flex items-center gap-3 mt-2">
+                <div className="w-6 shrink-0" />
+                <div className="w-8 shrink-0" />
+                <div className="w-28 shrink-0" />
+                <div className="flex-1 relative">
+                  <div className="h-px bg-border" />
+                  <div className="flex justify-between mt-1">
+                    <span className="text-[10px] font-mono-display text-muted-foreground">$0</span>
+                    <span className="text-[10px] font-mono-display text-muted-foreground">$250M</span>
+                    <span className="text-[10px] font-mono-display text-muted-foreground">$500M</span>
+                    <span className="text-[10px] font-mono-display text-muted-foreground">$750M</span>
+                    <span className="text-[10px] font-mono-display text-muted-foreground">$1B</span>
+                  </div>
+                </div>
+                <div className="w-20 shrink-0" />
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </motion.div>
       </main>
     </div>
   );
