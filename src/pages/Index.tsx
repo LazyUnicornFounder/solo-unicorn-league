@@ -107,7 +107,7 @@ export default function Index() {
             The leaderboard for solo founders racing to $1 billion. Submit your revenue, track your competitors, and race to the finish line.
           </p>
           <Link to="/join">
-            <Button size="lg" className="text-base px-8 bg-foreground text-background hover:bg-foreground/90">
+            <Button size="lg" className="text-base px-8 bg-foreground text-background hover:bg-foreground/90 font-extrabold uppercase tracking-tight" style={{ fontFamily: "'Montserrat', sans-serif" }}>
               Join the Leaderboard
             </Button>
           </Link>
