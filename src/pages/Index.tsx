@@ -190,7 +190,6 @@ export default function Index() {
               {/* Axis */}
               <div className="flex items-center gap-4 px-6 py-3">
                 <div className="w-6 shrink-0" />
-                <div className="w-8 shrink-0" />
                 <div className="w-28 shrink-0" />
                 <div className="flex-1 relative">
                   <div className="h-px bg-border/50" />
