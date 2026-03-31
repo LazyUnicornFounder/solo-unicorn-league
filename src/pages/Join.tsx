@@ -277,7 +277,7 @@ export default function Join() {
 
             {error && <p className="text-sm text-destructive">{error}</p>}
             <Button type="submit" className="w-full bg-foreground text-background hover:bg-foreground/90" disabled={submitting || !companyName}>
-              {submitting ? "Saving..." : "Go Live on Leaderboard"}
+              {submitting ? "Saving..." : "Submit"}
             </Button>
           </form>
         )}
