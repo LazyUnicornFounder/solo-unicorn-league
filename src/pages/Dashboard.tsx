@@ -118,7 +118,7 @@ export default function Dashboard() {
             </div>
             <div>
               <p className="text-xs text-muted-foreground uppercase tracking-wider">Est. Valuation</p>
-              <p className="text-xl font-bold font-mono-display text-foreground">{formatDollars(valuation)}</p>
+              <p className="text-xl font-bold text-foreground">{formatDollars(valuation)}</p>
             </div>
           </div>
         )}
