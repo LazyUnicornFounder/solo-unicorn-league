@@ -115,7 +115,7 @@ export default function Index() {
       </section>
 
       {/* Rankings */}
-      <main className="max-w-6xl mx-auto w-full px-4 pb-16 mt-2">
+      <main className="max-w-7xl mx-auto w-full px-4 pb-16 mt-2">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
