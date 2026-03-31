@@ -5,6 +5,7 @@ import { lovable } from "@/integrations/lovable";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { X } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import logo from "@/assets/logo-new.png";
 
