@@ -27,7 +27,7 @@ export default function About() {
             The Age of Autonomous Capitalism
           </h1>
 
-          <div className="space-y-6 text-muted-foreground leading-relaxed text-base lg:text-lg">
+          <div className="space-y-6 text-muted-foreground leading-relaxed text-sm lg:text-base">
             <p>
               We're living through the greatest shift in how companies are built since the internet itself. AI agents write code. AI agents handle support. AI agents run marketing, ops, and sales. For the first time in history, one person can own and operate a company that generates millions in recurring revenue — without a co-founder, without a team, without permission.
             </p>
@@ -48,11 +48,11 @@ export default function About() {
               We're not here to celebrate hustle culture. We're here to prove a new thesis: that the most valuable companies of the next decade will be built by individuals — not teams. That the future of capitalism isn't 500 employees in an office. It's one founder, an army of agents, and the audacity to compete with companies 100x their size.
             </p>
 
-            <p className="text-foreground font-medium text-lg lg:text-xl">
+            <p className="text-foreground font-medium text-base lg:text-lg">
               The question isn't whether a solo founder will build a billion-dollar company. The question is who will do it first.
             </p>
 
-            <p className="text-foreground font-bold text-lg lg:text-xl">
+            <p className="text-foreground font-bold text-base lg:text-lg">
               The leaderboard is live. The race is on.
             </p>
           </div>
