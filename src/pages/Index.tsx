@@ -133,12 +133,12 @@ export default function Index() {
           </div>
 
           {/* Column headers */}
-          <div className="flex items-center gap-4 px-6 py-3 border-b border-border/15">
-            <div className="w-8 shrink-0 text-sm font-mono-display text-foreground/50 uppercase">#</div>
-            <div className="w-36 shrink-0 text-sm font-mono-display text-foreground/50 uppercase tracking-wider">Company</div>
-            <div className="flex-1 text-sm font-mono-display text-foreground/50 uppercase tracking-wider">Progress</div>
-            <div className="w-24 shrink-0 text-sm font-mono-display text-foreground/50 uppercase tracking-wider text-right">ARR</div>
-            <div className="w-24 shrink-0 text-sm font-mono-display text-foreground/50 uppercase tracking-wider text-right">Val.</div>
+          <div className="flex items-center gap-6 px-6 py-3 border-b border-border/15">
+            <div className="w-10 shrink-0 text-lg font-mono-display text-foreground/50 uppercase">#</div>
+            <div className="w-44 shrink-0 text-lg font-mono-display text-foreground/50 uppercase tracking-wider">Company</div>
+            <div className="flex-1 text-lg font-mono-display text-foreground/50 uppercase tracking-wider">Progress</div>
+            <div className="w-28 shrink-0 text-lg font-mono-display text-foreground/50 uppercase tracking-wider text-right">ARR</div>
+            <div className="w-28 shrink-0 text-lg font-mono-display text-foreground/50 uppercase tracking-wider text-right">Val.</div>
           </div>
 
           {loading ? (
