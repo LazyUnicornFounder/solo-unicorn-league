@@ -205,6 +205,9 @@ export default function Index() {
                           </div>
                         </TooltipContent>
                       </Tooltip>
+                      <span className="text-sm font-mono-display text-foreground/70 w-20 text-right shrink-0 tabular-nums group-hover:text-foreground transition-colors">
+                        {fmtCurrency(mrrDollars)}/mo
+                      </span>
                       <span className="text-sm font-mono-display text-foreground w-20 text-right shrink-0 tabular-nums font-medium">
                         {fmtCurrency(arr)}
                       </span>
