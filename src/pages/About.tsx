@@ -29,7 +29,7 @@ export default function About() {
 
           <div className="space-y-6 text-muted-foreground leading-relaxed text-sm lg:text-base">
             <p>
-              We're living through the greatest shift in how companies are built since the internet itself. AI agents write code. AI agents handle support. AI agents run marketing, ops, and sales. For the first time in history, one person can own and operate a company that generates millions in recurring revenue — without a co-founder, without a team, without permission.
+              For the first time in history, one person can own and operate a company that generates millions in recurring revenue — without a co-founder, without a team, without permission.
             </p>
 
             <p>
