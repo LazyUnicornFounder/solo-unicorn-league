@@ -33,7 +33,7 @@ export default function About() {
             </p>
 
             <p>
-              This is the autonomous capitalism revolution. The old playbook is dead. The new playbook is one founder, one vision, infinite leverage.
+              The new playbook is one founder, one vision, infinite leverage.
             </p>
 
 
