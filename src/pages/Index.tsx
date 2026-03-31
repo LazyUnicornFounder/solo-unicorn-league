@@ -124,9 +124,9 @@ export default function Index() {
               </textPath>
             </text>
             {/* Bottom text: LEAGUE */}
-            <text className="fill-foreground/70 uppercase" style={{ fontSize: '14px', letterSpacing: '0.25em', fontFamily: 'Montserrat, sans-serif', fontWeight: 800 }}>
+            <text className="fill-foreground/60 uppercase" style={{ fontSize: '16px', letterSpacing: '0.15em', fontFamily: 'Caveat, cursive', fontWeight: 700 }}>
               <textPath href="#bottomArc" startOffset="50%" textAnchor="middle">
-                LEAGUE
+                League
               </textPath>
             </text>
           </svg>
