@@ -242,7 +242,7 @@ export default function Join() {
                 <div className="h-px bg-border/50" />
                 <div className="flex justify-between items-center">
                   <span className="text-xs text-muted-foreground uppercase tracking-wider font-mono-display">ARR</span>
-                  <span className="text-sm font-mono-display text-primary font-bold">{fmtCurrency(arr)}</span>
+                  <span className="text-sm font-mono-display text-foreground font-bold">{fmtCurrency(arr)}</span>
                 </div>
                 <div className="h-px bg-border/50" />
                 <div className="flex justify-between items-center">
