@@ -29,6 +29,8 @@ export default function Join() {
   const [companyName, setCompanyName] = useState("");
   const [companyUrl, setCompanyUrl] = useState("");
   const [mrrInput, setMrrInput] = useState("");
+  const [oneLiner, setOneLiner] = useState("");
+  const [logoFile, setLogoFile] = useState<File | null>(null);
 
   const mrrDollars = Number(mrrInput || 0);
   const arr = mrrDollars * 12;
@@ -78,12 +80,25 @@ export default function Join() {
     setError("");
     setSubmitting(true);
     try {
+      let logoUrl: string | null = null;
+
+      if (logoFile) {
+        const ext = logoFile.name.split(".").pop();
+        const path = `${user.id}/logo.${ext}`;
+        const { error: uploadErr } = await supabase.storage.from("founder-logos").upload(path, logoFile, { upsert: true });
+        if (uploadErr) throw uploadErr;
+        const { data: { publicUrl } } = supabase.storage.from("founder-logos").getPublicUrl(path);
+        logoUrl = publicUrl;
+      }
+
       const { error } = await supabase.from("founders").insert({
         user_id: user.id,
         company_name: companyName,
         x_url: companyUrl || null,
+        one_liner: oneLiner || null,
+        logo_url: logoUrl,
         mrr_cents: Math.round(mrrDollars * 100),
-        is_visible: true,
+        is_visible: false,
         is_solo_attested: true,
       });
       if (error) throw error;
@@ -200,6 +215,21 @@ export default function Join() {
                 required
                 placeholder="e.g. 12000"
               />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="logo">Company Logo</Label>
+              <Input id="logo" type="file" accept="image/*" onChange={(e) => setLogoFile(e.target.files?.[0] ?? null)} />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="oneliner">One-liner</Label>
+              <Input
+                id="oneliner"
+                value={oneLiner}
+                onChange={(e) => setOneLiner(e.target.value.slice(0, 100))}
+                placeholder="What does your company do?"
+                maxLength={100}
+              />
+              <p className="text-xs text-muted-foreground">{oneLiner.length}/100</p>
             </div>
 
             {/* Live calculation preview */}
