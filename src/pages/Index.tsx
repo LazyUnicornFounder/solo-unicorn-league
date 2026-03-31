@@ -97,9 +97,9 @@ export default function Index() {
               <path id="bottomArc" d="M 20,100 a 80,80 0 0,0 160,0" fill="none" />
             </defs>
             {/* Outer circle */}
-            <circle cx="100" cy="100" r="92" fill="none" stroke="hsl(30 10% 82% / 0.4)" strokeWidth="1" />
+            <circle cx="100" cy="100" r="92" fill="none" stroke="hsl(30 10% 82% / 0.6)" strokeWidth="1.5" />
             {/* Inner circle */}
-            <circle cx="100" cy="100" r="66" fill="none" stroke="hsl(30 10% 82% / 0.4)" strokeWidth="1" />
+            <circle cx="100" cy="100" r="66" fill="none" stroke="hsl(30 10% 82% / 0.6)" strokeWidth="1.5" />
             {/* Tick marks like the reference */}
             {Array.from({ length: 72 }).map((_, i) => {
               const angle = (i * 5) * Math.PI / 180;
