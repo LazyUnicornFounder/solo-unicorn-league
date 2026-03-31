@@ -138,7 +138,7 @@ export default function Dashboard() {
         <form onSubmit={handleSave} className="space-y-5">
           <div className="space-y-2">
             <Label htmlFor="mrr">Current MRR ($)</Label>
-            <Input id="mrr" type="number" min="0" step="1" value={mrrDollars} onChange={(e) => setMrrDollars(e.target.value)} placeholder="e.g. 12000" required />
+            <Input id="mrr" type="text" inputMode="numeric" value={displayMrr} onChange={(e) => setMrrDollars(e.target.value.replace(/[^0-9]/g, ""))} placeholder="e.g. 12,000" required />
           </div>
           <div className="space-y-2">
             <Label htmlFor="company">Company Name</Label>
