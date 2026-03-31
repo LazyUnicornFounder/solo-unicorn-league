@@ -10,7 +10,11 @@ import { toast } from "@/hooks/use-toast";
 import logo from "@/assets/logo-new.png";
 
 function formatDollars(cents: number) {
-  return (cents / 100).toLocaleString("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  const dollars = cents / 100;
+  if (dollars >= 1_000_000_000) return "$" + (dollars / 1_000_000_000).toFixed(1) + " Billion";
+  if (dollars >= 1_000_000) return "$" + (dollars / 1_000_000).toFixed(1) + " Million";
+  if (dollars >= 1_000) return "$" + (dollars / 1_000).toFixed(0) + " Thousand";
+  return "$" + dollars.toFixed(0);
 }
 
 export default function Dashboard() {
