@@ -9,7 +9,7 @@ export default function About() {
       <header className="flex items-center justify-between px-6 lg:px-10 py-4 border-b border-border">
         <Link to="/" className="flex items-center gap-3">
           <img src={logo} alt="Logo" className="w-12 h-12" />
-          <span className="font-bold text-lg tracking-tight text-foreground">Solo Unicorn League</span>
+          <span className="font-extrabold text-lg uppercase tracking-tight text-foreground">Solo Unicorn League</span>
         </Link>
         <Link to="/">
           <Button variant="ghost" size="sm">← Back</Button>
