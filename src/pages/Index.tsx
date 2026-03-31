@@ -103,7 +103,7 @@ export default function Index() {
           <h1 className="text-6xl lg:text-8xl font-extrabold text-foreground mb-3 uppercase tracking-tight">
             Solo Unicorn League
           </h1>
-          <p className="max-w-lg text-muted-foreground text-sm leading-relaxed mb-6">
+          <p className="max-w-2xl text-muted-foreground text-xl lg:text-2xl leading-relaxed mb-6">
             The leaderboard for solo founders racing to $1 billion. Submit your revenue, track your competitors, and race to the finish line.
           </p>
           <Link to="/join">
