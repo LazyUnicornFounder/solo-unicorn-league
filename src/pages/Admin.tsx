@@ -16,6 +16,7 @@ interface FounderRow {
   is_solo_attested: boolean | null;
   x_url: string | null;
   one_liner: string | null;
+  logo_url: string | null;
   created_at: string | null;
   updated_at: string | null;
 }
