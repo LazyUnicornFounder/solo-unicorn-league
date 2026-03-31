@@ -103,6 +103,7 @@ export default function Index() {
             <div className="w-28 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider">Company</div>
             <div className="flex-1 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider">Progress to $1B</div>
             <div className="w-24 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider text-right">ARR</div>
+            <div className="w-24 shrink-0 text-[10px] font-mono-display text-muted-foreground/50 uppercase tracking-wider text-right">Valuation</div>
           </div>
 
           {loading ? (
