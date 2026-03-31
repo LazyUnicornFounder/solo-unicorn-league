@@ -78,7 +78,7 @@ export default function Index() {
       </section>
 
       {/* Leaderboard */}
-      <main className="max-w-3xl mx-auto w-full px-4 pb-16">
+      <main className="max-w-5xl mx-auto w-full px-4 pb-16">
         <motion.h2
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -91,30 +91,70 @@ export default function Index() {
         {loading ? (
           <div className="space-y-3">
             {[...Array(5)].map((_, i) => (
-              <div key={i} className="h-20 rounded-lg bg-card border border-border animate-pulse" />
+              <div key={i} className="h-10 rounded bg-card border border-border animate-pulse" />
             ))}
           </div>
         ) : founders.length === 0 ? (
           <p className="text-muted-foreground text-center py-20">No founders yet. Be the first to join!</p>
         ) : (
-          <div className="space-y-3">
-            {founders.map((f, i) => (
-              <motion.div
-                key={f.id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 + i * 0.05 }}
-              >
-                <LeaderboardRow
-                  rank={i + 1}
-                  companyName={f.company_name}
-                  logoUrl={f.logo_url}
-                  xUrl={f.x_url}
-                  oneLiner={f.one_liner}
-                  mrrCents={f.mrr_cents ?? 0}
-                />
-              </motion.div>
-            ))}
+          <div>
+            {/* Chart rows */}
+            <div className="space-y-2 mb-2">
+              {founders.map((f, i) => {
+                const valuation = ((f.mrr_cents ?? 0) / 100) * 12 * 5;
+                const pct = Math.min((valuation / 1_000_000_000) * 100, 100);
+                const displayPct = Math.max(pct, 0.3); // minimum visible width
+
+                return (
+                  <motion.div
+                    key={f.id}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 + i * 0.05 }}
+                    className="flex items-center gap-3"
+                  >
+                    <span className="text-xs font-mono-display text-muted-foreground w-6 text-right shrink-0">
+                      #{i + 1}
+                    </span>
+                    <span className="text-sm font-semibold text-foreground w-32 truncate shrink-0">
+                      {f.company_name ?? "Unnamed"}
+                    </span>
+                    <div className="flex-1 h-7 bg-card rounded border border-border relative overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: `${displayPct}%` }}
+                        transition={{ duration: 0.8, delay: 0.4 + i * 0.05, ease: "easeOut" }}
+                        className="h-full bg-foreground/80 rounded"
+                      />
+                    </div>
+                    <span className="text-xs font-mono-display text-muted-foreground w-24 text-right shrink-0">
+                      ${valuation >= 1_000_000
+                        ? (valuation / 1_000_000).toFixed(1) + "M"
+                        : valuation >= 1_000
+                        ? (valuation / 1_000).toFixed(0) + "K"
+                        : valuation.toFixed(0)}
+                    </span>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Axis */}
+            <div className="flex items-center gap-3">
+              <div className="w-6 shrink-0" />
+              <div className="w-32 shrink-0" />
+              <div className="flex-1 relative">
+                <div className="h-px bg-border" />
+                <div className="flex justify-between mt-1">
+                  <span className="text-[10px] font-mono-display text-muted-foreground">$0</span>
+                  <span className="text-[10px] font-mono-display text-muted-foreground">$250M</span>
+                  <span className="text-[10px] font-mono-display text-muted-foreground">$500M</span>
+                  <span className="text-[10px] font-mono-display text-muted-foreground">$750M</span>
+                  <span className="text-[10px] font-mono-display text-muted-foreground">$1B</span>
+                </div>
+              </div>
+              <div className="w-24 shrink-0" />
+            </div>
           </div>
         )}
       </main>
