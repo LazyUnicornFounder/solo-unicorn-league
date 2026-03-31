@@ -143,7 +143,8 @@ export default function Index() {
                 const mrrDollars = (f.mrr_cents ?? 0) / 100;
                 const arr = mrrDollars * 12;
                 const valuation = arr * 15;
-                const pct = Math.min((valuation / 1_000_000_000) * 100, 100);
+                const rawPct = Math.min((valuation / 1_000_000_000) * 100, 100);
+                const pct = rawPct < 0.5 ? 1.5 : rawPct;
 
                 return (
                   <TooltipProvider key={f.id} delayDuration={0}>
@@ -151,7 +152,7 @@ export default function Index() {
                       initial={{ opacity: 0, x: -8 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.3 + i * 0.04 }}
-                      className="flex items-center gap-4 px-6 py-3 border-b border-border/10 hover:bg-primary/[0.03] transition-all duration-200 group"
+                      className="flex items-center gap-4 px-6 py-3 border-b border-border/10 hover:bg-secondary/20 transition-all duration-200 group"
                     >
                       <span className="text-xs font-mono-display text-muted-foreground w-6 text-center shrink-0 tabular-nums group-hover:text-foreground transition-colors">
                         {i + 1}
@@ -160,7 +161,7 @@ export default function Index() {
                         href={f.url ?? "#"}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm font-medium text-foreground w-28 truncate shrink-0 hover:text-primary transition-colors"
+                        className="text-sm font-medium text-foreground w-28 truncate shrink-0 hover:text-foreground/70 transition-colors"
                       >
                         {f.company_name ?? "Unnamed"}
                       </a>
@@ -169,21 +170,21 @@ export default function Index() {
                           <div className="flex-1 h-5 bg-secondary/30 rounded-full relative overflow-hidden cursor-default">
                             <motion.div
                               initial={{ width: 0 }}
-                              animate={{ width: `${Math.max(pct, 0.2)}%` }}
+                              animate={{ width: `${pct}%` }}
                               transition={{ duration: 1.2, delay: 0.4 + i * 0.04, ease: [0.25, 0.46, 0.45, 0.94] }}
-                              className="h-full rounded-full bg-gradient-to-r from-primary/60 to-primary bar-glow"
+                              className="h-full rounded-full bg-gradient-to-r from-foreground/30 to-foreground/60"
                             />
                           </div>
                         </TooltipTrigger>
                         <TooltipContent side="top" className="font-mono-display text-[11px] bg-card border-border/50 rounded-lg px-3 py-2">
                           <div className="space-y-0.5">
-                            <div className="text-primary font-medium">ARR: {fmtCurrency(arr)}</div>
+                            <div className="text-foreground font-medium">ARR: {fmtCurrency(arr)}</div>
                             <div className="text-muted-foreground">MRR: {fmtCurrency(mrrDollars)}/mo</div>
                             <div className="text-foreground">Valuation: {fmtCurrency(valuation)}</div>
                           </div>
                         </TooltipContent>
                       </Tooltip>
-                      <span className="text-xs font-mono-display text-primary w-20 text-right shrink-0 tabular-nums font-medium group-hover:text-primary transition-colors">
+                      <span className="text-xs font-mono-display text-foreground w-20 text-right shrink-0 tabular-nums font-medium">
                         {fmtCurrency(arr)}
                       </span>
                       <span className="text-xs font-mono-display text-foreground/60 w-20 text-right shrink-0 tabular-nums group-hover:text-foreground/80 transition-colors">
