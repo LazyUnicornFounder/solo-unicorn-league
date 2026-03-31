@@ -182,22 +182,6 @@ export default function Admin() {
                       : "—"}
                   </span>
                 </div>
-
-                <div className="flex gap-2 ml-4 shrink-0">
-                  {f.is_visible ? (
-                    <Button variant="outline" size="sm" onClick={() => setVisibility(f.id, false)}>
-                      Hide
-                    </Button>
-                  ) : (
-                    <Button
-                      size="sm"
-                      className="bg-foreground text-background hover:bg-foreground/90"
-                      onClick={() => setVisibility(f.id, true)}
-                    >
-                      Approve
-                    </Button>
-                  )}
-                </div>
               </div>
             );
           })}
