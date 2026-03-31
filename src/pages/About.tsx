@@ -42,7 +42,7 @@ export default function About() {
             </p>
 
             <p className="text-foreground text-base lg:text-lg">
-              The question isn't if it's possible. The question is who will make everyone else believe it — and break the barrier for good.
+              The question is who will make everyone else believe it — and break the barrier for good.
             </p>
 
             <p className="text-foreground text-base lg:text-lg">
