@@ -47,7 +47,7 @@ export default function Dashboard() {
 
   const mrrCents = Math.round(Number(mrrDollars || 0) * 100);
   const arrCents = mrrCents * 12;
-  const valuation = arrCents * 5;
+  const valuation = arrCents * 15;
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
