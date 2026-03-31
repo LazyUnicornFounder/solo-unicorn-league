@@ -27,7 +27,7 @@ const CustomTooltip = ({ active, payload }: any) => {
 };
 
 export default function ARRChart({ founders }: { founders: Founder[] }) {
-  const sorted = [...founders].sort((a, b) => b.arr - a.arr).slice(0, 8);
+  const sorted = [...founders].sort((a, b) => b.arr - a.arr);
 
   return (
     <motion.div
@@ -37,21 +37,24 @@ export default function ARRChart({ founders }: { founders: Founder[] }) {
       className="w-full h-full"
     >
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={sorted} margin={{ top: 10, right: 10, left: 10, bottom: 0 }}>
+        <BarChart data={sorted} layout="vertical" margin={{ top: 10, right: 30, left: 10, bottom: 0 }}>
           <XAxis
-            dataKey="company"
-            tick={{ fill: "hsl(215, 12%, 50%)", fontSize: 12 }}
-            axisLine={false}
-            tickLine={false}
-          />
-          <YAxis
+            type="number"
             tick={{ fill: "hsl(215, 12%, 50%)", fontSize: 11, fontFamily: "JetBrains Mono" }}
             axisLine={false}
             tickLine={false}
             tickFormatter={(v) => `$${(v / 1e6).toFixed(0)}M`}
           />
+          <YAxis
+            type="category"
+            dataKey="company"
+            tick={{ fill: "hsl(215, 12%, 50%)", fontSize: 12 }}
+            axisLine={false}
+            tickLine={false}
+            width={120}
+          />
           <Tooltip content={<CustomTooltip />} cursor={{ fill: "hsl(220, 14%, 12%)" }} />
-          <Bar dataKey="arr" radius={[6, 6, 0, 0]} maxBarSize={48}>
+          <Bar dataKey="arr" radius={[0, 6, 6, 0]} maxBarSize={32}>
             {sorted.map((_, i) => (
               <Cell
                 key={i}
