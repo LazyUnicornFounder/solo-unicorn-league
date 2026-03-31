@@ -154,7 +154,7 @@ export default function Index() {
                       transition={{ delay: 0.3 + i * 0.04 }}
                       className="flex items-center gap-4 px-6 py-3 border-b border-border/10 hover:bg-secondary/20 transition-all duration-200 group"
                     >
-                      <span className="text-xs font-mono-display text-muted-foreground w-6 text-center shrink-0 tabular-nums group-hover:text-foreground transition-colors">
+                      <span className="text-sm font-mono-display text-foreground/60 w-6 text-center shrink-0 tabular-nums group-hover:text-foreground transition-colors">
                         {i + 1}
                       </span>
                       <a
@@ -176,18 +176,18 @@ export default function Index() {
                             />
                           </div>
                         </TooltipTrigger>
-                        <TooltipContent side="top" className="font-mono-display text-[11px] bg-card border-border/50 rounded-lg px-3 py-2">
+                        <TooltipContent side="top" className="font-mono-display text-xs bg-card border-border/50 rounded-lg px-3 py-2">
                           <div className="space-y-0.5">
                             <div className="text-foreground font-medium">ARR: {fmtCurrency(arr)}</div>
-                            <div className="text-muted-foreground">MRR: {fmtCurrency(mrrDollars)}/mo</div>
+                            <div className="text-foreground/70">MRR: {fmtCurrency(mrrDollars)}/mo</div>
                             <div className="text-foreground">Valuation: {fmtCurrency(valuation)}</div>
                           </div>
                         </TooltipContent>
                       </Tooltip>
-                      <span className="text-xs font-mono-display text-foreground w-20 text-right shrink-0 tabular-nums font-medium">
+                      <span className="text-sm font-mono-display text-foreground w-20 text-right shrink-0 tabular-nums font-medium">
                         {fmtCurrency(arr)}
                       </span>
-                      <span className="text-xs font-mono-display text-muted-foreground w-20 text-right shrink-0 tabular-nums group-hover:text-foreground/80 transition-colors">
+                      <span className="text-sm font-mono-display text-foreground/70 w-20 text-right shrink-0 tabular-nums group-hover:text-foreground transition-colors">
                         {fmtCurrency(valuation)}
                       </span>
                     </motion.div>
