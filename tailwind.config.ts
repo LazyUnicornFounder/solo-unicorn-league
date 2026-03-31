@@ -23,6 +23,15 @@ export default {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
+        chart: {
+          bar: "hsl(var(--chart-bar))",
+          "bar-secondary": "hsl(var(--chart-bar-secondary))",
+        },
+        rank: {
+          gold: "hsl(var(--rank-gold))",
+          silver: "hsl(var(--rank-silver))",
+          bronze: "hsl(var(--rank-bronze))",
+        },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
