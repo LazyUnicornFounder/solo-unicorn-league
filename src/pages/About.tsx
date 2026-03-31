@@ -42,7 +42,7 @@ export default function About() {
             </p>
 
             <p>
-              The question is who will make everyone else believe it — and break the barrier for good.
+              The question is who will make everyone else believe it, and break the barrier for good.
             </p>
 
             <p>
