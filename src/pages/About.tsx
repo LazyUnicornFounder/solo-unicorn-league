@@ -12,7 +12,7 @@ export default function About() {
           <span className="font-extrabold text-lg uppercase tracking-tight text-foreground">Solo Unicorn League</span>
         </Link>
         <Link to="/">
-          <Button variant="ghost" size="sm">← Back</Button>
+          <Button variant="ghost" size="sm" className="hover:bg-secondary">← Back</Button>
         </Link>
       </header>
 
