@@ -100,7 +100,7 @@ export default function Index() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="flex flex-col items-center text-center"
         >
-          <h1 className="text-3xl lg:text-5xl font-extrabold text-foreground mb-3 uppercase tracking-tight">
+          <h1 className="text-6xl lg:text-8xl font-extrabold text-foreground mb-3 uppercase tracking-tight">
             Solo Unicorn League
           </h1>
           <p className="max-w-lg text-muted-foreground text-sm leading-relaxed mb-6">
