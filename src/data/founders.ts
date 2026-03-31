@@ -14,7 +14,7 @@ function makeFounder(name: string, company: string, mrr: number): Founder {
 }
 
 export const founders: Founder[] = [
-  makeFounder("Sarah Chen", "NovaPay", 420_000),
+  makeFounder("Sarah Chen", "NovaPay", 5_560_000),
   makeFounder("Marcus Wright", "FleetOps", 310_000),
   makeFounder("Aisha Patel", "DataMesh", 275_000),
   makeFounder("Erik Johansson", "CloudForge", 195_000),
