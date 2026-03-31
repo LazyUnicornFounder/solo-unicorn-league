@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { X } from "lucide-react";
 import { Label } from "@/components/ui/label";
+import { toast } from "@/hooks/use-toast";
 import logo from "@/assets/logo-new.png";
 
 function fmtCurrency(v: number) {
@@ -103,6 +104,7 @@ export default function Join() {
         is_solo_attested: true,
       });
       if (error) throw error;
+      toast({ title: "Thank you!", description: "We are reviewing your submission." });
       navigate("/", { replace: true });
     } catch (err: any) {
       setError(err.message);
