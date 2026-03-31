@@ -186,9 +186,12 @@ export default function Index() {
                             </div>
                           </TooltipContent>
                         </Tooltip>
-                        <span className="text-xs font-mono-display text-primary w-24 text-right shrink-0 tabular-nums font-medium">
-                          {arr > 0 ? fmtCurrency(arr) : "—"}
-                        </span>
+                          <span className="text-xs font-mono-display text-primary w-24 text-right shrink-0 tabular-nums font-medium">
+                            {arr > 0 ? fmtCurrency(arr) : "—"}
+                          </span>
+                          <span className="text-xs font-mono-display text-foreground/70 w-24 text-right shrink-0 tabular-nums">
+                            {valuation > 0 ? fmtCurrency(valuation) : "—"}
+                          </span>
                       </motion.div>
                     </TooltipProvider>
                   );
