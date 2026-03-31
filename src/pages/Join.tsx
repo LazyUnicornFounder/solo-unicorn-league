@@ -212,6 +212,7 @@ export default function Join() {
                 onChange={(e) => setXUrl(e.target.value)}
                 placeholder="https://x.com/yourhandle"
               />
+            </div>
             <div className="space-y-2">
               <Label htmlFor="mrr">Monthly Recurring Revenue ($)</Label>
               <Input
