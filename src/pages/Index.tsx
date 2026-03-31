@@ -89,11 +89,16 @@ export default function Index() {
       >
         <Link to="/" className="relative w-48 h-48 lg:w-56 lg:h-56 flex items-center justify-center">
           <img src={logo} alt="Logo" className="w-28 h-28 lg:w-32 lg:h-32 opacity-90 hover:opacity-100 transition-opacity drop-shadow-[0_0_25px_hsl(145,72%,46%,0.15)]" />
-          <svg className="absolute inset-0 w-full h-full animate-[spin_20s_linear_infinite]" viewBox="0 0 200 200">
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 200">
             <defs>
               <path id="circlePath" d="M 100, 100 m -80, 0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0" fill="none" />
             </defs>
-            <text className="fill-foreground/60 uppercase" style={{ fontSize: '13px', letterSpacing: '0.35em', fontFamily: 'Montserrat, sans-serif', fontWeight: 600 }}>
+            {/* Outer circle */}
+            <circle cx="100" cy="100" r="92" fill="none" stroke="hsl(30 10% 82% / 0.15)" strokeWidth="0.5" />
+            {/* Inner circle */}
+            <circle cx="100" cy="100" r="66" fill="none" stroke="hsl(30 10% 82% / 0.15)" strokeWidth="0.5" />
+            {/* Text on circle */}
+            <text className="fill-foreground/50 uppercase" style={{ fontSize: '12px', letterSpacing: '0.35em', fontFamily: 'Montserrat, sans-serif', fontWeight: 600 }}>
               <textPath href="#circlePath" startOffset="0%">
                 SOLO UNICORN LEAGUE • SOLO UNICORN LEAGUE •
               </textPath>
