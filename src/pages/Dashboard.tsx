@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
@@ -16,18 +16,45 @@ function formatDollars(cents: number) {
   return "$" + dollars.toLocaleString("en-US", { maximumFractionDigits: 0 });
 }
 
+interface FounderEntry {
+  id: string;
+  company_name: string;
+  mrr_cents: number;
+  x_url: string;
+  one_liner: string;
+  is_solo_attested: boolean;
+  logo_url: string | null;
+  is_visible: boolean | null;
+}
+
+interface EditState {
+  companyName: string;
+  mrrDollars: string;
+  xUrl: string;
+  oneLiner: string;
+  isSoloAttested: boolean;
+  logoFile: File | null;
+  existingLogoUrl: string | null;
+}
+
+function entryToEditState(entry: FounderEntry): EditState {
+  return {
+    companyName: entry.company_name ?? "",
+    mrrDollars: entry.mrr_cents ? String(entry.mrr_cents / 100) : "",
+    xUrl: entry.x_url ?? "",
+    oneLiner: entry.one_liner ?? "",
+    isSoloAttested: entry.is_solo_attested ?? false,
+    logoFile: null,
+    existingLogoUrl: entry.logo_url,
+  };
+}
+
 export default function Dashboard() {
   const { user, loading, signOut } = useAuth();
   const navigate = useNavigate();
-  const [companyName, setCompanyName] = useState("");
-  const [mrrDollars, setMrrDollars] = useState("");
-  const [xUrl, setXUrl] = useState("");
-  const [oneLiner, setOneLiner] = useState("");
-  const [isSoloAttested, setIsSoloAttested] = useState(false);
-  const [logoFile, setLogoFile] = useState<File | null>(null);
-  const [existingLogoUrl, setExistingLogoUrl] = useState<string | null>(null);
-  const [saving, setSaving] = useState(false);
-  const [hasExisting, setHasExisting] = useState(false);
+  const [entries, setEntries] = useState<FounderEntry[]>([]);
+  const [editStates, setEditStates] = useState<Record<string, EditState>>({});
+  const [savingId, setSavingId] = useState<string | null>(null);
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -43,66 +70,55 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (!user) return;
-    supabase.from("founders").select("*").eq("user_id", user.id).maybeSingle().then(({ data }) => {
-      if (data) {
-        setHasExisting(true);
-        setCompanyName(data.company_name ?? "");
-        setMrrDollars(data.mrr_cents ? String(data.mrr_cents / 100) : "");
-        setXUrl(data.x_url ?? "");
-        setOneLiner(data.one_liner ?? "");
-        setIsSoloAttested(data.is_solo_attested ?? false);
-        setExistingLogoUrl(data.logo_url);
+    supabase.from("founders").select("*").eq("user_id", user.id).then(({ data }) => {
+      if (data && data.length > 0) {
+        const mapped = data as FounderEntry[];
+        setEntries(mapped);
+        const states: Record<string, EditState> = {};
+        mapped.forEach((e) => { states[e.id] = entryToEditState(e); });
+        setEditStates(states);
       }
     });
   }, [user]);
 
-  const mrrCents = Math.round(Number(String(mrrDollars).replace(/,/g, "") || 0) * 100);
-  const displayMrr = mrrDollars ? Number(String(mrrDollars).replace(/,/g, "")).toLocaleString("en-US") : "";
-  const arrCents = mrrCents * 12;
-  const valuation = arrCents * 15;
+  const updateField = (id: string, field: keyof EditState, value: any) => {
+    setEditStates((prev) => ({ ...prev, [id]: { ...prev[id], [field]: value } }));
+  };
 
-  const handleSave = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSave = async (entryId: string) => {
     if (!user) return;
-    setSaving(true);
+    const state = editStates[entryId];
+    if (!state) return;
+    setSavingId(entryId);
 
     try {
-      let logoUrl = existingLogoUrl;
+      const mrrCents = Math.round(Number(String(state.mrrDollars).replace(/,/g, "") || 0) * 100);
+      let logoUrl = state.existingLogoUrl;
 
-      if (logoFile) {
-        const ext = logoFile.name.split(".").pop();
-        const path = `${user.id}/logo.${ext}`;
-        const { error: uploadErr } = await supabase.storage.from("founder-logos").upload(path, logoFile, { upsert: true });
+      if (state.logoFile) {
+        const ext = state.logoFile.name.split(".").pop();
+        const path = `${user.id}/${entryId}/logo.${ext}`;
+        const { error: uploadErr } = await supabase.storage.from("founder-logos").upload(path, state.logoFile, { upsert: true });
         if (uploadErr) throw uploadErr;
         const { data: { publicUrl } } = supabase.storage.from("founder-logos").getPublicUrl(path);
         logoUrl = publicUrl;
       }
 
-      const row = {
-        user_id: user.id,
-        company_name: companyName,
+      const { error } = await supabase.from("founders").update({
+        company_name: state.companyName,
         mrr_cents: mrrCents,
-        x_url: xUrl || null,
-        one_liner: oneLiner || null,
+        x_url: state.xUrl || null,
+        one_liner: state.oneLiner || null,
         logo_url: logoUrl,
-        is_solo_attested: isSoloAttested,
-        is_visible: hasExisting ? undefined : false,
-      };
+        is_solo_attested: state.isSoloAttested,
+      }).eq("id", entryId);
+      if (error) throw error;
 
-      if (hasExisting) {
-        const { error } = await supabase.from("founders").update(row).eq("user_id", user.id);
-        if (error) throw error;
-      } else {
-        const { error } = await supabase.from("founders").insert(row);
-        if (error) throw error;
-      }
-
-      toast({ title: "Thank you!", description: "We are reviewing your submission." });
-      navigate("/");
+      toast({ title: "Saved!", description: `${state.companyName} updated.` });
     } catch (err: any) {
       toast({ title: "Error", description: err.message, variant: "destructive" });
     } finally {
-      setSaving(false);
+      setSavingId(null);
     }
   };
 
@@ -118,55 +134,76 @@ export default function Dashboard() {
         <Button variant="ghost" size="sm" onClick={signOut}>Sign Out</Button>
       </header>
 
-      <main className="max-w-lg mx-auto px-4 py-10">
-        <h1 className="text-2xl font-bold text-foreground mb-1">Your Profile</h1>
-        <p className="text-sm text-muted-foreground mb-6">Update your MRR and company info.</p>
+      <main className="max-w-2xl mx-auto px-4 py-10">
+        <h1 className="text-2xl font-bold text-foreground mb-1">Your Products</h1>
+        <p className="text-sm text-muted-foreground mb-8">Manage details for each of your companies.</p>
 
-        {hasExisting && mrrCents > 0 && (
-          <div className="flex gap-6 mb-8 p-4 rounded-lg bg-card border border-border">
-            <div>
-              <p className="text-xs text-muted-foreground uppercase tracking-wider">MRR</p>
-              <p className="text-xl font-bold text-foreground">{formatDollars(mrrCents)}/mo</p>
-            </div>
-            <div>
-              <p className="text-xs text-muted-foreground uppercase tracking-wider">Est. Valuation</p>
-              <p className="text-xl font-bold text-foreground">{formatDollars(valuation)}</p>
-            </div>
-          </div>
+        {entries.length === 0 && (
+          <p className="text-muted-foreground">No entries found.</p>
         )}
 
-        <form onSubmit={handleSave} className="space-y-5">
-          <div className="space-y-2">
-            <Label htmlFor="mrr">Current MRR ($)</Label>
-            <Input id="mrr" type="text" inputMode="numeric" value={displayMrr} onChange={(e) => setMrrDollars(e.target.value.replace(/[^0-9]/g, ""))} placeholder="e.g. 12,000" required />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="company">Company Name</Label>
-            <Input id="company" value={companyName} onChange={(e) => setCompanyName(e.target.value)} required />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="logo">Company Logo</Label>
-            {existingLogoUrl && <img src={existingLogoUrl} alt="Current logo" className="w-12 h-12 rounded-lg object-cover" />}
-            <Input id="logo" type="file" accept="image/*" onChange={(e) => setLogoFile(e.target.files?.[0] ?? null)} />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="x">X / Twitter URL</Label>
-            <Input id="x" value={xUrl} onChange={(e) => setXUrl(e.target.value)} placeholder="https://x.com/yourhandle" />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="oneliner">One-liner</Label>
-            <Input id="oneliner" value={oneLiner} onChange={(e) => setOneLiner(e.target.value.slice(0, 100))} placeholder="What does your company do?" maxLength={100} />
-            <p className="text-xs text-muted-foreground">{oneLiner.length}/100</p>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Checkbox id="solo" checked={isSoloAttested} onCheckedChange={(v) => setIsSoloAttested(!!v)} />
-            <Label htmlFor="solo" className="text-sm">I confirm I am the sole founder of this company</Label>
-          </div>
+        <div className="space-y-10">
+          {entries.map((entry) => {
+            const state = editStates[entry.id];
+            if (!state) return null;
+            const mrrCents = Math.round(Number(String(state.mrrDollars).replace(/,/g, "") || 0) * 100);
+            const displayMrr = state.mrrDollars ? Number(String(state.mrrDollars).replace(/,/g, "")).toLocaleString("en-US") : "";
+            const arrCents = mrrCents * 12;
+            const valuation = arrCents * 15;
+            const isSaving = savingId === entry.id;
 
-          <Button type="submit" className="w-full" disabled={saving}>
-            {saving ? "Saving..." : "Submit"}
-          </Button>
-        </form>
+            return (
+              <div key={entry.id} className="p-6 rounded-xl border border-border bg-card">
+                <h2 className="text-lg font-bold text-foreground mb-4">{state.companyName || "Untitled"}</h2>
+
+                {mrrCents > 0 && (
+                  <div className="flex gap-6 mb-6 p-3 rounded-lg bg-muted/50">
+                    <div>
+                      <p className="text-xs text-muted-foreground uppercase tracking-wider">MRR</p>
+                      <p className="text-lg font-bold text-foreground">{formatDollars(mrrCents)}/mo</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-muted-foreground uppercase tracking-wider">Est. Valuation</p>
+                      <p className="text-lg font-bold text-foreground">{formatDollars(valuation)}</p>
+                    </div>
+                  </div>
+                )}
+
+                <form onSubmit={(e) => { e.preventDefault(); handleSave(entry.id); }} className="space-y-4">
+                  <div className="space-y-2">
+                    <Label>Current MRR ($)</Label>
+                    <Input type="text" inputMode="numeric" value={displayMrr} onChange={(e) => updateField(entry.id, "mrrDollars", e.target.value.replace(/[^0-9]/g, ""))} placeholder="e.g. 12,000" required />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>Company Name</Label>
+                    <Input value={state.companyName} onChange={(e) => updateField(entry.id, "companyName", e.target.value)} required />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>Company Logo</Label>
+                    {state.existingLogoUrl && <img src={state.existingLogoUrl} alt="Current logo" className="w-12 h-12 rounded-lg object-cover" />}
+                    <Input type="file" accept="image/*" onChange={(e) => updateField(entry.id, "logoFile", e.target.files?.[0] ?? null)} />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>X / Twitter URL</Label>
+                    <Input value={state.xUrl} onChange={(e) => updateField(entry.id, "xUrl", e.target.value)} placeholder="https://x.com/yourhandle" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>One-liner</Label>
+                    <Input value={state.oneLiner} onChange={(e) => updateField(entry.id, "oneLiner", e.target.value.slice(0, 100))} placeholder="What does your company do?" maxLength={100} />
+                    <p className="text-xs text-muted-foreground">{state.oneLiner.length}/100</p>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Checkbox checked={state.isSoloAttested} onCheckedChange={(v) => updateField(entry.id, "isSoloAttested", !!v)} />
+                    <Label className="text-sm">I confirm I am the sole founder of this company</Label>
+                  </div>
+                  <Button type="submit" className="w-full" disabled={isSaving}>
+                    {isSaving ? "Saving..." : "Save"}
+                  </Button>
+                </form>
+              </div>
+            );
+          })}
+        </div>
       </main>
     </div>
   );
