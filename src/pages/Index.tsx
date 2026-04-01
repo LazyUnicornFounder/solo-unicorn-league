@@ -125,7 +125,7 @@ export default function Index() {
         >
           {/* Card header */}
           <div className="flex items-center gap-6 px-6 py-4 border-b border-border/20">
-            <h2 className="text-xs font-bold text-foreground uppercase tracking-[0.2em] w-10 shrink-0 text-center">
+            <h2 className="text-xs font-bold text-foreground uppercase tracking-[0.2em] w-10 shrink-0 flex justify-center">
               Rankings
             </h2>
             <div className="flex-1" />
