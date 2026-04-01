@@ -108,7 +108,7 @@ export default function Dashboard() {
         logoUrl = publicUrl;
       }
 
-      const { error } = await supabase.from("founders").update({
+      const { data: updated, error } = await supabase.from("founders").update({
         company_name: state.companyName,
         mrr_cents: mrrCents,
         x_url: state.xUrl || null,
@@ -116,8 +116,14 @@ export default function Dashboard() {
         one_liner: state.oneLiner || null,
         logo_url: logoUrl,
         is_solo_attested: state.isSoloAttested,
-      }).eq("id", entryId);
+      }).eq("id", entryId).select().single();
       if (error) throw error;
+
+      if (updated) {
+        const mapped = updated as FounderEntry;
+        setEntries(prev => prev.map(e => e.id === entryId ? mapped : e));
+        setEditStates(prev => ({ ...prev, [entryId]: entryToEditState(mapped) }));
+      }
 
       toast({ title: "Saved!", description: `${state.companyName} updated.` });
     } catch (err: any) {
