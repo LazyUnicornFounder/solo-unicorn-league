@@ -21,6 +21,7 @@ interface FounderEntry {
   company_name: string;
   mrr_cents: number;
   x_url: string;
+  website_url: string;
   one_liner: string;
   is_solo_attested: boolean;
   logo_url: string | null;
