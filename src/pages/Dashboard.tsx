@@ -21,6 +21,7 @@ interface FounderEntry {
   company_name: string;
   mrr_cents: number;
   x_url: string;
+  website_url: string;
   one_liner: string;
   is_solo_attested: boolean;
   logo_url: string | null;
@@ -31,6 +32,7 @@ interface EditState {
   companyName: string;
   mrrDollars: string;
   xUrl: string;
+  websiteUrl: string;
   oneLiner: string;
   isSoloAttested: boolean;
   logoFile: File | null;
@@ -42,6 +44,7 @@ function entryToEditState(entry: FounderEntry): EditState {
     companyName: entry.company_name ?? "",
     mrrDollars: entry.mrr_cents ? String(entry.mrr_cents / 100) : "",
     xUrl: entry.x_url ?? "",
+    websiteUrl: entry.website_url ?? "",
     oneLiner: entry.one_liner ?? "",
     isSoloAttested: entry.is_solo_attested ?? false,
     logoFile: null,
@@ -109,6 +112,7 @@ export default function Dashboard() {
         company_name: state.companyName,
         mrr_cents: mrrCents,
         x_url: state.xUrl || null,
+        website_url: state.websiteUrl || null,
         one_liner: state.oneLiner || null,
         logo_url: logoUrl,
         is_solo_attested: state.isSoloAttested,
@@ -183,6 +187,10 @@ export default function Dashboard() {
                     <Label>Company Logo</Label>
                     {state.existingLogoUrl && <img src={state.existingLogoUrl} alt="Current logo" className="w-12 h-12 rounded-lg object-cover" />}
                     <Input type="file" accept="image/*" onChange={(e) => updateField(entry.id, "logoFile", e.target.files?.[0] ?? null)} />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>Website URL</Label>
+                    <Input value={state.websiteUrl} onChange={(e) => updateField(entry.id, "websiteUrl", e.target.value)} placeholder="https://yourcompany.com" />
                   </div>
                   <div className="space-y-2">
                     <Label>X / Twitter URL</Label>

@@ -13,6 +13,7 @@ interface FounderRow {
   company_name: string | null;
   logo_url: string | null;
   x_url: string | null;
+  website_url: string | null;
   one_liner: string | null;
   mrr_cents: number | null;
 }
@@ -30,7 +31,7 @@ export default function Index() {
   useEffect(() => {
     supabase
       .from("founders")
-      .select("id, company_name, logo_url, x_url, one_liner, mrr_cents")
+      .select("id, company_name, logo_url, x_url, website_url, one_liner, mrr_cents")
       .eq("is_visible", true)
       .order("mrr_cents", { ascending: false })
       .then(({ data }) => {
@@ -40,12 +41,12 @@ export default function Index() {
   }, []);
 
   const hardcoded = [
-    { id: "hc-1", company_name: "Lazy Unicorn", mrr_cents: 0, url: "https://lazyunicorn.ai", logo_url: null as string | null },
-    { id: "hc-2", company_name: "Breaking Muse", mrr_cents: 0, url: "https://breakingmuse.ai", logo_url: null as string | null },
+    { id: "hc-1", company_name: "Lazy Unicorn", mrr_cents: 0, url: "https://lazyunicorn.ai", logo_url: null as string | null, one_liner: null as string | null },
+    { id: "hc-2", company_name: "Breaking Muse", mrr_cents: 0, url: "https://breakingmuse.ai", logo_url: null as string | null, one_liner: null as string | null },
   ];
 
   const allEntries = [
-    ...founders.map(f => ({ ...f, url: f.x_url })),
+    ...founders.map(f => ({ ...f, url: f.website_url || f.x_url })),
     ...hardcoded.filter(hc => !founders.some(f => f.company_name?.toLowerCase() === hc.company_name.toLowerCase())),
   ].sort((a, b) => (b.mrr_cents ?? 0) - (a.mrr_cents ?? 0));
 
@@ -193,6 +194,7 @@ export default function Index() {
                         </TooltipTrigger>
                         <TooltipContent side="top" className="font-mono-display text-base bg-card border-border/50 rounded-lg px-3 py-2">
                           <div className="space-y-0.5">
+                            {f.one_liner && <div className="text-foreground/80 text-sm italic mb-1">{f.one_liner}</div>}
                             <div className="text-foreground font-medium">ARR: {fmtCurrency(arr)}</div>
                             <div className="text-foreground/70">MRR: {fmtCurrency(mrrDollars)}/mo</div>
                             <div className="text-foreground">Valuation: {fmtCurrency(valuation)}</div>

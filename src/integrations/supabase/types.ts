@@ -26,6 +26,7 @@ export type Database = {
           one_liner: string | null
           updated_at: string | null
           user_id: string
+          website_url: string | null
           x_url: string | null
         }
         Insert: {
@@ -39,6 +40,7 @@ export type Database = {
           one_liner?: string | null
           updated_at?: string | null
           user_id: string
+          website_url?: string | null
           x_url?: string | null
         }
         Update: {
@@ -52,6 +54,7 @@ export type Database = {
           one_liner?: string | null
           updated_at?: string | null
           user_id?: string
+          website_url?: string | null
           x_url?: string | null
         }
         Relationships: []
