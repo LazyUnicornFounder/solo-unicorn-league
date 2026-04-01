@@ -43,12 +43,14 @@ export default function LeaderboardRow({ rank, companyName, logoUrl, xUrl, oneLi
         #{rank}
       </span>
 
-      <Avatar className="w-10 h-10 shrink-0 rounded-md border border-foreground/20 bg-foreground/10 p-[1px]">
-        {logoUrl ? <AvatarImage className="rounded-[5px] object-contain" src={logoUrl} alt={companyName ?? ""} /> : null}
-        <AvatarFallback className="bg-secondary">
-          <Building2 className="w-5 h-5 text-muted-foreground" />
-        </AvatarFallback>
-      </Avatar>
+      <div className="w-10 h-10 shrink-0 rounded-md border border-foreground/30 p-[1px]">
+        <Avatar className="w-full h-full rounded-[5px]">
+          {logoUrl ? <AvatarImage className="w-full h-full object-contain rounded-[5px]" src={logoUrl} alt={companyName ?? ""} /> : null}
+          <AvatarFallback className="bg-secondary rounded-[5px]">
+            <Building2 className="w-5 h-5 text-muted-foreground" />
+          </AvatarFallback>
+        </Avatar>
+      </div>
 
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">
