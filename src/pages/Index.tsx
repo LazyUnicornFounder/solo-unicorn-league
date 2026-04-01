@@ -124,10 +124,11 @@ export default function Index() {
           className="overflow-hidden"
         >
           {/* Card header */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-border/20">
-            <h2 className="text-xs font-bold text-foreground uppercase tracking-[0.2em]">
+          <div className="flex items-center gap-6 px-6 py-4 border-b border-border/20">
+            <h2 className="text-xs font-bold text-foreground uppercase tracking-[0.2em] w-10 shrink-0 text-center">
               Rankings
             </h2>
+            <div className="flex-1" />
             <span className="text-[10px] font-mono-display text-muted-foreground tracking-wider">
               VAL = 15× ARR
             </span>
