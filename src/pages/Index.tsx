@@ -13,6 +13,7 @@ interface FounderRow {
   company_name: string | null;
   logo_url: string | null;
   x_url: string | null;
+  website_url: string | null;
   one_liner: string | null;
   mrr_cents: number | null;
 }
