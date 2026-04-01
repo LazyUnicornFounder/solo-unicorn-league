@@ -191,8 +191,21 @@ export default function Dashboard() {
                   </div>
                   <div className="space-y-2">
                     <Label>Company Logo</Label>
-                    {state.existingLogoUrl && <img src={state.existingLogoUrl} alt="Current logo" className="w-12 h-12 rounded-lg object-cover" />}
-                    <Input type="file" accept="image/*" onChange={(e) => updateField(entry.id, "logoFile", e.target.files?.[0] ?? null)} />
+                    {state.existingLogoUrl && !state.logoFile && (
+                      <img src={state.existingLogoUrl} alt="Current logo" className="w-12 h-12 rounded-lg object-cover" />
+                    )}
+                    {state.logoFile && (
+                      <img src={URL.createObjectURL(state.logoFile)} alt="New logo" className="w-12 h-12 rounded-lg object-cover" />
+                    )}
+                    {!state.existingLogoUrl && !state.logoFile && (
+                      <Input type="file" accept="image/*" onChange={(e) => updateField(entry.id, "logoFile", e.target.files?.[0] ?? null)} />
+                    )}
+                    {(state.existingLogoUrl || state.logoFile) && (
+                      <Button type="button" variant="outline" size="sm" onClick={() => document.getElementById(`logo-input-${entry.id}`)?.click()}>
+                        Change Logo
+                      </Button>
+                    )}
+                    <input id={`logo-input-${entry.id}`} type="file" accept="image/*" className="hidden" onChange={(e) => updateField(entry.id, "logoFile", e.target.files?.[0] ?? null)} />
                   </div>
                   <div className="space-y-2">
                     <Label>Website URL</Label>
