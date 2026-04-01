@@ -203,7 +203,6 @@ export default function Index() {
                         </TooltipTrigger>
                         <TooltipContent side="top" className="font-mono-display text-base bg-card border-border/50 rounded-lg px-3 py-2">
                           <div className="space-y-0.5">
-                            {f.one_liner && <div className="text-foreground/80 text-sm italic mb-1">{f.one_liner}</div>}
                             <div className="text-foreground font-medium">ARR: {fmtCurrency(arr)}</div>
                             <div className="text-foreground/70">MRR: {fmtCurrency(mrrDollars)}/mo</div>
                             <div className="text-foreground">Valuation: {fmtCurrency(valuation)}</div>
