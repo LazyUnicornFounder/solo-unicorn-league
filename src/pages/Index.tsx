@@ -46,7 +46,7 @@ export default function Index() {
   ];
 
   const allEntries = [
-    ...founders.map(f => ({ ...f, url: f.x_url })),
+    ...founders.map(f => ({ ...f, url: f.website_url || f.x_url })),
     ...hardcoded.filter(hc => !founders.some(f => f.company_name?.toLowerCase() === hc.company_name.toLowerCase())),
   ].sort((a, b) => (b.mrr_cents ?? 0) - (a.mrr_cents ?? 0));
 
