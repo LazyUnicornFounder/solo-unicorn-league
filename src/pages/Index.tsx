@@ -173,8 +173,8 @@ export default function Index() {
                       <Tooltip>
                         <TooltipTrigger asChild>
                           {f.logo_url ? (
-                            <a href={f.url ?? "#"} target="_blank" rel="noopener noreferrer" className="shrink-0 w-8 h-8 rounded-lg p-[1px] bg-white/15 block">
-                              <img src={f.logo_url} alt="" className="w-full h-full rounded-[7px] object-cover hover:opacity-75 transition-opacity" />
+                            <a href={f.url ?? "#"} target="_blank" rel="noopener noreferrer" className="shrink-0">
+                              <img src={f.logo_url} alt="" className="w-8 h-8 rounded-lg object-cover hover:opacity-75 transition-opacity shadow-[0_0_0_1px_rgba(255,255,255,0.25)]" />
                             </a>
                           ) : (
                             <div className="w-8 h-8 rounded-lg bg-secondary/50 shrink-0" />
