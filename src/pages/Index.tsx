@@ -169,7 +169,9 @@ export default function Index() {
                         {i + 1}
                       </span>
                       {f.logo_url ? (
-                        <img src={f.logo_url} alt="" className="w-8 h-8 rounded-lg object-cover shrink-0" />
+                        <a href={f.url ?? "#"} target="_blank" rel="noopener noreferrer" className="shrink-0">
+                          <img src={f.logo_url} alt="" className="w-8 h-8 rounded-lg object-cover hover:opacity-75 transition-opacity" />
+                        </a>
                       ) : (
                         <div className="w-8 h-8 rounded-lg bg-secondary/50 shrink-0" />
                       )}
