@@ -68,9 +68,10 @@ export default function Dashboard() {
     if (!loading && !user) navigate("/join", { replace: true });
   }, [user, loading, navigate]);
 
+  const userId = user?.id;
   useEffect(() => {
-    if (!user) return;
-    supabase.from("founders").select("*").eq("user_id", user.id).then(({ data }) => {
+    if (!userId) return;
+    supabase.from("founders").select("*").eq("user_id", userId).then(({ data }) => {
       if (data && data.length > 0) {
         const mapped = data as FounderEntry[];
         setEntries(mapped);
@@ -79,7 +80,7 @@ export default function Dashboard() {
         setEditStates(states);
       }
     });
-  }, [user]);
+  }, [userId]);
 
   const updateField = (id: string, field: keyof EditState, value: any) => {
     setEditStates((prev) => ({ ...prev, [id]: { ...prev[id], [field]: value } }));
