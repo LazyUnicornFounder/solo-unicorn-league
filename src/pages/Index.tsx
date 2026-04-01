@@ -168,20 +168,29 @@ export default function Index() {
                       <span className="text-2xl font-mono-display text-foreground/60 w-10 text-center shrink-0 tabular-nums group-hover:text-foreground transition-colors">
                         {i + 1}
                       </span>
-                      {f.logo_url ? (
-                        <a href={f.url ?? "#"} target="_blank" rel="noopener noreferrer" className="shrink-0">
-                          <img src={f.logo_url} alt="" className="w-8 h-8 rounded-lg object-cover hover:opacity-75 transition-opacity" />
-                        </a>
-                      ) : (
-                        <div className="w-8 h-8 rounded-lg bg-secondary/50 shrink-0" />
-                      )}
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          {f.logo_url ? (
+                            <a href={f.url ?? "#"} target="_blank" rel="noopener noreferrer" className="shrink-0">
+                              <img src={f.logo_url} alt="" className="w-8 h-8 rounded-lg object-cover hover:opacity-75 transition-opacity" />
+                            </a>
+                          ) : (
+                            <div className="w-8 h-8 rounded-lg bg-secondary/50 shrink-0" />
+                          )}
+                        </TooltipTrigger>
+                        {f.one_liner && (
+                          <TooltipContent side="top" className="font-mono-display text-sm bg-card border-border/50 rounded-lg px-3 py-2">
+                            {f.one_liner}
+                          </TooltipContent>
+                        )}
+                      </Tooltip>
                       <Tooltip>
                         <TooltipTrigger asChild>
                           <a
                             href={f.url ?? "#"}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-2xl font-medium text-foreground w-36 truncate shrink-0 hover:text-foreground/70 transition-colors"
+                            className="text-2xl font-medium text-foreground w-44 shrink-0 hover:text-foreground/70 transition-colors"
                           >
                             {f.company_name ?? "Unnamed"}
                           </a>
