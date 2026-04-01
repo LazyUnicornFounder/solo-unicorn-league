@@ -43,8 +43,8 @@ export default function LeaderboardRow({ rank, companyName, logoUrl, xUrl, oneLi
         #{rank}
       </span>
 
-      <Avatar className="w-10 h-10 shrink-0 ring-1 ring-muted-foreground/40">
-        {logoUrl ? <AvatarImage src={logoUrl} alt={companyName ?? ""} /> : null}
+      <Avatar className="w-10 h-10 shrink-0 rounded-md border border-foreground/20 bg-foreground/10 p-[1px]">
+        {logoUrl ? <AvatarImage className="rounded-[5px] object-contain" src={logoUrl} alt={companyName ?? ""} /> : null}
         <AvatarFallback className="bg-secondary">
           <Building2 className="w-5 h-5 text-muted-foreground" />
         </AvatarFallback>
