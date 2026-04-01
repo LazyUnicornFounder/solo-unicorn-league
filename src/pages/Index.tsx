@@ -173,14 +173,23 @@ export default function Index() {
                       ) : (
                         <div className="w-8 h-8 rounded-lg bg-secondary/50 shrink-0" />
                       )}
-                      <a
-                        href={f.url ?? "#"}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-2xl font-medium text-foreground w-36 truncate shrink-0 hover:text-foreground/70 transition-colors"
-                      >
-                        {f.company_name ?? "Unnamed"}
-                      </a>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <a
+                            href={f.url ?? "#"}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-2xl font-medium text-foreground w-36 truncate shrink-0 hover:text-foreground/70 transition-colors"
+                          >
+                            {f.company_name ?? "Unnamed"}
+                          </a>
+                        </TooltipTrigger>
+                        {f.one_liner && (
+                          <TooltipContent side="top" className="font-mono-display text-sm bg-card border-border/50 rounded-lg px-3 py-2">
+                            {f.one_liner}
+                          </TooltipContent>
+                        )}
+                      </Tooltip>
                       <Tooltip>
                         <TooltipTrigger asChild>
                           <div className="flex-1 h-8 bg-secondary/30 rounded-full relative overflow-hidden cursor-default">
@@ -194,7 +203,6 @@ export default function Index() {
                         </TooltipTrigger>
                         <TooltipContent side="top" className="font-mono-display text-base bg-card border-border/50 rounded-lg px-3 py-2">
                           <div className="space-y-0.5">
-                            {f.one_liner && <div className="text-foreground/80 text-sm italic mb-1">{f.one_liner}</div>}
                             <div className="text-foreground font-medium">ARR: {fmtCurrency(arr)}</div>
                             <div className="text-foreground/70">MRR: {fmtCurrency(mrrDollars)}/mo</div>
                             <div className="text-foreground">Valuation: {fmtCurrency(valuation)}</div>
