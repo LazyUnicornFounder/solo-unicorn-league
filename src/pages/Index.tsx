@@ -31,7 +31,7 @@ export default function Index() {
   useEffect(() => {
     supabase
       .from("founders")
-      .select("id, company_name, logo_url, x_url, one_liner, mrr_cents")
+      .select("id, company_name, logo_url, x_url, website_url, one_liner, mrr_cents")
       .eq("is_visible", true)
       .order("mrr_cents", { ascending: false })
       .then(({ data }) => {
