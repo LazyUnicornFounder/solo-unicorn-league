@@ -189,6 +189,10 @@ export default function Dashboard() {
                     <Input type="file" accept="image/*" onChange={(e) => updateField(entry.id, "logoFile", e.target.files?.[0] ?? null)} />
                   </div>
                   <div className="space-y-2">
+                    <Label>Website URL</Label>
+                    <Input value={state.websiteUrl} onChange={(e) => updateField(entry.id, "websiteUrl", e.target.value)} placeholder="https://yourcompany.com" />
+                  </div>
+                  <div className="space-y-2">
                     <Label>X / Twitter URL</Label>
                     <Input value={state.xUrl} onChange={(e) => updateField(entry.id, "xUrl", e.target.value)} placeholder="https://x.com/yourhandle" />
                   </div>
