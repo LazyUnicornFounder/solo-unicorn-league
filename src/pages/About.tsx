@@ -48,6 +48,12 @@ export default function About() {
             <p>
               The leaderboard is live. The race is on.
             </p>
+
+            <p>
+              Solo Unicorn League is associated with{" "}
+              <a href="https://lazyunicorn.ai" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground/70 transition-colors">Lazy Unicorn</a>, which helps you launch your autonomous business on Lovable, and{" "}
+              <a href="https://breakingmuse.ai" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground/70 transition-colors">Breaking Muse</a>, which turns today's news into your next startup idea.
+            </p>
           </div>
 
           <div className="pt-4">
