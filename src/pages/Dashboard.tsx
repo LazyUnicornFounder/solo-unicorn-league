@@ -112,6 +112,7 @@ export default function Dashboard() {
         company_name: state.companyName,
         mrr_cents: mrrCents,
         x_url: state.xUrl || null,
+        website_url: state.websiteUrl || null,
         one_liner: state.oneLiner || null,
         logo_url: logoUrl,
         is_solo_attested: state.isSoloAttested,
