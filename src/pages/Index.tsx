@@ -136,7 +136,7 @@ export default function Index() {
           {/* Column headers */}
           <div className="flex items-center gap-6 px-6 py-3 border-b border-border/15">
             <div className="w-10 shrink-0 text-lg font-mono-display text-foreground/50 uppercase">#</div>
-            <div className="w-44 shrink-0 text-lg font-mono-display text-foreground/50 uppercase tracking-wider">Company</div>
+            <div className="w-56 shrink-0 text-lg font-mono-display text-foreground/50 uppercase tracking-wider">Company</div>
             <div className="flex-1 text-lg font-mono-display text-foreground/50 uppercase tracking-wider">Progress</div>
             <div className="w-28 shrink-0 text-lg font-mono-display text-foreground/50 uppercase tracking-wider text-right">ARR</div>
             <div className="w-28 shrink-0 text-lg font-mono-display text-foreground/50 uppercase tracking-wider text-right">Val.</div>
