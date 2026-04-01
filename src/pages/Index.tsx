@@ -46,8 +46,8 @@ export default function Index() {
   ];
 
   const allEntries = [
-    ...founders.map(f => ({ ...f, url: f.website_url || f.x_url })),
-    ...hardcoded.filter(hc => !founders.some(f => f.company_name?.toLowerCase() === hc.company_name.toLowerCase())),
+    ...founders.map(f => ({ ...f, url: f.website_url || f.x_url, x_url: f.x_url })),
+    ...hardcoded.filter(hc => !founders.some(f => f.company_name?.toLowerCase() === hc.company_name.toLowerCase())).map(hc => ({ ...hc, x_url: null as string | null })),
   ].sort((a, b) => (b.mrr_cents ?? 0) - (a.mrr_cents ?? 0));
 
   return (
@@ -201,6 +201,11 @@ export default function Index() {
                           </TooltipContent>
                         )}
                       </Tooltip>
+                      {f.x_url && (
+                        <a href={f.x_url} target="_blank" rel="noopener noreferrer" className="shrink-0 text-muted-foreground hover:text-foreground transition-colors -ml-4">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                      )}
                       <Tooltip>
                         <TooltipTrigger asChild>
                           <div className="flex-1 h-8 bg-secondary/30 rounded-full relative overflow-hidden cursor-default">
