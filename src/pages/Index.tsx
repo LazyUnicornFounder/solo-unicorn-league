@@ -40,8 +40,8 @@ export default function Index() {
   }, []);
 
   const hardcoded = [
-    { id: "hc-1", company_name: "Lazy Unicorn", mrr_cents: 0, url: "https://lazyunicorn.ai" },
-    { id: "hc-2", company_name: "Breaking Muse", mrr_cents: 0, url: "https://breakingmuse.ai" },
+    { id: "hc-1", company_name: "Lazy Unicorn", mrr_cents: 0, url: "https://lazyunicorn.ai", logo_url: null as string | null },
+    { id: "hc-2", company_name: "Breaking Muse", mrr_cents: 0, url: "https://breakingmuse.ai", logo_url: null as string | null },
   ];
 
   const allEntries = [
@@ -167,11 +167,16 @@ export default function Index() {
                       <span className="text-2xl font-mono-display text-foreground/60 w-10 text-center shrink-0 tabular-nums group-hover:text-foreground transition-colors">
                         {i + 1}
                       </span>
+                      {f.logo_url ? (
+                        <img src={f.logo_url} alt="" className="w-8 h-8 rounded-lg object-cover shrink-0" />
+                      ) : (
+                        <div className="w-8 h-8 rounded-lg bg-secondary/50 shrink-0" />
+                      )}
                       <a
                         href={f.url ?? "#"}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-2xl font-medium text-foreground w-44 truncate shrink-0 hover:text-foreground/70 transition-colors"
+                        className="text-2xl font-medium text-foreground w-36 truncate shrink-0 hover:text-foreground/70 transition-colors"
                       >
                         {f.company_name ?? "Unnamed"}
                       </a>
