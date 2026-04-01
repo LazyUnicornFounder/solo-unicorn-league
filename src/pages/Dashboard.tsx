@@ -32,6 +32,7 @@ interface EditState {
   companyName: string;
   mrrDollars: string;
   xUrl: string;
+  websiteUrl: string;
   oneLiner: string;
   isSoloAttested: boolean;
   logoFile: File | null;
@@ -43,6 +44,7 @@ function entryToEditState(entry: FounderEntry): EditState {
     companyName: entry.company_name ?? "",
     mrrDollars: entry.mrr_cents ? String(entry.mrr_cents / 100) : "",
     xUrl: entry.x_url ?? "",
+    websiteUrl: entry.website_url ?? "",
     oneLiner: entry.one_liner ?? "",
     isSoloAttested: entry.is_solo_attested ?? false,
     logoFile: null,
