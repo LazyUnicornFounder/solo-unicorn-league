@@ -1,0 +1,1 @@
+ALTER TABLE public.founders DROP CONSTRAINT IF EXISTS founders_user_id_key;
