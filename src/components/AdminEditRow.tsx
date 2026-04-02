@@ -45,7 +45,7 @@ export default function AdminEditRow({ founder: f, onUpdate, onToggleVisibility 
   const [oneLiner, setOneLiner] = useState(f.one_liner ?? "");
   const [xUrl, setXUrl] = useState(f.x_url ?? "");
   const [websiteUrl, setWebsiteUrl] = useState(f.website_url ?? "");
-  const [mrrInput, setMrrInput] = useState(String((f.mrr_cents ?? 0) / 100));
+  const [arrInput, setArrInput] = useState(String(((f.mrr_cents ?? 0) / 100) * 12));
 
   const resetFields = () => {
     setCompanyName(f.company_name ?? "");
