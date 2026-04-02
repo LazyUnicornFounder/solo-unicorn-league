@@ -52,7 +52,7 @@ export default function AdminEditRow({ founder: f, onUpdate, onToggleVisibility 
     setOneLiner(f.one_liner ?? "");
     setXUrl(f.x_url ?? "");
     setWebsiteUrl(f.website_url ?? "");
-    setMrrInput(String((f.mrr_cents ?? 0) / 100));
+    setArrInput(String(((f.mrr_cents ?? 0) / 100) * 12));
   };
 
   const handleSave = async () => {
