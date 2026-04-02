@@ -30,14 +30,14 @@ export default function Join() {
   const [companyName, setCompanyName] = useState("");
   const [companyUrl, setCompanyUrl] = useState("");
   const [xUrl, setXUrl] = useState("");
-  const [valuationInput, setValuationInput] = useState("");
+  const [arrInput, setArrInput] = useState("");
   const [oneLiner, setOneLiner] = useState("");
   const [logoFile, setLogoFile] = useState<File | null>(null);
 
-  const valuationDollars = Number(valuationInput.replace(/,/g, "") || 0);
-  const displayValuation = valuationInput ? Number(valuationInput.replace(/,/g, "")).toLocaleString("en-US") : "";
-  const arr = valuationDollars / 15;
-  const mrrDollars = arr / 12;
+  const arrDollars = Number(arrInput.replace(/,/g, "") || 0);
+  const displayArr = arrInput ? Number(arrInput.replace(/,/g, "")).toLocaleString("en-US") : "";
+  const mrrDollars = arrDollars / 12;
+  const valuation = arrDollars * 15;
 
   useEffect(() => {
     if (!loading && user) {
