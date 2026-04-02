@@ -42,7 +42,7 @@ interface EditState {
 function entryToEditState(entry: FounderEntry): EditState {
   return {
     companyName: entry.company_name ?? "",
-    mrrDollars: entry.mrr_cents != null && Number(entry.mrr_cents) > 0 ? String(Number(entry.mrr_cents) / 100) : "",
+    mrrDollars: entry.mrr_cents != null && Number(entry.mrr_cents) > 0 ? String((Number(entry.mrr_cents) / 100) * 12) : "",
     xUrl: entry.x_url ?? "",
     websiteUrl: entry.website_url ?? "",
     oneLiner: entry.one_liner ?? "",
@@ -96,7 +96,7 @@ export default function Dashboard() {
     setSavingId(entryId);
 
     try {
-      const mrrCents = Math.round(Number(String(state.mrrDollars).replace(/,/g, "") || 0) * 100);
+      const mrrCents = Math.round((Number(String(state.mrrDollars).replace(/,/g, "") || 0) / 12) * 100);
       let logoUrl = state.existingLogoUrl;
 
       if (state.logoFile) {
@@ -157,9 +157,9 @@ export default function Dashboard() {
           {entries.map((entry) => {
             const state = editStates[entry.id];
             if (!state) return null;
-            const mrrCents = Math.round(Number(String(state.mrrDollars).replace(/,/g, "") || 0) * 100);
-            const displayMrr = state.mrrDollars ? Number(String(state.mrrDollars).replace(/,/g, "")).toLocaleString("en-US") : "";
-            const arrCents = mrrCents * 12;
+            const arrDollars = Number(String(state.mrrDollars).replace(/,/g, "") || 0);
+            const displayArr = state.mrrDollars ? Number(String(state.mrrDollars).replace(/,/g, "")).toLocaleString("en-US") : "";
+            const arrCents = Math.round(arrDollars * 100);
             const valuation = arrCents * 15;
             const isSaving = savingId === entry.id;
 
@@ -167,11 +167,11 @@ export default function Dashboard() {
               <div key={entry.id} className="p-6 rounded-xl border border-border bg-card">
                 <h2 className="text-lg font-bold text-foreground mb-4">{state.companyName || "Untitled"}</h2>
 
-                {mrrCents > 0 && (
+                {arrCents > 0 && (
                   <div className="flex gap-6 mb-6 p-3 rounded-lg bg-muted/50">
                     <div>
-                      <p className="text-xs text-muted-foreground uppercase tracking-wider">MRR</p>
-                      <p className="text-lg font-bold text-foreground">{formatDollars(mrrCents)}/mo</p>
+                      <p className="text-xs text-muted-foreground uppercase tracking-wider">ARR</p>
+                      <p className="text-lg font-bold text-foreground">{formatDollars(arrCents)}/yr</p>
                     </div>
                     <div>
                       <p className="text-xs text-muted-foreground uppercase tracking-wider">Est. Valuation</p>
@@ -182,8 +182,8 @@ export default function Dashboard() {
 
                 <form onSubmit={(e) => { e.preventDefault(); handleSave(entry.id); }} className="space-y-4">
                   <div className="space-y-2">
-                    <Label>Current MRR ($)</Label>
-                    <Input type="text" inputMode="numeric" value={displayMrr} onChange={(e) => updateField(entry.id, "mrrDollars", e.target.value.replace(/[^0-9]/g, ""))} placeholder="e.g. 12,000" required />
+                    <Label>Current ARR ($)</Label>
+                    <Input type="text" inputMode="numeric" value={displayArr} onChange={(e) => updateField(entry.id, "mrrDollars", e.target.value.replace(/[^0-9]/g, ""))} placeholder="e.g. 144,000" required />
                   </div>
                   <div className="space-y-2">
                     <Label>Company Name</Label>
