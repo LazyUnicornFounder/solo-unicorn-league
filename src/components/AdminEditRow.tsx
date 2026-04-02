@@ -57,7 +57,8 @@ export default function AdminEditRow({ founder: f, onUpdate, onToggleVisibility 
 
   const handleSave = async () => {
     setSaving(true);
-    const mrrCents = Math.round(Number(mrrInput.replace(/,/g, "") || 0) * 100);
+    const arrDollars = Number(arrInput.replace(/,/g, "") || 0);
+    const mrrCents = Math.round((arrDollars / 12) * 100);
     const updates = {
       company_name: companyName || null,
       one_liner: oneLiner || null,
