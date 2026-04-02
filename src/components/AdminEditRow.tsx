@@ -168,6 +168,20 @@ export default function AdminEditRow({ founder: f, onUpdate, onToggleVisibility 
             <Label htmlFor={`website-${f.id}`} className="text-xs">Website URL</Label>
             <Input id={`website-${f.id}`} value={websiteUrl} onChange={(e) => setWebsiteUrl(e.target.value)} />
           </div>
+          <div className="space-y-1.5 sm:col-span-2">
+            <Label className="text-xs">Logo</Label>
+            <div className="flex items-center gap-3">
+              {logoUrl ? (
+                <img src={logoUrl} alt="Logo" className="w-10 h-10 rounded-lg object-cover shrink-0" />
+              ) : (
+                <div className="w-10 h-10 rounded-lg bg-secondary shrink-0 flex items-center justify-center text-xs text-muted-foreground">—</div>
+              )}
+              <input ref={fileInputRef} type="file" accept="image/*" className="hidden" onChange={handleLogoUpload} />
+              <Button type="button" variant="outline" size="sm" onClick={() => fileInputRef.current?.click()} disabled={uploadingLogo}>
+                <Upload className="w-3.5 h-3.5 mr-1" /> {uploadingLogo ? "Uploading..." : "Upload Logo"}
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     );
