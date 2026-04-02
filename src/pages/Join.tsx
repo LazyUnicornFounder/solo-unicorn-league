@@ -30,14 +30,14 @@ export default function Join() {
   const [companyName, setCompanyName] = useState("");
   const [companyUrl, setCompanyUrl] = useState("");
   const [xUrl, setXUrl] = useState("");
-  const [valuationInput, setValuationInput] = useState("");
+  const [arrInput, setArrInput] = useState("");
   const [oneLiner, setOneLiner] = useState("");
   const [logoFile, setLogoFile] = useState<File | null>(null);
 
-  const valuationDollars = Number(valuationInput.replace(/,/g, "") || 0);
-  const displayValuation = valuationInput ? Number(valuationInput.replace(/,/g, "")).toLocaleString("en-US") : "";
-  const arr = valuationDollars / 15;
-  const mrrDollars = arr / 12;
+  const arrDollars = Number(arrInput.replace(/,/g, "") || 0);
+  const displayArr = arrInput ? Number(arrInput.replace(/,/g, "")).toLocaleString("en-US") : "";
+  const mrrDollars = arrDollars / 12;
+  const valuation = arrDollars * 15;
 
   useEffect(() => {
     if (!loading && user) {
@@ -232,41 +232,41 @@ export default function Join() {
               <p className="text-xs text-muted-foreground">{oneLiner.length}/100</p>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="valuation">Valuation ($)</Label>
+              <Label htmlFor="arr">ARR ($)</Label>
               <Input
-                id="valuation"
+                id="arr"
                 type="text"
                 inputMode="numeric"
-                value={displayValuation}
-                onChange={(e) => setValuationInput(e.target.value.replace(/[^0-9]/g, ""))}
+                value={displayArr}
+                onChange={(e) => setArrInput(e.target.value.replace(/[^0-9]/g, ""))}
                 required
-                placeholder="e.g. 10,000,000"
+                placeholder="e.g. 1,000,000"
               />
             </div>
 
             {/* Live calculation preview */}
-            {valuationDollars > 0 && (
+            {arrDollars > 0 && (
               <div className="rounded-lg border border-border bg-card p-4 space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="text-xs text-muted-foreground uppercase tracking-wider font-mono-display">Valuation</span>
-                  <span className="text-sm font-mono-display text-foreground font-bold">{fmtCurrency(valuationDollars)}</span>
-                </div>
-                <div className="h-px bg-border/50" />
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-muted-foreground uppercase tracking-wider font-mono-display">ARR (Valuation ÷ 15)</span>
-                  <span className="text-sm font-mono-display text-foreground font-medium">{fmtCurrency(arr)}</span>
+                  <span className="text-xs text-muted-foreground uppercase tracking-wider font-mono-display">ARR</span>
+                  <span className="text-sm font-mono-display text-foreground font-bold">{fmtCurrency(arrDollars)}</span>
                 </div>
                 <div className="h-px bg-border/50" />
                 <div className="flex justify-between items-center">
                   <span className="text-xs text-muted-foreground uppercase tracking-wider font-mono-display">MRR</span>
                   <span className="text-sm font-mono-display text-foreground font-medium">{fmtCurrency(mrrDollars)}/mo</span>
                 </div>
+                <div className="h-px bg-border/50" />
+                <div className="flex justify-between items-center">
+                  <span className="text-xs text-muted-foreground uppercase tracking-wider font-mono-display">Valuation (15× ARR)</span>
+                  <span className="text-sm font-mono-display text-foreground font-bold">{fmtCurrency(valuation)}</span>
+                </div>
                 {/* Mini progress bar */}
                 <div className="mt-1">
                   <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
                     <div
                       className="h-full bg-foreground/60 rounded-full transition-all duration-300"
-                      style={{ width: `${Math.min((valuationDollars / 1_000_000_000) * 100, 100)}%` }}
+                      style={{ width: `${Math.min((valuation / 1_000_000_000) * 100, 100)}%` }}
                     />
                   </div>
                   <div className="flex justify-between mt-1">
