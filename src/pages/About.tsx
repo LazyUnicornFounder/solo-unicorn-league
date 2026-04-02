@@ -54,38 +54,6 @@ export default function About() {
               <a href="https://lazyunicorn.ai" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground/70 transition-colors">Lazy Unicorn</a>, which helps you launch your autonomous business on Lovable, and{" "}
               <a href="https://breakingmuse.ai" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground/70 transition-colors">Breaking Muse</a>, which turns today's news into your next startup idea.
             </p>
-
-            <div className="border-t border-border/30 pt-8 mt-8">
-              <h2 className="text-xl lg:text-2xl font-bold text-foreground uppercase tracking-wide mb-4">
-                Solo Decacorn
-              </h2>
-              <p>
-                A unicorn is just the beginning. The Solo Decacorn is the next frontier — a solo-founded company valued at $10 billion. No co-founders, no boardroom compromises, just one visionary scaling to unprecedented heights.
-              </p>
-              <p>
-                It hasn't happened yet. But in the age of AI-powered leverage, autonomous infrastructure, and zero-marginal-cost distribution — it's not a question of if, but when.
-              </p>
-              <p>
-                The founders on this leaderboard aren't just chasing $1 billion. The most ambitious among them are already thinking ten times bigger.
-              </p>
-            </div>
-
-            <div className="border-t border-border/30 pt-8 mt-8">
-              <h2 className="text-xl lg:text-2xl font-bold text-foreground uppercase tracking-wide mb-4">
-                Bring Solo Unicorn League to Your Country
-              </h2>
-              <p>
-                The solo founder revolution is global. We're looking for ambassadors to launch regional chapters of the Solo Unicorn League — connecting local founders, hosting meetups, and building communities around the race to $1 billion.
-              </p>
-              <p>
-                Whether you're in Lagos, São Paulo, Berlin, Tokyo, or anywhere else — if your country has ambitious solo founders, we want to be there.
-              </p>
-              <p>
-                Reach out on{" "}
-                <a href="https://x.com/SoloUnicorn" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground/70 transition-colors">X @SoloUnicorn</a>{" "}
-                to start the conversation.
-              </p>
-            </div>
           </div>
 
           <div className="pt-4">
