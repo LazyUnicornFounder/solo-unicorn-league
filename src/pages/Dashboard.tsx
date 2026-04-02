@@ -182,8 +182,8 @@ export default function Dashboard() {
 
                 <form onSubmit={(e) => { e.preventDefault(); handleSave(entry.id); }} className="space-y-4">
                   <div className="space-y-2">
-                    <Label>Current MRR ($)</Label>
-                    <Input type="text" inputMode="numeric" value={displayMrr} onChange={(e) => updateField(entry.id, "mrrDollars", e.target.value.replace(/[^0-9]/g, ""))} placeholder="e.g. 12,000" required />
+                    <Label>Current ARR ($)</Label>
+                    <Input type="text" inputMode="numeric" value={displayArr} onChange={(e) => updateField(entry.id, "mrrDollars", e.target.value.replace(/[^0-9]/g, ""))} placeholder="e.g. 144,000" required />
                   </div>
                   <div className="space-y-2">
                     <Label>Company Name</Label>
