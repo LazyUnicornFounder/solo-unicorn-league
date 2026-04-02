@@ -47,12 +47,15 @@ interface Props {
 export default function AdminEditRow({ founder: f, onUpdate, onToggleVisibility }: Props) {
   const [editing, setEditing] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [uploadingLogo, setUploadingLogo] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [companyName, setCompanyName] = useState(f.company_name ?? "");
   const [oneLiner, setOneLiner] = useState(f.one_liner ?? "");
   const [xUrl, setXUrl] = useState(f.x_url ?? "");
   const [websiteUrl, setWebsiteUrl] = useState(f.website_url ?? "");
   const [arrInput, setArrInput] = useState(String(((f.mrr_cents ?? 0) / 100) * 12));
+  const [logoUrl, setLogoUrl] = useState(f.logo_url ?? "");
 
   const resetFields = () => {
     setCompanyName(f.company_name ?? "");
@@ -60,6 +63,28 @@ export default function AdminEditRow({ founder: f, onUpdate, onToggleVisibility 
     setXUrl(f.x_url ?? "");
     setWebsiteUrl(f.website_url ?? "");
     setArrInput(String(((f.mrr_cents ?? 0) / 100) * 12));
+    setLogoUrl(f.logo_url ?? "");
+  };
+
+  const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploadingLogo(true);
+    const ext = file.name.split(".").pop();
+    const path = `${f.id}.${ext}`;
+    const { error: uploadError } = await supabase.storage
+      .from("founder-logos")
+      .upload(path, file, { upsert: true });
+    if (uploadError) {
+      toast({ title: "Upload failed", description: uploadError.message, variant: "destructive" });
+      setUploadingLogo(false);
+      return;
+    }
+    const { data: urlData } = supabase.storage.from("founder-logos").getPublicUrl(path);
+    const newUrl = urlData.publicUrl + "?t=" + Date.now();
+    setLogoUrl(newUrl);
+    setUploadingLogo(false);
+    toast({ title: "Logo uploaded", description: "Remember to save." });
   };
 
   const handleSave = async () => {
