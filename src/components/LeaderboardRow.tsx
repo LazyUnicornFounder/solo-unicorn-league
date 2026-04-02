@@ -23,7 +23,10 @@ function fmtMrr(cents: number) {
 
 function fmtVal(cents: number) {
   const val = (cents / 100) * 12 * 15;
-  return "$" + val.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  if (val >= 1_000_000_000) return `$${(val / 1_000_000_000).toFixed(1)} billion`;
+  if (val >= 1_000_000) return `$${(val / 1_000_000).toFixed(1)} million`;
+  if (val >= 1_000) return `$${(val / 1_000).toFixed(1)}k`;
+  return `$${val.toFixed(0)}`;
 }
 
 export default function LeaderboardRow({ rank, companyName, logoUrl, xUrl, oneLiner, mrrCents }: Props) {
