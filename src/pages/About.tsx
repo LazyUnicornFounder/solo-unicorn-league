@@ -57,6 +57,21 @@ export default function About() {
 
             <div className="border-t border-border/30 pt-8 mt-8">
               <h2 className="text-xl lg:text-2xl font-bold text-foreground uppercase tracking-wide mb-4">
+                Solo Decacorn
+              </h2>
+              <p>
+                A unicorn is just the beginning. The Solo Decacorn is the next frontier — a solo-founded company valued at $10 billion. No co-founders, no boardroom compromises, just one visionary scaling to unprecedented heights.
+              </p>
+              <p>
+                It hasn't happened yet. But in the age of AI-powered leverage, autonomous infrastructure, and zero-marginal-cost distribution — it's not a question of if, but when.
+              </p>
+              <p>
+                The founders on this leaderboard aren't just chasing $1 billion. The most ambitious among them are already thinking ten times bigger.
+              </p>
+            </div>
+
+            <div className="border-t border-border/30 pt-8 mt-8">
+              <h2 className="text-xl lg:text-2xl font-bold text-foreground uppercase tracking-wide mb-4">
                 Bring Solo Unicorn League to Your Country
               </h2>
               <p>
