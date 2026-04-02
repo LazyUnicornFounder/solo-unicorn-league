@@ -184,8 +184,8 @@ export default function AdminEditRow({ founder: f, onUpdate, onToggleVisibility 
       </div>
 
       <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
-        <span className="font-mono-display">ARR: {fmt(arr * 100)}</span>
-        <span className="font-mono-display">Valuation: {fmt(val * 100)}</span>
+        <span className="font-mono-display">ARR: {fmtHuman(arr)}</span>
+        <span className="font-mono-display">Valuation: {fmtHuman(val)}</span>
         {f.x_url && (
           <a href={f.x_url} target="_blank" rel="noopener noreferrer" className="hover:text-foreground underline">{f.x_url}</a>
         )}
