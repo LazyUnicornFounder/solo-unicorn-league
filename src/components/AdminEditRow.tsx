@@ -31,6 +31,13 @@ function fmt(cents: number) {
   });
 }
 
+function fmtHuman(dollars: number) {
+  if (dollars >= 1_000_000_000) return `$${(dollars / 1_000_000_000).toFixed(1)} billion`;
+  if (dollars >= 1_000_000) return `$${(dollars / 1_000_000).toFixed(1)} million`;
+  if (dollars >= 1_000) return `$${(dollars / 1_000).toFixed(1)}k`;
+  return `$${dollars.toFixed(0)}`;
+}
+
 interface Props {
   founder: FounderRow;
   onUpdate: (updated: FounderRow) => void;
@@ -177,8 +184,8 @@ export default function AdminEditRow({ founder: f, onUpdate, onToggleVisibility 
       </div>
 
       <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
-        <span className="font-mono-display">ARR: {fmt(arr * 100)}</span>
-        <span className="font-mono-display">Valuation: {fmt(val * 100)}</span>
+        <span className="font-mono-display">ARR: {fmtHuman(arr)}</span>
+        <span className="font-mono-display">Valuation: {fmtHuman(val)}</span>
         {f.x_url && (
           <a href={f.x_url} target="_blank" rel="noopener noreferrer" className="hover:text-foreground underline">{f.x_url}</a>
         )}
