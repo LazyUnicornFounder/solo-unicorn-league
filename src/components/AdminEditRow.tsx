@@ -52,20 +52,20 @@ export default function AdminEditRow({ founder: f, onUpdate, onToggleVisibility 
   const [oneLiner, setOneLiner] = useState(f.one_liner ?? "");
   const [xUrl, setXUrl] = useState(f.x_url ?? "");
   const [websiteUrl, setWebsiteUrl] = useState(f.website_url ?? "");
-  const [valuationInput, setValuationInput] = useState(String((((f.mrr_cents ?? 0) / 100) * 12) * 15));
+  const [arrInput, setArrInput] = useState(String(((f.mrr_cents ?? 0) / 100) * 12));
 
   const resetFields = () => {
     setCompanyName(f.company_name ?? "");
     setOneLiner(f.one_liner ?? "");
     setXUrl(f.x_url ?? "");
     setWebsiteUrl(f.website_url ?? "");
-    setValuationInput(String((((f.mrr_cents ?? 0) / 100) * 12) * 15));
+    setArrInput(String(((f.mrr_cents ?? 0) / 100) * 12));
   };
 
   const handleSave = async () => {
     setSaving(true);
-    const valuationDollars = Number(valuationInput.replace(/,/g, "") || 0);
-    const mrrCents = Math.round((valuationDollars / 180) * 100);
+    const arrDollars = Number(arrInput.replace(/,/g, "") || 0);
+    const mrrCents = Math.round((arrDollars / 12) * 100);
     const updates = {
       company_name: companyName || null,
       one_liner: oneLiner || null,
@@ -121,13 +121,13 @@ export default function AdminEditRow({ founder: f, onUpdate, onToggleVisibility 
             <Input id={`name-${f.id}`} value={companyName} onChange={(e) => setCompanyName(e.target.value)} />
           </div>
           <div className="space-y-1.5">
-            <Label htmlFor={`arr-${f.id}`} className="text-xs">Valuation ($)</Label>
+            <Label htmlFor={`arr-${f.id}`} className="text-xs">ARR ($)</Label>
             <Input
               id={`arr-${f.id}`}
               type="text"
               inputMode="numeric"
-              value={valuationInput}
-              onChange={(e) => setValuationInput(e.target.value.replace(/[^0-9]/g, ""))}
+              value={arrInput}
+              onChange={(e) => setArrInput(e.target.value.replace(/[^0-9]/g, ""))}
             />
           </div>
           <div className="space-y-1.5">
