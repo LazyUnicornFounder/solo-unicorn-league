@@ -167,11 +167,11 @@ export default function Dashboard() {
               <div key={entry.id} className="p-6 rounded-xl border border-border bg-card">
                 <h2 className="text-lg font-bold text-foreground mb-4">{state.companyName || "Untitled"}</h2>
 
-                {mrrCents > 0 && (
+                {arrCents > 0 && (
                   <div className="flex gap-6 mb-6 p-3 rounded-lg bg-muted/50">
                     <div>
-                      <p className="text-xs text-muted-foreground uppercase tracking-wider">MRR</p>
-                      <p className="text-lg font-bold text-foreground">{formatDollars(mrrCents)}/mo</p>
+                      <p className="text-xs text-muted-foreground uppercase tracking-wider">ARR</p>
+                      <p className="text-lg font-bold text-foreground">{formatDollars(arrCents)}/yr</p>
                     </div>
                     <div>
                       <p className="text-xs text-muted-foreground uppercase tracking-wider">Est. Valuation</p>
