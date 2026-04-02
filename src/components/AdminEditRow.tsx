@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { Pencil, X, Check } from "lucide-react";
+import { Pencil, X, Check, Upload } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { formatDistanceToNow } from "date-fns";
 
@@ -47,12 +47,15 @@ interface Props {
 export default function AdminEditRow({ founder: f, onUpdate, onToggleVisibility }: Props) {
   const [editing, setEditing] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [uploadingLogo, setUploadingLogo] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [companyName, setCompanyName] = useState(f.company_name ?? "");
   const [oneLiner, setOneLiner] = useState(f.one_liner ?? "");
   const [xUrl, setXUrl] = useState(f.x_url ?? "");
   const [websiteUrl, setWebsiteUrl] = useState(f.website_url ?? "");
   const [arrInput, setArrInput] = useState(String(((f.mrr_cents ?? 0) / 100) * 12));
+  const [logoUrl, setLogoUrl] = useState(f.logo_url ?? "");
 
   const resetFields = () => {
     setCompanyName(f.company_name ?? "");
@@ -60,6 +63,28 @@ export default function AdminEditRow({ founder: f, onUpdate, onToggleVisibility 
     setXUrl(f.x_url ?? "");
     setWebsiteUrl(f.website_url ?? "");
     setArrInput(String(((f.mrr_cents ?? 0) / 100) * 12));
+    setLogoUrl(f.logo_url ?? "");
+  };
+
+  const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploadingLogo(true);
+    const ext = file.name.split(".").pop();
+    const path = `${f.id}.${ext}`;
+    const { error: uploadError } = await supabase.storage
+      .from("founder-logos")
+      .upload(path, file, { upsert: true });
+    if (uploadError) {
+      toast({ title: "Upload failed", description: uploadError.message, variant: "destructive" });
+      setUploadingLogo(false);
+      return;
+    }
+    const { data: urlData } = supabase.storage.from("founder-logos").getPublicUrl(path);
+    const newUrl = urlData.publicUrl + "?t=" + Date.now();
+    setLogoUrl(newUrl);
+    setUploadingLogo(false);
+    toast({ title: "Logo uploaded", description: "Remember to save." });
   };
 
   const handleSave = async () => {
@@ -71,6 +96,7 @@ export default function AdminEditRow({ founder: f, onUpdate, onToggleVisibility 
       one_liner: oneLiner || null,
       x_url: xUrl || null,
       website_url: websiteUrl || null,
+      logo_url: logoUrl || null,
       mrr_cents: mrrCents,
     };
 
@@ -141,6 +167,20 @@ export default function AdminEditRow({ founder: f, onUpdate, onToggleVisibility 
           <div className="space-y-1.5 sm:col-span-2">
             <Label htmlFor={`website-${f.id}`} className="text-xs">Website URL</Label>
             <Input id={`website-${f.id}`} value={websiteUrl} onChange={(e) => setWebsiteUrl(e.target.value)} />
+          </div>
+          <div className="space-y-1.5 sm:col-span-2">
+            <Label className="text-xs">Logo</Label>
+            <div className="flex items-center gap-3">
+              {logoUrl ? (
+                <img src={logoUrl} alt="Logo" className="w-10 h-10 rounded-lg object-cover shrink-0" />
+              ) : (
+                <div className="w-10 h-10 rounded-lg bg-secondary shrink-0 flex items-center justify-center text-xs text-muted-foreground">—</div>
+              )}
+              <input ref={fileInputRef} type="file" accept="image/*" className="hidden" onChange={handleLogoUpload} />
+              <Button type="button" variant="outline" size="sm" onClick={() => fileInputRef.current?.click()} disabled={uploadingLogo}>
+                <Upload className="w-3.5 h-3.5 mr-1" /> {uploadingLogo ? "Uploading..." : "Upload Logo"}
+              </Button>
+            </div>
           </div>
         </div>
       </div>
