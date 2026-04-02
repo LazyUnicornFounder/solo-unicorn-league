@@ -45,20 +45,20 @@ export default function AdminEditRow({ founder: f, onUpdate, onToggleVisibility 
   const [oneLiner, setOneLiner] = useState(f.one_liner ?? "");
   const [xUrl, setXUrl] = useState(f.x_url ?? "");
   const [websiteUrl, setWebsiteUrl] = useState(f.website_url ?? "");
-  const [arrInput, setArrInput] = useState(String(((f.mrr_cents ?? 0) / 100) * 12));
+  const [valuationInput, setValuationInput] = useState(String((((f.mrr_cents ?? 0) / 100) * 12) * 15));
 
   const resetFields = () => {
     setCompanyName(f.company_name ?? "");
     setOneLiner(f.one_liner ?? "");
     setXUrl(f.x_url ?? "");
     setWebsiteUrl(f.website_url ?? "");
-    setArrInput(String(((f.mrr_cents ?? 0) / 100) * 12));
+    setValuationInput(String((((f.mrr_cents ?? 0) / 100) * 12) * 15));
   };
 
   const handleSave = async () => {
     setSaving(true);
-    const arrDollars = Number(arrInput.replace(/,/g, "") || 0);
-    const mrrCents = Math.round((arrDollars / 12) * 100);
+    const valuationDollars = Number(valuationInput.replace(/,/g, "") || 0);
+    const mrrCents = Math.round((valuationDollars / 180) * 100);
     const updates = {
       company_name: companyName || null,
       one_liner: oneLiner || null,
