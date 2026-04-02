@@ -243,7 +243,7 @@ export default function Index() {
               <div className="flex items-center gap-6 px-6 py-3">
                 <div className="w-10 shrink-0" />
                 <div className="w-8 shrink-0" />
-                <div className="w-56 shrink-0" />
+                <div className="w-64 shrink-0" />
                 <div className="flex-1 relative">
                   <div className="h-px bg-border/30" />
                   <div className="flex justify-between mt-2">
