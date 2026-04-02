@@ -19,7 +19,8 @@ interface FounderRow {
 }
 
 const fmtCurrency = (v: number) =>
-  v >= 1_000_000 ? "$" + (v / 1_000_000).toFixed(1) + "M"
+  v >= 1_000_000_000 ? "$" + (v / 1_000_000_000).toFixed(1) + " billion"
+  : v >= 1_000_000 ? "$" + (v / 1_000_000).toFixed(1) + " million"
   : v >= 1_000 ? "$" + (v / 1_000).toFixed(0) + "K"
   : "$" + v.toFixed(0);
 
