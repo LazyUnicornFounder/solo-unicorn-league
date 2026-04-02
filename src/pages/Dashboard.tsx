@@ -157,9 +157,9 @@ export default function Dashboard() {
           {entries.map((entry) => {
             const state = editStates[entry.id];
             if (!state) return null;
-            const mrrCents = Math.round(Number(String(state.mrrDollars).replace(/,/g, "") || 0) * 100);
-            const displayMrr = state.mrrDollars ? Number(String(state.mrrDollars).replace(/,/g, "")).toLocaleString("en-US") : "";
-            const arrCents = mrrCents * 12;
+            const arrDollars = Number(String(state.mrrDollars).replace(/,/g, "") || 0);
+            const displayArr = state.mrrDollars ? Number(String(state.mrrDollars).replace(/,/g, "")).toLocaleString("en-US") : "";
+            const arrCents = Math.round(arrDollars * 100);
             const valuation = arrCents * 15;
             const isSaving = savingId === entry.id;
 
