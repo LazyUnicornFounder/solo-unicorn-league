@@ -96,7 +96,7 @@ export default function Dashboard() {
     setSavingId(entryId);
 
     try {
-      const mrrCents = Math.round(Number(String(state.mrrDollars).replace(/,/g, "") || 0) * 100);
+      const mrrCents = Math.round((Number(String(state.mrrDollars).replace(/,/g, "") || 0) / 12) * 100);
       let logoUrl = state.existingLogoUrl;
 
       if (state.logoFile) {
