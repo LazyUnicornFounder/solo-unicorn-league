@@ -232,15 +232,15 @@ export default function Join() {
               <p className="text-xs text-muted-foreground">{oneLiner.length}/100</p>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="mrr">Current MRR ($)</Label>
+              <Label htmlFor="valuation">Valuation ($)</Label>
               <Input
-                id="mrr"
+                id="valuation"
                 type="text"
                 inputMode="numeric"
-                value={displayMrr}
-                onChange={(e) => setMrrInput(e.target.value.replace(/[^0-9]/g, ""))}
+                value={displayValuation}
+                onChange={(e) => setValuationInput(e.target.value.replace(/[^0-9]/g, ""))}
                 required
-                placeholder="e.g. 12,000"
+                placeholder="e.g. 10,000,000"
               />
             </div>
 
