@@ -96,6 +96,7 @@ export default function AdminEditRow({ founder: f, onUpdate, onToggleVisibility 
       one_liner: oneLiner || null,
       x_url: xUrl || null,
       website_url: websiteUrl || null,
+      logo_url: logoUrl || null,
       mrr_cents: mrrCents,
     };
 
