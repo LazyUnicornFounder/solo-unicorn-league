@@ -42,7 +42,7 @@ interface EditState {
 function entryToEditState(entry: FounderEntry): EditState {
   return {
     companyName: entry.company_name ?? "",
-    mrrDollars: entry.mrr_cents != null && Number(entry.mrr_cents) > 0 ? String(Number(entry.mrr_cents) / 100) : "",
+    mrrDollars: entry.mrr_cents != null && Number(entry.mrr_cents) > 0 ? String((Number(entry.mrr_cents) / 100) * 12) : "",
     xUrl: entry.x_url ?? "",
     websiteUrl: entry.website_url ?? "",
     oneLiner: entry.one_liner ?? "",
