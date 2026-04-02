@@ -105,7 +105,7 @@ export default function Index() {
           <h1 className="text-3xl sm:text-5xl lg:text-8xl font-extrabold text-foreground mb-3 uppercase tracking-tight" style={{ fontFamily: "'Abel', sans-serif" }}>
             Solo Unicorn League
           </h1>
-          <p className="max-w-2xl text-muted-foreground text-xl lg:text-2xl leading-relaxed mb-6">
+          <p className="max-w-2xl text-muted-foreground text-sm sm:text-lg lg:text-2xl leading-relaxed mb-6 px-4">
             The leaderboard for solo founders racing to $1 billion. Submit your revenue, track your competitors, and race to the finish line.
           </p>
           <Link to="/join">
