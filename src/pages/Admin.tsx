@@ -1,34 +1,11 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { toast } from "@/hooks/use-toast";
-import { formatDistanceToNow } from "date-fns";
 import logo from "@/assets/logo-new.png";
-
-interface FounderRow {
-  id: string;
-  company_name: string | null;
-  mrr_cents: number | null;
-  is_visible: boolean | null;
-  is_solo_attested: boolean | null;
-  x_url: string | null;
-  one_liner: string | null;
-  logo_url: string | null;
-  created_at: string | null;
-  updated_at: string | null;
-}
-
-function fmt(cents: number) {
-  return (cents / 100).toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  });
-}
+import AdminEditRow, { FounderRow } from "@/components/AdminEditRow";
 
 export default function Admin() {
   const { user, loading, isAdmin, signOut } = useAuth();
@@ -52,7 +29,7 @@ export default function Admin() {
     if (!isAdmin) return;
     supabase
       .from("founders")
-      .select("id, company_name, mrr_cents, is_visible, is_solo_attested, x_url, one_liner, logo_url, created_at, updated_at")
+      .select("id, company_name, mrr_cents, is_visible, is_solo_attested, x_url, website_url, one_liner, logo_url, created_at, updated_at")
       .order("created_at", { ascending: false })
       .then(({ data }) => {
         if (data) setFounders(data);
@@ -71,6 +48,10 @@ export default function Admin() {
     }
     setFounders((prev) => prev.map((f) => (f.id === id ? { ...f, is_visible: visible } : f)));
     toast({ title: visible ? "Approved" : "Hidden", description: `Entry has been ${visible ? "approved and is now live" : "hidden from the leaderboard"}.` });
+  };
+
+  const handleUpdate = (updated: FounderRow) => {
+    setFounders((prev) => prev.map((f) => (f.id === updated.id ? updated : f)));
   };
 
   const filtered = founders.filter((f) => {
@@ -124,75 +105,14 @@ export default function Admin() {
           {filtered.length === 0 && (
             <p className="text-muted-foreground text-sm py-8 text-center">No entries found.</p>
           )}
-          {filtered.map((f) => {
-            const mrr = f.mrr_cents ?? 0;
-            const arr = (mrr / 100) * 12;
-            const val = arr * 15;
-
-            return (
-              <div
-                key={f.id}
-                className="p-4 rounded-lg border border-border bg-card space-y-3"
-              >
-                <div className="flex items-start justify-between">
-                  <div className="flex items-center gap-3">
-                    {f.logo_url ? (
-                      <img src={f.logo_url} alt="Logo" className="w-10 h-10 rounded-lg object-cover shrink-0" />
-                    ) : (
-                      <div className="w-10 h-10 rounded-lg bg-secondary shrink-0 flex items-center justify-center text-xs text-muted-foreground">—</div>
-                    )}
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="font-medium text-foreground">
-                          {f.company_name ?? "Unnamed"}
-                        </span>
-                        <Badge variant={f.is_visible ? "default" : "secondary"} className="text-[10px] shrink-0">
-                          {f.is_visible ? "Live" : "Pending"}
-                        </Badge>
-                        {f.is_solo_attested && (
-                          <Badge variant="outline" className="text-[10px] shrink-0">Solo</Badge>
-                        )}
-                      </div>
-                      {f.one_liner && (
-                        <p className="text-sm text-muted-foreground mt-0.5">{f.one_liner}</p>
-                      )}
-                    </div>
-                  </div>
-                  <div className="flex gap-2 ml-4 shrink-0">
-                    {f.is_visible ? (
-                      <Button variant="outline" size="sm" onClick={() => setVisibility(f.id, false)}>
-                        Hide
-                      </Button>
-                    ) : (
-                      <Button
-                        size="sm"
-                        className="bg-foreground text-background hover:bg-foreground/90"
-                        onClick={() => setVisibility(f.id, true)}
-                      >
-                        Approve
-                      </Button>
-                    )}
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
-                  <span className="font-mono-display">MRR: {fmt(mrr)}</span>
-                  <span className="font-mono-display">ARR: {fmt(arr * 100)}</span>
-                  <span className="font-mono-display">Val: {fmt(val * 100)}</span>
-                  {f.x_url && (
-                    <a href={f.x_url} target="_blank" rel="noopener noreferrer" className="hover:text-foreground underline">
-                      {f.x_url}
-                    </a>
-                  )}
-                  <span>
-                    {f.created_at
-                      ? formatDistanceToNow(new Date(f.created_at), { addSuffix: true })
-                      : "—"}
-                  </span>
-                </div>
-              </div>
-            );
-          })}
+          {filtered.map((f) => (
+            <AdminEditRow
+              key={f.id}
+              founder={f}
+              onUpdate={handleUpdate}
+              onToggleVisibility={setVisibility}
+            />
+          ))}
         </div>
       </main>
     </div>
