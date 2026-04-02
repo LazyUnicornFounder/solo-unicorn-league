@@ -121,13 +121,13 @@ export default function AdminEditRow({ founder: f, onUpdate, onToggleVisibility 
             <Input id={`name-${f.id}`} value={companyName} onChange={(e) => setCompanyName(e.target.value)} />
           </div>
           <div className="space-y-1.5">
-            <Label htmlFor={`arr-${f.id}`} className="text-xs">Valuation ($)</Label>
+            <Label htmlFor={`arr-${f.id}`} className="text-xs">ARR ($)</Label>
             <Input
               id={`arr-${f.id}`}
               type="text"
               inputMode="numeric"
-              value={valuationInput}
-              onChange={(e) => setValuationInput(e.target.value.replace(/[^0-9]/g, ""))}
+              value={arrInput}
+              onChange={(e) => setArrInput(e.target.value.replace(/[^0-9]/g, ""))}
             />
           </div>
           <div className="space-y-1.5">
