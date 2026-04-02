@@ -245,28 +245,28 @@ export default function Join() {
             </div>
 
             {/* Live calculation preview */}
-            {mrrDollars > 0 && (
+            {valuationDollars > 0 && (
               <div className="rounded-lg border border-border bg-card p-4 space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-xs text-muted-foreground uppercase tracking-wider font-mono-display">Valuation</span>
+                  <span className="text-sm font-mono-display text-foreground font-bold">{fmtCurrency(valuationDollars)}</span>
+                </div>
+                <div className="h-px bg-border/50" />
+                <div className="flex justify-between items-center">
+                  <span className="text-xs text-muted-foreground uppercase tracking-wider font-mono-display">ARR (Valuation ÷ 15)</span>
+                  <span className="text-sm font-mono-display text-foreground font-medium">{fmtCurrency(arr)}</span>
+                </div>
+                <div className="h-px bg-border/50" />
                 <div className="flex justify-between items-center">
                   <span className="text-xs text-muted-foreground uppercase tracking-wider font-mono-display">MRR</span>
                   <span className="text-sm font-mono-display text-foreground font-medium">{fmtCurrency(mrrDollars)}/mo</span>
-                </div>
-                <div className="h-px bg-border/50" />
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-muted-foreground uppercase tracking-wider font-mono-display">ARR</span>
-                  <span className="text-sm font-mono-display text-foreground font-bold">{fmtCurrency(arr)}</span>
-                </div>
-                <div className="h-px bg-border/50" />
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-muted-foreground uppercase tracking-wider font-mono-display">Valuation (15× ARR)</span>
-                  <span className="text-sm font-mono-display text-foreground font-bold">{fmtCurrency(valuation)}</span>
                 </div>
                 {/* Mini progress bar */}
                 <div className="mt-1">
                   <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
                     <div
                       className="h-full bg-foreground/60 rounded-full transition-all duration-300"
-                      style={{ width: `${Math.min((valuation / 1_000_000_000) * 100, 100)}%` }}
+                      style={{ width: `${Math.min((valuationDollars / 1_000_000_000) * 100, 100)}%` }}
                     />
                   </div>
                   <div className="flex justify-between mt-1">
