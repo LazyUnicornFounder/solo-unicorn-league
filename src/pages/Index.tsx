@@ -117,7 +117,7 @@ export default function Index() {
       </section>
 
       {/* Rankings */}
-      <main className="max-w-7xl mx-auto w-full px-4 pb-16 mt-0">
+      <main className="max-w-7xl mx-auto w-full px-2 lg:px-4 pb-16 mt-0">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -125,8 +125,8 @@ export default function Index() {
           className="overflow-hidden"
         >
           {/* Card header */}
-          <div className="flex items-center gap-6 px-6 py-4 border-b border-border/20">
-            <h2 className="text-xs font-bold text-foreground uppercase tracking-[0.2em] w-10 shrink-0 flex justify-center">
+          <div className="flex items-center gap-4 lg:gap-6 px-3 lg:px-6 py-4 border-b border-border/20">
+            <h2 className="text-xs font-bold text-foreground uppercase tracking-[0.2em]">
               Rankings
             </h2>
             <div className="flex-1" />
@@ -135,8 +135,8 @@ export default function Index() {
             </span>
           </div>
 
-          {/* Column headers */}
-          <div className="flex items-center gap-6 px-6 py-3 border-b border-border/15">
+          {/* Column headers - hidden on mobile */}
+          <div className="hidden lg:flex items-center gap-6 px-6 py-3 border-b border-border/15">
             <div className="w-10 shrink-0 flex justify-center text-lg font-mono-display text-foreground/50 uppercase">#</div>
             <div className="w-8 shrink-0" />
             <div className="w-80 shrink-0 text-lg font-mono-display text-foreground/50 uppercase tracking-wider">Company</div>
@@ -146,7 +146,7 @@ export default function Index() {
           </div>
 
           {loading ? (
-            <div className="px-6 py-4 space-y-2">
+            <div className="px-3 lg:px-6 py-4 space-y-2">
               {[...Array(3)].map((_, i) => (
                 <div key={i} className="h-9 rounded-lg bg-secondary/30 animate-pulse" />
               ))}
@@ -166,52 +166,107 @@ export default function Index() {
                       initial={{ opacity: 0, x: -8 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.3 + i * 0.04 }}
-                      className="flex items-center gap-6 px-6 py-5 border-b border-border/10 hover:bg-secondary/20 transition-all duration-200 group"
+                      className="border-b border-border/10 hover:bg-secondary/20 transition-all duration-200 group"
                     >
-                      <span className="text-2xl font-mono-display text-foreground/60 w-10 text-center shrink-0 tabular-nums group-hover:text-foreground transition-colors">
-                        {i + 1}
-                      </span>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
+                      {/* Desktop row */}
+                      <div className="hidden lg:flex items-center gap-6 px-6 py-5">
+                        <span className="text-2xl font-mono-display text-foreground/60 w-10 text-center shrink-0 tabular-nums group-hover:text-foreground transition-colors">
+                          {i + 1}
+                        </span>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            {f.logo_url ? (
+                              <a href={f.url ?? "#"} target="_blank" rel="noopener noreferrer" className="shrink-0">
+                                <img src={f.logo_url} alt="" className="w-8 h-8 rounded-lg object-cover hover:opacity-75 transition-opacity shadow-[0_0_0_2px_white]" />
+                              </a>
+                            ) : (
+                              <div className="w-8 h-8 rounded-lg bg-secondary/50 shrink-0" />
+                            )}
+                          </TooltipTrigger>
+                          {f.one_liner && (
+                            <TooltipContent side="top" className="font-mono-display text-sm bg-card border-border/50 rounded-lg px-3 py-2">
+                              {f.one_liner}
+                            </TooltipContent>
+                          )}
+                        </Tooltip>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <a
+                              href={f.url ?? "#"}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-2xl font-medium text-foreground w-80 min-w-80 shrink-0 whitespace-nowrap overflow-hidden text-ellipsis hover:text-foreground/70 transition-colors"
+                            >
+                              {f.company_name ?? "Unnamed"}
+                            </a>
+                          </TooltipTrigger>
+                          {f.one_liner && (
+                            <TooltipContent side="top" className="font-mono-display text-sm bg-card border-border/50 rounded-lg px-3 py-2">
+                              {f.one_liner}
+                            </TooltipContent>
+                          )}
+                        </Tooltip>
+                        {f.x_url && (
+                          <a href={f.x_url} target="_blank" rel="noopener noreferrer" className="shrink-0 text-muted-foreground hover:text-foreground transition-colors -ml-4">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                          </a>
+                        )}
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <div className="flex-1 h-8 bg-secondary/30 rounded-full relative overflow-hidden cursor-default">
+                              <motion.div
+                                initial={{ width: 0 }}
+                                animate={{ width: `${pct}%` }}
+                                transition={{ duration: 1.2, delay: 0.4 + i * 0.04, ease: [0.25, 0.46, 0.45, 0.94] }}
+                                className="h-full rounded-full bg-gradient-to-r from-foreground/30 to-foreground/60"
+                              />
+                            </div>
+                          </TooltipTrigger>
+                          <TooltipContent side="top" className="font-mono-display text-base bg-card border-border/50 rounded-lg px-3 py-2">
+                            <div className="space-y-0.5">
+                              <div className="text-foreground font-medium">ARR: {fmtCurrency(arr)}</div>
+                              <div className="text-foreground/70">MRR: {fmtCurrency(mrrDollars)}/mo</div>
+                              <div className="text-foreground">Valuation: {fmtCurrency(valuation)}</div>
+                            </div>
+                          </TooltipContent>
+                        </Tooltip>
+                        <span className="text-2xl font-mono-display text-foreground w-28 text-right shrink-0 tabular-nums font-medium">
+                          {fmtCurrency(arr)}
+                        </span>
+                        <span className="text-2xl font-mono-display text-foreground/70 w-28 text-right shrink-0 tabular-nums group-hover:text-foreground transition-colors">
+                          {fmtCurrency(valuation)}
+                        </span>
+                      </div>
+
+                      {/* Mobile row */}
+                      <div className="flex lg:hidden flex-col gap-2 px-3 py-4">
+                        <div className="flex items-center gap-3">
+                          <span className="text-lg font-mono-display text-foreground/60 w-7 text-center shrink-0 tabular-nums">
+                            {i + 1}
+                          </span>
                           {f.logo_url ? (
                             <a href={f.url ?? "#"} target="_blank" rel="noopener noreferrer" className="shrink-0">
-                              <img src={f.logo_url} alt="" className="w-8 h-8 rounded-lg object-cover hover:opacity-75 transition-opacity shadow-[0_0_0_2px_white]" />
+                              <img src={f.logo_url} alt="" className="w-7 h-7 rounded-md object-cover shadow-[0_0_0_1px_white]" />
                             </a>
                           ) : (
-                            <div className="w-8 h-8 rounded-lg bg-secondary/50 shrink-0" />
+                            <div className="w-7 h-7 rounded-md bg-secondary/50 shrink-0" />
                           )}
-                        </TooltipTrigger>
-                        {f.one_liner && (
-                          <TooltipContent side="top" className="font-mono-display text-sm bg-card border-border/50 rounded-lg px-3 py-2">
-                            {f.one_liner}
-                          </TooltipContent>
-                        )}
-                      </Tooltip>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
                           <a
                             href={f.url ?? "#"}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-2xl font-medium text-foreground w-80 min-w-80 shrink-0 whitespace-nowrap overflow-hidden text-ellipsis hover:text-foreground/70 transition-colors"
+                            className="text-base font-medium text-foreground truncate hover:text-foreground/70 transition-colors flex-1"
                           >
                             {f.company_name ?? "Unnamed"}
                           </a>
-                        </TooltipTrigger>
-                        {f.one_liner && (
-                          <TooltipContent side="top" className="font-mono-display text-sm bg-card border-border/50 rounded-lg px-3 py-2">
-                            {f.one_liner}
-                          </TooltipContent>
-                        )}
-                      </Tooltip>
-                      {f.x_url && (
-                        <a href={f.x_url} target="_blank" rel="noopener noreferrer" className="shrink-0 text-muted-foreground hover:text-foreground transition-colors -ml-4">
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                        </a>
-                      )}
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <div className="flex-1 h-8 bg-secondary/30 rounded-full relative overflow-hidden cursor-default">
+                          {f.x_url && (
+                            <a href={f.x_url} target="_blank" rel="noopener noreferrer" className="shrink-0 text-muted-foreground hover:text-foreground transition-colors">
+                              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                            </a>
+                          )}
+                        </div>
+                        <div className="flex items-center gap-3 pl-10">
+                          <div className="flex-1 h-5 bg-secondary/30 rounded-full relative overflow-hidden">
                             <motion.div
                               initial={{ width: 0 }}
                               animate={{ width: `${pct}%` }}
@@ -219,28 +274,18 @@ export default function Index() {
                               className="h-full rounded-full bg-gradient-to-r from-foreground/30 to-foreground/60"
                             />
                           </div>
-                        </TooltipTrigger>
-                        <TooltipContent side="top" className="font-mono-display text-base bg-card border-border/50 rounded-lg px-3 py-2">
-                          <div className="space-y-0.5">
-                            <div className="text-foreground font-medium">ARR: {fmtCurrency(arr)}</div>
-                            <div className="text-foreground/70">MRR: {fmtCurrency(mrrDollars)}/mo</div>
-                            <div className="text-foreground">Valuation: {fmtCurrency(valuation)}</div>
-                          </div>
-                        </TooltipContent>
-                      </Tooltip>
-                      <span className="text-2xl font-mono-display text-foreground w-28 text-right shrink-0 tabular-nums font-medium">
-                        {fmtCurrency(arr)}
-                      </span>
-                      <span className="text-2xl font-mono-display text-foreground/70 w-28 text-right shrink-0 tabular-nums group-hover:text-foreground transition-colors">
-                        {fmtCurrency(valuation)}
-                      </span>
+                          <span className="text-sm font-mono-display text-foreground tabular-nums font-medium shrink-0">
+                            {fmtCurrency(arr)}
+                          </span>
+                        </div>
+                      </div>
                     </motion.div>
                   </TooltipProvider>
                 );
               })}
 
-              {/* Axis */}
-              <div className="flex items-center gap-6 px-6 py-3">
+              {/* Axis - desktop only */}
+              <div className="hidden lg:flex items-center gap-6 px-6 py-3">
                 <div className="w-10 shrink-0" />
                 <div className="w-8 shrink-0" />
                 <div className="w-64 shrink-0" />
