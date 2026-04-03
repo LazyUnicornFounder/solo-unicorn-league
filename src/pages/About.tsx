@@ -50,9 +50,8 @@ export default function About() {
             </p>
 
             <p>
-              Solo Unicorn League is associated with{" "}
-              <a href="https://lazyunicorn.ai" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground/70 transition-colors">Lazy Unicorn</a>, which helps you launch your autonomous business on Lovable, and{" "}
-              <a href="https://breakingmuse.ai" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground/70 transition-colors">Breaking Muse</a>, which turns today's news into your next startup idea.
+              <a href="https://lazyunicorn.ai" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground/70 transition-colors">Lazy Unicorn</a> is part of{" "}
+              <a href="https://lazyfactoryventures.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground/70 transition-colors">Lazy Factory Ventures</a>.
             </p>
           </div>
 
