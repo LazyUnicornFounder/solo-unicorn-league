@@ -50,7 +50,7 @@ export default function About() {
             </p>
 
             <p>
-              <a href="https://lazyunicorn.ai" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground/70 transition-colors">Lazy Unicorn</a> is part of{" "}
+              Solo Unicorn League is part of{" "}
               <a href="https://lazyfactoryventures.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground/70 transition-colors">Lazy Factory Ventures</a>.
             </p>
           </div>
