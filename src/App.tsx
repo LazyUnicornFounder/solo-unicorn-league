@@ -10,11 +10,13 @@ import Dashboard from "./pages/Dashboard";
 import Admin from "./pages/Admin";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
+  <ErrorBoundary>
+    <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
@@ -32,6 +34,7 @@ const App = () => (
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
+    </ErrorBoundary>
 );
 
 export default App;

@@ -8,6 +8,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo-new.png";
 import OpenSourceBanner from "@/components/OpenSourceBanner";
+import PortfolioFooter from "@/components/PortfolioFooter";
 
 interface FounderRow {
   id: string;
@@ -306,6 +307,7 @@ export default function Index() {
         </motion.div>
       </main>
           <OpenSourceBanner />
+          <PortfolioFooter />
     </div>
   );
 }
